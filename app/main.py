@@ -1,3 +1,4 @@
+from wsgiref.util import application_uri
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -12,3 +13,6 @@ def test_submit():
         return request.form
     else:
         return "Error"
+
+if __name__ == '__main__':
+    app.run(debug=True)
