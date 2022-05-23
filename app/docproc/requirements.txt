@@ -1,2 +1,0 @@
-docxtpl
-jinja2
