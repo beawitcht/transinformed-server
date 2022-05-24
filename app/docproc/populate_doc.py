@@ -30,7 +30,7 @@ def possessive(name):
 def generate_document(context, filetype):
     print(context)
     docx = BytesIO()
-    doc = DocxTemplate(path/ 'templates' / 'template_v0_1.docx')
+    doc = DocxTemplate(path / 'templates' / 'template_v0_1.docx')
     jinja_env = jinja2.Environment()
     jinja_env.filters['possessive'] = possessive
     doc.render(context, jinja_env)

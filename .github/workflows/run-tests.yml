@@ -1,4 +1,4 @@
-name: Python package
+name: Run Tests
 
 on:
   push:
@@ -32,4 +32,4 @@ jobs:
           pip install -r app/requirements.txt
       - name: Test with pytest
         run: |
-          pytest
+          pytest -v

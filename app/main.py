@@ -11,8 +11,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    seconds_left = json.loads(requests.get(
-        f"https://v2.convertapi.com/user?Secret={api_key}").text)['SecondsLeft']
+    api_data = json.loads(requests.get(
+        f"https://v2.convertapi.com/user?Secret={api_key}").text)
+
+    seconds_left = api_data['SecondsLeft']
 
     if int(seconds_left) < 50:
         pdf_available = False
@@ -28,9 +30,9 @@ def test_submit():
         file = generate_document(request.form.to_dict(), filetype)
         try:
             return send_file(file, download_name=f"transgpguide.{filetype}")
-        except:
+        except file.getvalue() is None:
             if filetype == "pdf":
-                return ("An error occured, PDF downloads may be maxxed out, please download the .docx version")
+                return ("PDF downloads maxxed please download .docx version")
             else:
                 return ("An error occured, please try again later")
 

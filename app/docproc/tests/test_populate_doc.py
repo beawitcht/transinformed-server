@@ -1,5 +1,5 @@
-from genericpath import exists
 from app.docproc.populate_doc import possessive, generate_document
+
 
 def test_possessive():
     name_ending_s = possessive('Tas')
