@@ -4,8 +4,12 @@ import jinja2
 import convertapi
 import requests
 import os
+import pathlib
 
 convertapi.api_secret = os.getenv('PDF_API_KEY')
+
+
+path = pathlib.Path(__file__).parent.resolve()
 
 
 def possessive(name):
@@ -15,18 +19,18 @@ def possessive(name):
         return name + '\'s'
 
 
-def txt_to_var(txt):
-    with open(f"templates/gender_journey/{txt}.txt", "r") as f:
-        return f.read()
+# def txt_to_var(txt):
+#     with open(f"templates/gender_journey/{txt}.txt", "r") as f:
+#         return f.read()
 
 # formal_diagnosis = txt_to_var('formal_diagnosis')
 # self_med = txt_to_var('self_med')
 
 
 def generate_document(context, filetype):
-    docx = BytesIO()
     print(context)
-    doc = DocxTemplate("/home/Beawitched/mysite/docproc/templates/template_v0_1.docx")
+    docx = BytesIO()
+    doc = DocxTemplate(path/ 'templates' / 'template_v0_1.docx')
     jinja_env = jinja2.Environment()
     jinja_env.filters['possessive'] = possessive
     doc.render(context, jinja_env)
