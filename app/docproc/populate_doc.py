@@ -26,9 +26,9 @@ def txt_to_var(txt):
 # self_med = txt_to_var('self_med')
 
 
-def generate_document(context):
-    print(context)
+def generate_document(context, filetype):
     docx = BytesIO()
+    print(context)
     doc = DocxTemplate(
         "/mnt/c/Users/broga/Documents/GitHub/tem/transinformer-frontend-server/app/docproc/templates/template_v0_1.docx")
     jinja_env = jinja2.Environment()
@@ -37,20 +37,25 @@ def generate_document(context):
     doc.save(docx)
     docx.seek(0)
 
-    # upload docx
-    conv = convertapi.UploadIO(docx, 'output.docx')
+    if filetype == "docx":
+        return docx
 
-    # convert to pdf
-    pdf = convertapi.convert('pdf', {'File': conv})
+    elif filetype == "pdf":
+        # upload docx
+        conv = convertapi.UploadIO(docx, 'output.docx')
 
-    # retrieve
-    response_vars = vars(pdf)
-    # get the URL of the converted document
-    pdf_file = requests.get(
-        response_vars['response']['Files'][0]['Url'], stream=True
-    )
+        # convert to pdf
+        pdf = convertapi.convert('pdf', {'File': conv})
 
-    # write to BytesIO for serving
-    pdf_final = BytesIO(pdf_file.content)
-    pdf_final.seek(0)
-    return pdf_final
+        # retrieve
+        response_vars = vars(pdf)
+        # get the URL of the converted document
+        pdf_file = requests.get(
+            response_vars['response']['Files'][0]['Url'], stream=True
+        )
+
+        print( response_vars['response']['Files'][0]['Url'])       
+        # write to BytesIO for serving
+        pdf_final = BytesIO(pdf_file.content)
+        pdf_final.seek(0)
+        return pdf_final
