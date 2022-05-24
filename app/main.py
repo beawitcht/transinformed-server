@@ -3,19 +3,17 @@ from docproc.populate_doc import generate_document
 import requests
 import os
 import json
-from dotenv import load_dotenv
-
-load_dotenv()
 
 api_key = os.getenv('PDF_API_KEY')
 
 app = Flask(__name__)
 
 
-
 @app.route("/")
 def index():
-    seconds_left = json.loads(requests.get(f"https://v2.convertapi.com/user?Secret={api_key}").text)['SecondsLeft']
+    seconds_left = json.loads(requests.get(
+        f"https://v2.convertapi.com/user?Secret={api_key}").text)['SecondsLeft']
+
     if int(seconds_left) < 50:
         pdf_available = False
     else:

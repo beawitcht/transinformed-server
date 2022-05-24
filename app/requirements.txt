@@ -2,4 +2,4 @@ flask
 docxtpl
 jinja2
 convertapi
-dotenv
+python-dotenv

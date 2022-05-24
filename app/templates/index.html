@@ -105,7 +105,11 @@
 
                         <div class="btn-group">
                             <button class="btn btn-outline-primary btn-lg mr-3" name="filetype" type="submit" value="docx">Generate Docx</button>
-                            <button class="btn btn-outline-primary btn-lg {% if not pdf_available %} disabled {% endif %}" name="filetype" type="submit" value="pdf">Generate PDF</button>
+                            {% if not pdf_available %}
+                                <button class="btn btn-outline-primary btn-lg  disabled" name="filetype" type="submit" value="pdf">PDF Unavailable</button>
+                            {% else %}
+                            <button class="btn btn-outline-primary btn-lg " name="filetype" type="submit" value="pdf">Generate PDF</button>
+                            {% endif %}
                         </div>
 
                 </form>

@@ -4,9 +4,6 @@ import jinja2
 import convertapi
 import requests
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 convertapi.api_secret = os.getenv('PDF_API_KEY')
 
@@ -29,8 +26,7 @@ def txt_to_var(txt):
 def generate_document(context, filetype):
     docx = BytesIO()
     print(context)
-    doc = DocxTemplate(
-        "/mnt/c/Users/broga/Documents/GitHub/tem/transinformer-frontend-server/app/docproc/templates/template_v0_1.docx")
+    doc = DocxTemplate("/home/Beawitched/mysite/docproc/templates/template_v0_1.docx")
     jinja_env = jinja2.Environment()
     jinja_env.filters['possessive'] = possessive
     doc.render(context, jinja_env)
@@ -54,7 +50,7 @@ def generate_document(context, filetype):
             response_vars['response']['Files'][0]['Url'], stream=True
         )
 
-        print( response_vars['response']['Files'][0]['Url'])       
+        print(response_vars['response']['Files'][0]['Url'])
         # write to BytesIO for serving
         pdf_final = BytesIO(pdf_file.content)
         pdf_final.seek(0)
