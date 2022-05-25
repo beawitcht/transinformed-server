@@ -13,12 +13,12 @@ def test_generate_doc_docx():
 
     context = {
         'country': 'England',
-        'formalDiagnosis': 'on',
-        'firstName': 'Bea',
-        'lastName': '',
+        'formal_diagnosis': True,
+        'name': 'Bea',
+        'surname': '',
         'email': 'test123@test.com',
-        'phoneNumber': '1234567890',
-        'filetype': 'docx'
+        'phone': '1234567890',
+        'docx': True
     }
     docx = generate_document(context, 'docx')
 
