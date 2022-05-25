@@ -3,3 +3,4 @@ docxtpl
 jinja2
 convertapi
 python-dotenv
+Flask-WTF
