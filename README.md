@@ -1,5 +1,5 @@
-# transinformer-frontend-server
-Frontend for TransInformer GP guide
+# Trans Informed server
+Frontend for Trans Informed GP guide
 
 this is very early stages
 
