@@ -1,5 +1,5 @@
-# transinformer-server
-Server for TransInformer GP guide
+# transinformed-server
+Server for Trans Informed GP guide
 
 this is very early stages
 
