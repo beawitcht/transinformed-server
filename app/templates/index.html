@@ -88,8 +88,14 @@
                             <div class="col-12">
                                 <label for="email" class="form-label">{{ form.email.label }} <span
                                         class="text-muted"></span></label>
-                                <input type="email" class="form-control" id="email" name="{{ form.email.name }}"
+                                <input type="email" class="form-control {% if form.email.errors|length > 0 %} is-invalid {% endif %}" id="email" name="{{ form.email.name }}"
                                     placeholder="you@example.com">
+                                
+                                <div class="invalid-feedback ">
+                                    {% for error in form.email.errors %}
+                                    {{error}}
+                                    {% endfor %}
+                                </div>
                             </div>
 
                             <div class="col-md-2">

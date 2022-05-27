@@ -1,11 +1,12 @@
-from flask import Flask, render_template, request, send_file
-from flask_wtf import FlaskForm
+from flask import Flask, render_template, send_file
 from docproc.populate_doc import generate_document
 from input_form import InputForm
 import requests
 import os
 import json
 
+from dotenv import load_dotenv
+load_dotenv('.env')
 
 api_key = os.getenv('PDF_API_KEY')
 
@@ -13,6 +14,7 @@ app = Flask(__name__)
 app.config['WTF_CSRF_ENABLED'] = False
 app.config['RECAPTCHA_PUBLIC_KEY'] = os.getenv('RECAPTCHA_PUBLIC_KEY')
 app.config['RECAPTCHA_PRIVATE_KEY'] = os.getenv('RECAPTCHA_PRIVATE_KEY')
+app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -47,4 +49,4 @@ def validation_test():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
