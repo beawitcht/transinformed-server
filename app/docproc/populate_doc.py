@@ -28,7 +28,6 @@ def possessive(name):
 
 
 def generate_document(context, filetype):
-    print(context)
     docx = BytesIO()
     doc = DocxTemplate(path / 'templates' / 'template_v0_1.docx')
     jinja_env = jinja2.Environment()
@@ -54,7 +53,6 @@ def generate_document(context, filetype):
             response_vars['response']['Files'][0]['Url'], stream=True
         )
 
-        print(response_vars['response']['Files'][0]['Url'])
         # write to BytesIO for serving
         pdf_final = BytesIO(pdf_file.content)
         pdf_final.seek(0)

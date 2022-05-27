@@ -1,7 +1,6 @@
-from lib2to3.pgen2.token import OP
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, SelectField, BooleanField, SubmitField, EmailField
-from wtforms.validators import DataRequired, Length, Email, Optional, AnyOf
+from wtforms.validators import DataRequired, Email, Optional, AnyOf
 
 
 class InputForm(FlaskForm):
@@ -12,7 +11,7 @@ class InputForm(FlaskForm):
     shared_care = BooleanField("I want a shared care agreement with my GP")
     name = StringField("First Name", validators=[Optional()])
     surname = StringField("Last Name", validators=[Optional()])
-    email = EmailField("Email", validators=[Optional()])
+    email = EmailField("Email", validators=[Optional(), Email()])
     phone = StringField("Phone Number", validators=[Optional()])
     docx = SubmitField("Generate Docx")
     pdf = SubmitField("Generate PDF")
