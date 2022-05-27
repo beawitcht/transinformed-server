@@ -6,6 +6,9 @@ import requests
 import os
 import pathlib
 
+from dotenv import load_dotenv
+load_dotenv('.env')
+
 convertapi.api_secret = os.getenv('PDF_API_KEY')
 
 
