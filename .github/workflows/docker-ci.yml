@@ -3,7 +3,9 @@ name: Docker CI
 on:
   push:
     branches:
-      - 'main'
+      - main
+    paths: 
+      - 'app/**' 
 
 jobs:
   docker:

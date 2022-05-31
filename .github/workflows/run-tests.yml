@@ -4,11 +4,13 @@ on:
   push:
     branches:
       -  development
-      - main
+    paths:
+      - '**.py'
   pull_request:
     branches:
-      - development
       - main
+    paths:
+      - '**.py'
 
 jobs:
   build:
@@ -16,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ macos-latest, ubuntu-latest, windows-latest ]
+        os: [ ubuntu-latest ]
         python-version: [ 3.9 ]
 
     steps:
