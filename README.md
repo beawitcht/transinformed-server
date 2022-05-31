@@ -2,7 +2,10 @@
 
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/beawitcht/transinformed-server.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/beawitcht/transinformed-server/context:python) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/beawitcht/transinformed-server) [![Twitter Follow](https://img.shields.io/twitter/follow/beawitcht?style=social)](https://www.twitter.com/beawitcht)
 ***
-<img src="https://raw.githubusercontent.com/beawitcht/transinformed-server/main/app/static/logo.svg" width="200" alt="Trans Informed logo" style="display:block; margin-left:auto; margin-right:auto;">
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/beawitcht/transinformed-server/main/app/static/logo.svg" width="200" alt="Trans Informed logo">
+</p>
 
 ## About
 #### ***This service is still a very early prototype and is not suitable for use.***
