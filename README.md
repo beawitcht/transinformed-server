@@ -35,7 +35,7 @@ RECAPTCHA_PRIVATE_KEY=<your-recaptcha-private-key> # google recaptcha private ke
 ### Run with gunicorn
 #### Install gunicorn:
 ```
-% pip install gunicorn
+$ pip install gunicorn
 ```
 #### Run with gunicorn:
 ```
