@@ -1,12 +1,14 @@
 from flask import Flask, render_template, send_file
 from docproc.populate_doc import generate_document
 from input_form import InputForm
+from pathlib import Path
 import requests
 import os
 import json
 
 from dotenv import load_dotenv
-load_dotenv('.env')
+load_dotenv(Path(__file__).resolve().parent / '.env')
+
 
 api_key = os.getenv('PDF_API_KEY')
 
