@@ -12,6 +12,7 @@ load_dotenv(Path(__file__).resolve().parent / '.env')
 
 api_key = os.getenv('PDF_API_KEY')
 
+# configure app
 app = Flask(__name__)
 app.config['WTF_CSRF_ENABLED'] = False
 app.config['RECAPTCHA_PUBLIC_KEY'] = os.getenv('RECAPTCHA_PUBLIC_KEY')
@@ -24,7 +25,7 @@ def validation_test():
     api_data = json.loads(requests.get(f"https://v2.convertapi.com/user?Secret={api_key}").text)
 
     seconds_left = api_data['SecondsLeft']
-
+    # check if api limit reached
     if int(seconds_left) < 50:
         pdf_available = False
     else:
