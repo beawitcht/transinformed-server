@@ -1,4 +1,4 @@
-# Trans Informed server <img src="https://raw.githubusercontent.com/beawitcht/transinformed-server/main/app/static/logo.svg" width="120" alt="Trans Informed logo" style="float:right;">
+# Trans Informed server <img src="https://raw.githubusercontent.com/beawitcht/transinformed-server/main/app/static/logo.svg" width="120" alt="Trans Informed logo" style="position:absolute; right:20px; top:20px;">
 
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/beawitcht/transinformed-server.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/beawitcht/transinformed-server/context:python) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/beawitcht/transinformed-server) [![Twitter Follow](https://img.shields.io/twitter/follow/beawitcht?style=social)](https://www.twitter.com/beawitcht)
 ***
