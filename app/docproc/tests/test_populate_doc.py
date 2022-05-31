@@ -1,6 +1,7 @@
 from app.docproc.populate_doc import possessive, generate_document
 
 
+# test that the name is using the correct possession form
 def test_possessive():
     name_ending_s = possessive('Tas')
     name_not_ending_s = possessive('Bea')
@@ -9,6 +10,7 @@ def test_possessive():
     assert name_not_ending_s == 'Bea\'s', 'Expected "Bea\'s", got ' + name_not_ending_s
 
 
+# test doc is returning data
 def test_generate_doc_docx():
 
     context = {
