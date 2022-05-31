@@ -1,18 +1,18 @@
+from dotenv import load_dotenv
 from docxtpl import DocxTemplate
 from io import BytesIO
+from pathlib import Path
 import jinja2
 import convertapi
 import requests
 import os
-import pathlib
 
-from dotenv import load_dotenv
-load_dotenv('.env')
+
+path = Path(__file__).parent.resolve()
+env_path = Path(__file__).parents[1].resolve()
+load_dotenv(env_path / '.env')
 
 convertapi.api_secret = os.getenv('PDF_API_KEY')
-
-
-path = pathlib.Path(__file__).parent.resolve()
 
 
 def possessive(name):
