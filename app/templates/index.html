@@ -14,9 +14,9 @@
 <div class="container">
     <main>
         <div class="py-5 text-center">
-            <img class="d-block mx-auto mb-4" src="/static/logo.svg" alt="" width="216" height="216"
+            <img class="d-block mx-auto mb-4" src="/static/logo.svg" alt="Trans Informed logo" width="216" height="216"
                 height="57">
-            <h2>Generate support document</h2>
+            <h1>Generate supporting document</h1>
             <p class="lead">This is where some text will go explaining what this is going to be doing but hey for
                 now
                 this will do :)</p>
@@ -24,16 +24,15 @@
 
         <div class="row g-5">
             <div class="py-5 ">
-                <h4>Document info</h4>
+                <h2>Document info</h2>
                 <p class="mb-3 text-muted">Data to be generated</p>
                 <form class="needs-validation" novalidate target="_blank" action="/" method="post">
                     <div class="row g-3">
                         <div class="col-md-3">
-                            <label for="{{ form.countries.name }}" name="country" class="form-label">{{
-                                form.countries.label }}</label>
+                            <label for="{{ form.countries.name }}" name="country" class="form-label"> Country </label>
                             <select class="form-select {% if form.countries.errors|length > 0 %} is-invalid {% endif %}"
-                                id="country" name="{{ form.countries.name }}" required>
-                                <option> Choose... </option>
+                                id="countries" name="{{ form.countries.name }}" required>
+                                <option selected> Choose... </option>
                                 {% for country in form.countries.choices %}
                                 <option>{{ country }}</option>
                                 {% endfor %}
@@ -70,7 +69,7 @@
                         </div>
 
                         <hr class="my-4">
-                        <h4>About you</h4>
+                        <h2>About you</h2>
                         <p class="mb-3 text-muted">All details are optional</p>
                         <div class="row gy-3">
                             <div class="col-sm-6">
@@ -86,7 +85,7 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="email" class="form-label">{{ form.email.label }} <span
+                                <label for="email" class="form-label">Email <span
                                         class="text-muted"></span></label>
                                 <input type="email" class="form-control {% if form.email.errors|length > 0 %} is-invalid {% endif %}" id="email" name="{{ form.email.name }}"
                                     placeholder="you@example.com">
