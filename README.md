@@ -4,7 +4,7 @@
 ***
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/beawitcht/transinformed-server/main/app/static/logo.svg" width="200" alt="Trans Informed logo">
+    <img src="https://raw.githubusercontent.com/beawitcht/transinformed-server/main/app/static/images/logo.svg" width="200" alt="Trans Informed logo">
 </p>
 
 ## About
