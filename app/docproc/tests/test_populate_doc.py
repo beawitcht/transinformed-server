@@ -5,9 +5,11 @@ from app.docproc.populate_doc import possessive, generate_document
 def test_possessive():
     name_ending_s = possessive('Tas')
     name_not_ending_s = possessive('Bea')
+    no_name = possessive('')
 
     assert name_ending_s == 'Tas\'', 'Expected "Tas\'", got ' + name_ending_s
     assert name_not_ending_s == 'Bea\'s', 'Expected "Bea\'s", got ' + name_not_ending_s
+    assert no_name == 'My', 'Expected None, got ' + no_name
 
 
 # test doc is returning data

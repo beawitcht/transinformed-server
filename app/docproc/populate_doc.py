@@ -16,7 +16,9 @@ convertapi.api_secret = os.getenv('PDF_API_KEY')
 
 
 def possessive(name):
-    if name.endswith('s'):
+    if name == '':
+        return 'My'
+    elif name.endswith('s'):
         return name + '\''
     else:
         return name + '\'s'
@@ -32,7 +34,7 @@ def possessive(name):
 
 def generate_document(context, filetype):
     docx = BytesIO()
-    doc = DocxTemplate(path / 'templates' / 'template_v0_1.docx')
+    doc = DocxTemplate(path / 'templates' / 'template_v1_0.docx')
     jinja_env = jinja2.Environment()
     jinja_env.filters['possessive'] = possessive
     doc.render(context, jinja_env)
