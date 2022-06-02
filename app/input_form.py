@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Email, Optional, AnyOf
 
 
 class InputForm(FlaskForm):
-    countries = SelectField("Country", choices=['England', 'Northern Ireland', 'Scotland', 'Wales'], validators=[
+    countries = SelectField("Country", choices=['England'], validators=[
         DataRequired(), AnyOf(['England', 'Northern Ireland', 'Scotland', 'Wales'], message="Please select a country")])
     self_med = BooleanField("I am self medicating")
     formal_diagnosis = BooleanField("I have a formal Diagnosis")

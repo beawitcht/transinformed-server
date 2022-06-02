@@ -21,7 +21,7 @@ app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
 
 @app.route("/", methods=['GET', 'POST'])
-def validation_test():
+def home():
     api_data = json.loads(requests.get(f"https://v2.convertapi.com/user?Secret={api_key}").text)
 
     seconds_left = api_data['SecondsLeft']
@@ -50,6 +50,9 @@ def validation_test():
 
     return render_template("index.html", form=form, pdf_available=pdf_available)
 
+@app.route("/about", methods=['GET'])
+def about():
+    return render_template("about.html")
 
 if __name__ == '__main__':
     app.run()

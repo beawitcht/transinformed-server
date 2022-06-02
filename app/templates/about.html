@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<header class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="/about" class="nav-link active" aria-current="page">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Other</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Other other</a></li>
+    </ul>
+</header>
+
+<div class="container">
+    <main>
+        <div class="py-5">
+            <h1 class="text-center">About</h1>
+            <hr>
+            <div class="accordion" id="accordionAbout">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="about-whoFor">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#about-collapseOne" aria-expanded="false" aria-controls="about-collapseOne">
+                            Who is this service for?
+                        </button>
+                    </h2>
+                    <div id="about-collapseOne" class="accordion-collapse collapse" aria-labelledby="about-whoFor">
+                        <div class="accordion-body">
+                            This service is for anyone living in the UK who is seeking gender affirming care from their
+                            GP, with a focus on gaining access to HRT and other NHS services that a GP can facilitate.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="about-serviceProvide">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#about-collapseTwo" aria-expanded="false" aria-controls="about-collapseTwo">
+                            What this service provides
+                        </button>
+                    </h2>
+                    <div id="about-collapseTwo" class="accordion-collapse collapse"
+                        aria-labelledby="about-serviceProvide">
+                        <div class="accordion-body">
+                            A concise document that is tailored to your healthcare needs, that tries to make it as
+                            simple as possible for your GP to get the most important information to provide the best
+                            care, specifically highlighting the relevant guidance for transgender patients.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="about-serviceNotProvide">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#about-collapseThree" aria-expanded="false"
+                            aria-controls="about-collapseThree">
+                            What this service doesn't provide
+                        </button>
+                    </h2>
+                    <div id="about-collapseThree" class="accordion-collapse collapse"
+                        aria-labelledby="about-serviceNotProvide">
+                        <div class="accordion-body">
+                            Unfortunately, this service can <strong>NOT</strong> guarantee that your GP will be
+                            co-operative in providing gender affirming care.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="about-availablity">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#about-collapseFour" aria-expanded="false"
+                            aria-controls="about-collapseFour">
+                            What countries is this service available in?
+                        </button>
+                    </h2>
+                    <div id="about-collapseFour" class="accordion-collapse collapse"
+                        aria-labelledby="about-availablity">
+                        <div class="accordion-body">
+                            Currently, this service is tailored to England, with a plan to expand to all four nations of
+                            the UK in the future.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="about-contact">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#about-collapseFive" aria-expanded="false"
+                            aria-controls="about-collapseFive">
+                            How can I contact you?
+                        </button>
+                    </h2>
+                    <div id="about-collapseFive" class="accordion-collapse collapse"
+                        aria-labelledby="about-contact">
+                        <div class="accordion-body">
+                            The best way to reach me is via twitter DMs, alternatively you can reach me at: <a href="mailto:contact@transinformed.co.uk">contact@transinformed.co.uk</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
