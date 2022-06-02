@@ -3,8 +3,8 @@
 {% block body %}
 <header class="d-flex justify-content-center py-3">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
         <li class="nav-item"><a href="#" class="nav-link">Other</a></li>
         <li class="nav-item"><a href="#" class="nav-link">Other other</a></li>
     </ul>
@@ -14,24 +14,22 @@
 <div class="container">
     <main>
         <div class="py-5 text-center">
-            <img class="d-block mx-auto mb-4" src="/static/logo.svg" alt="Trans Informed logo" width="216" height="216"
+            <img class="d-block mx-auto mb-4" src="/static/images/logo.svg" alt="Trans Informed logo" width="216" height="216"
                 height="57">
-            <h1>Generate supporting document</h1>
-            <p class="lead">This is where some text will go explaining what this is going to be doing but hey for
-                now
-                this will do :)</p>
+            <h1>Create your healthcare guide</h1>
+            <p class="lead">Consolidating the most important information for your care into one document.</p>
         </div>
 
         <div class="row g-5">
-            <div class="py-5 ">
+            <div class="py-5">
                 <h2>Document info</h2>
                 <p class="mb-3 text-muted">Data to be generated</p>
-                <form class="needs-validation" novalidate target="_blank" action="/" method="post">
+                <form class="needs-validation" id="generationForm" novalidate target="_blank" action="/" method="post">
                     <div class="row g-3">
-                        <div class="col-md-3">
-                            <label for="{{ form.countries.name }}" name="country" class="form-label"> Country </label>
+                        <div class="col-md-3 required">
+                            <label for="{{ form.countries.name }}" name="country" class="form-label"> Country <span class="badge rounded-pill text-bg-danger">Required</span></label>
                             <select class="form-select {% if form.countries.errors|length > 0 %} is-invalid {% endif %}"
-                                id="countries" name="{{ form.countries.name }}" required>
+                                id="countries" name="{{ form.countries.name }}">
                                 <option selected> Choose... </option>
                                 {% for country in form.countries.choices %}
                                 <option>{{ country }}</option>
@@ -117,17 +115,16 @@
 
 
                         <div class="btn-group">
-                            <button class="btn btn-outline-primary btn-lg mr-3" name="{{ form.docx.name }}" type="submit"
-                                value="{{ form.docx.name }}">Generate Docx</button>
+                            <button class="btn btn-outline-primary btn-lg mr-3" id="docx" name="docx" type="submit"
+                                value="docx">Generate Docx</button>
                             {% if not pdf_available %}
-                            <button class="btn btn-outline-primary btn-lg  disabled" name="{{ form.pdf.name }}" type="submit"
-                                value="{{ form.pdf.name }}">PDF Unavailable</button>
+                            <button class="btn btn-outline-primary btn-lg disabled" id="pdf" name="pdf" type="submit"
+                                value="pdf">PDF Unavailable</button>
                             {% else %}
-                            <button class="btn btn-outline-primary btn-lg " name="{{ form.pdf.name }}" type="submit"
-                                value="{{ form.pdf.name }}">Generate PDF</button>
+                            <button class="btn btn-outline-primary btn-lg " name="pdf" type="submit"
+                                value="pdf">Generate PDF</button>
                             {% endif %}
                         </div>
-
                 </form>
             </div>
         </div>
