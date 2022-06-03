@@ -41,7 +41,7 @@ def home():
         file = generate_document(form.data, filetype)
 
         try:
-            return send_file(file, download_name=f"transgpguide.{filetype}")
+            return send_file(file, download_name=f"myhealthcareguide.{filetype}")
         except file.getvalue() is None:
             if filetype == "pdf":
                 return ("PDF downloads maxxed please download .docx version")

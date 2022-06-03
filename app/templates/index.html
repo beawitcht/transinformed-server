@@ -44,14 +44,6 @@
 
                         <div class="col-md-12">
                             <div class="form-check form-switch">
-                                <input name="{{ form.self_med.name }}" class="form-check-input" type="checkbox"
-                                    role="switch" id="selfMedCheck">
-                                <label class="form-check-label" for="selfMedCheck">I am self medicating</label>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-check form-switch">
                                 <input class="form-check-input" name="{{ form.formal_diagnosis.name }}" type="checkbox"
                                     role="switch" id="diagnosisCheck">
                                 <label class="form-check-label" for="diagnosisCheck">I have a formal Diagnosis</label>
@@ -59,12 +51,33 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" name="{{ form.shared_care.name }}" type="checkbox"
-                                    role="switch" id="sharedCareCheck">
-                                <label class="form-check-label" for="sharedCareCheck">I want a shared care agreement
-                                    with my GP</label>
+                                <input name="{{ form.self_med.name }}" class="form-check-input" type="checkbox"
+                                    role="switch" id="selfMedCheck">
+                                <label class="form-check-label" for="selfMedCheck">I am self medicating</label>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" name="{{ form.self_med_likely.name }}" type="checkbox"
+                                    role="switch" id="likelyMedCheck">
+                                <label class="form-check-label" for="likelyMedCheck">I am likely to start self medicating</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-check form-switch">
+                                <input name="{{ form.bridging_desired.name }}" class="form-check-input" type="checkbox"
+                                    role="switch" id="bridgingDesired">
+                                <label class="form-check-label" for="bridgingDesired">I need a bridging prescription</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" name="{{ form.shared_care.name }}" type="checkbox"
+                                    role="switch" id="sharedCareCheck">
+                                <label class="form-check-label" for="sharedCareCheck">I need a shared care agreement with my GP and a private service</label>
+                            </div>
+                        </div>
+                        
 
                         <hr class="my-4">
                         <h2>About you</h2>
