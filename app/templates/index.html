@@ -8,6 +8,7 @@
         <li class="nav-item"><a href="#" class="nav-link">Other</a></li>
         <li class="nav-item"><a href="#" class="nav-link">Other other</a></li>
     </ul>
+    <script src="/static/js/transinformed.js"></script>
 </header>
 
 
@@ -26,10 +27,11 @@
                 <p class="mb-3 text-muted">Data to be generated</p>
                 <form class="needs-validation" id="generationForm" novalidate target="_blank" action="/" method="post">
                     <div class="row g-3">
-                        <div class="col-md-3 required">
+                        <div class="col-md-12 required">
+                            <div class="col-md-3">
                             <label for="{{ form.countries.name }}" name="country" class="form-label"> Country <span class="badge rounded-pill text-bg-danger">Required</span></label>
                             <select class="form-select {% if form.countries.errors|length > 0 %} is-invalid {% endif %}"
-                                id="countries" name="{{ form.countries.name }}">
+                                id="countries" name="{{ form.countries.name }}" onchange="checkRequired()">
                                 <option selected> Choose... </option>
                                 {% for country in form.countries.choices %}
                                 <option>{{ country }}</option>
@@ -41,42 +43,48 @@
                                 {% endfor %}
                             </div>
                         </div>
-
-                        <div class="col-md-12">
-                            <div class="form-check form-switch">
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h3>Diagnosis status</h3>
+                            <div class="form-check">
                                 <input class="form-check-input" name="{{ form.formal_diagnosis.name }}" type="checkbox"
                                     role="switch" id="diagnosisCheck">
                                 <label class="form-check-label" for="diagnosisCheck">I have a formal Diagnosis</label>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-check form-switch">
+                        <div class="col-md-6">
+                        <h3>Medication status</h3>
+                        
+                            <div class="form-check">
                                 <input name="{{ form.self_med.name }}" class="form-check-input" type="checkbox"
-                                    role="switch" id="selfMedCheck">
+                                    role="switch" id="selfMedCheck" onclick="selfMedToggle()">
                                 <label class="form-check-label" for="selfMedCheck">I am self medicating</label>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-check form-switch">
+                        
+                        
+                            <div class="form-check">
                                 <input class="form-check-input" name="{{ form.self_med_likely.name }}" type="checkbox"
-                                    role="switch" id="likelyMedCheck">
+                                    role="switch" id="likelyMedCheck" onclick="selfMedToggle()">
                                 <label class="form-check-label" for="likelyMedCheck">I am likely to start self medicating</label>
                             </div>
                         </div>
+                        <h3>What I need from my GP</h3>
                         <div class="col-md-12">
-                            <div class="form-check form-switch">
-                                <input name="{{ form.bridging_desired.name }}" class="form-check-input" type="checkbox"
-                                    role="switch" id="bridgingDesired">
-                                <label class="form-check-label" for="bridgingDesired">I need a bridging prescription</label>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-check form-switch">
+                            <div class="form-check">
                                 <input class="form-check-input" name="{{ form.shared_care.name }}" type="checkbox"
                                     role="switch" id="sharedCareCheck">
                                 <label class="form-check-label" for="sharedCareCheck">I need a shared care agreement with my GP and a private service</label>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="form-check">
+                                <input name="{{ form.bridging_desired.name }}" class="form-check-input" type="checkbox"
+                                    role="switch" id="bridgingDesired" disabled>
+                                <label class="form-check-label" for="bridgingDesired">I need a bridging prescription</label>
+                            </div>
+                        </div>
+                        
                         
 
                         <hr class="my-4">
@@ -129,13 +137,13 @@
 
                         <div class="btn-group">
                             <button class="btn btn-outline-primary btn-lg mr-3" id="docx" name="docx" type="submit"
-                                value="docx">Generate Docx</button>
+                                value="docx" disabled>Generate Docx</button>
                             {% if not pdf_available %}
-                            <button class="btn btn-outline-primary btn-lg disabled" id="pdf" name="pdf" type="submit"
+                            <button class="btn btn-outline-primary btn-lg disabled"  name="pdf" type="submit"
                                 value="pdf">PDF Unavailable</button>
                             {% else %}
-                            <button class="btn btn-outline-primary btn-lg " name="pdf" type="submit"
-                                value="pdf">Generate PDF</button>
+                            <button class="btn btn-outline-primary btn-lg" id="pdf" name="pdf" type="submit"
+                                value="pdf" disabled>Generate PDF</button>
                             {% endif %}
                         </div>
                 </form>
