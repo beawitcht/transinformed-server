@@ -16,15 +16,20 @@ convertapi.api_secret = os.getenv('PDF_API_KEY')
 
 
 def possessive(name):
-    if name.endswith('s'):
+    if name == '':
+        return 'My'
+    elif name.endswith('s'):
         return name + '\''
     else:
         return name + '\'s'
 
 
-# def txt_to_var(txt):
-#     with open(f"templates/gender_journey/{txt}.txt", "r") as f:
-#         return f.read()
+def txt_to_var(txt):
+    if os.path.exists(path / 'templates' / 'gender_journey' / f'{txt}.txt'):
+        with open(path / 'templates' / 'gender_journey' / f'{txt}.txt', "r") as f:
+            return f.read()
+    else:
+        return None
 
 # formal_diagnosis = txt_to_var('formal_diagnosis')
 # self_med = txt_to_var('self_med')
@@ -32,9 +37,21 @@ def possessive(name):
 
 def generate_document(context, filetype):
     docx = BytesIO()
-    doc = DocxTemplate(path / 'templates' / 'template_v0_1.docx')
+    doc = DocxTemplate(path / 'templates' / 'template_v1_0.docx')
     jinja_env = jinja2.Environment()
     jinja_env.filters['possessive'] = possessive
+
+    # remove images if text context is empty
+    if context['phone'] == '':
+        doc.replace_media(path / 'images' / 'phone.png', path / 'images' / 'blank.png')
+    if context['email'] == '':
+        doc.replace_media(path / 'images' / 'email.png', path / 'images' / 'blank.png')
+
+    # adds text sections if selected
+    for key, value in context.items():
+        if txt_to_var(key) is not None and value:
+            context[key] = txt_to_var(key)
+
     doc.render(context, jinja_env)
     doc.save(docx)
     docx.seek(0)
@@ -44,7 +61,7 @@ def generate_document(context, filetype):
 
     elif filetype == "pdf":
         # upload docx
-        conv = convertapi.UploadIO(docx, 'output.docx')
+        conv = convertapi.UploadIO(docx, 'myhealthcareguide.docx')
 
         # convert to pdf
         pdf = convertapi.convert('pdf', {'File': conv})

@@ -7,8 +7,10 @@ class InputForm(FlaskForm):
     countries = SelectField("Country", choices=['England'], validators=[
         DataRequired(), AnyOf(['England', 'Northern Ireland', 'Scotland', 'Wales'], message="Please select a country")])
     self_med = BooleanField("I am self medicating")
+    self_med_likely = BooleanField("I am likely to start self medicating")
     formal_diagnosis = BooleanField("I have a formal Diagnosis")
     shared_care = BooleanField("I want a shared care agreement with my GP")
+    bridging_desired = BooleanField("I would like a bridging prescription")
     name = StringField("First Name", validators=[Optional()])
     surname = StringField("Last Name", validators=[Optional()])
     email = EmailField("Email", validators=[Optional(), Email()])
