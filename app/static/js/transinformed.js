@@ -1,10 +1,12 @@
 function selfMedToggle() {
     var selfMed = document.getElementById("selfMedCheck");
     var selfMedLikely = document.getElementById("likelyMedCheck");
+    var bridgingDesired = document.getElementById("bridgingDesired");
     if (selfMed.checked || selfMedLikely.checked) {
-        document.getElementById("bridgingDesired").disabled = false;
+        bridgingDesired.disabled = false;
     } else {
-        document.getElementById("bridgingDesired").disabled = true;
+        bridgingDesired.disabled = true;
+        bridgingDesired.checked = false;
     }
 
     if (selfMed.checked) {
