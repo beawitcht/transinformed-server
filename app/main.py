@@ -26,7 +26,7 @@ def home():
 
     seconds_left = api_data['SecondsLeft']
     # check if api limit reached
-    if int(seconds_left) < 50:
+    if int(seconds_left) < 10:
         pdf_available = False
     else:
         pdf_available = True
