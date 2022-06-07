@@ -1,4 +1,6 @@
-from flask import Flask, render_template, send_file
+from flask import Flask, render_template, send_file, request
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from docproc.populate_doc import generate_document
 from input_form import InputForm
 from pathlib import Path
@@ -9,11 +11,11 @@ import json
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parent / '.env')
 
-
 api_key = os.getenv('PDF_API_KEY')
 
 # configure app
 app = Flask(__name__)
+limiter = Limiter(app, key_func=get_remote_address)
 app.config['WTF_CSRF_ENABLED'] = False
 app.config['RECAPTCHA_PUBLIC_KEY'] = os.getenv('RECAPTCHA_PUBLIC_KEY')
 app.config['RECAPTCHA_PRIVATE_KEY'] = os.getenv('RECAPTCHA_PRIVATE_KEY')
@@ -21,9 +23,9 @@ app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
 
 @app.route("/", methods=['GET', 'POST'])
+@limiter.limit("5 per day", exempt_when=lambda: request.method == 'GET' or request.form.get('docx'))
 def home():
     api_data = json.loads(requests.get(f"https://v2.convertapi.com/user?Secret={api_key}").text)
-
     seconds_left = api_data['SecondsLeft']
     # check if api limit reached
     if int(seconds_left) < 10:
