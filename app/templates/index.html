@@ -15,8 +15,8 @@
 <div class="container">
     <main>
         <div class="py-5 text-center">
-            <img class="d-block mx-auto mb-4" src="/static/images/logo.svg" alt="Trans Informed logo" width="216" height="216"
-                height="57">
+            <img class="d-block mx-auto mb-4" src="/static/images/logo.svg" alt="Trans Informed logo" width="216"
+                height="216" height="57">
             <h1>Create your healthcare guide</h1>
             <p class="lead">Consolidating the most important information for your care into one document.</p>
         </div>
@@ -29,67 +29,127 @@
                     <div class="row g-3">
                         <div class="col-md-12 required">
                             <div class="col-md-3">
-                            <label for="{{ form.countries.name }}" name="country" class="form-label"> Country <span class="badge rounded-pill text-bg-danger">Required</span></label>
-                            <select class="form-select {% if form.countries.errors|length > 0 %} is-invalid {% endif %}"
-                                id="countries" name="{{ form.countries.name }}" onchange="checkRequired()">
-                                <option selected> Choose... </option>
-                                {% for country in form.countries.choices %}
-                                <option>{{ country }}</option>
-                                {% endfor %}
-                            </select>
-                            <div class="invalid-feedback ">
-                                {% for error in form.countries.errors %}
-                                {{error}}
-                                {% endfor %}
+                                <label for="{{ form.countries.name }}" name="country" class="form-label"> Country <span
+                                        class="badge rounded-pill text-bg-danger">Required</span></label>
+                                <select
+                                    class="form-select {% if form.countries.errors|length > 0 %} is-invalid {% endif %}"
+                                    id="countries" name="{{ form.countries.name }}" onchange="checkRequired()">
+                                    <option selected> Choose... </option>
+                                    {% for country in form.countries.choices %}
+                                    <option>{{ country }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="invalid-feedback ">
+                                    {% for error in form.countries.errors %}
+                                    {{error}}
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
-                        </div>
-                        
+
                         <div class="col-md-6">
-                            <h3>Diagnosis status</h3>
+                            <details class="mb-2">
+                                <summary>
+                                    <h3>Diagnosis status</h3>
+                                </summary>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>Why is a formal diagnosis recommended?</h4>
+                                        A formal diagnosis is recommended as most GPs will want this before they will
+                                        agree to providing gender affirming care.
+                                        <hr>
+                                        A formal diagnosis is <strong>not</strong> necessary for a bridging
+                                        prescription.
+                                    </div>
+                                </div>
+                            </details>
+
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.formal_diagnosis.name }}" type="checkbox"
                                     role="switch" id="diagnosisCheck">
-                                <label class="form-check-label" for="diagnosisCheck">I have a formal Diagnosis</label>
+                                <label class="form-check-label" aria-describedby="diagnosisDescription"
+                                    for="diagnosisCheck">I have a formal Diagnosis <span
+                                        class="badge rounded-pill text-bg-primary">Recommended</span></label>
                             </div>
                         </div>
                         <div class="col-md-6">
-                        <h3>Medication status</h3>
-                        
+                            <details class="mb-2">
+                                <summary>
+                                    <h3>Medication status</h3>
+                                </summary>
+                                <div class="card">
+                                    <div class="card-body">
+                                        If you are currently self medicating or considering self medicating, choose the
+                                        relevant option to add this to your document.
+                                    </div>
+                                </div>
+                            </details>
+
                             <div class="form-check">
                                 <input name="{{ form.self_med.name }}" class="form-check-input" type="checkbox"
                                     role="switch" id="selfMedCheck" onclick="selfMedToggle()">
                                 <label class="form-check-label" for="selfMedCheck">I am self medicating</label>
                             </div>
-                        
-                        
+
+
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.self_med_likely.name }}" type="checkbox"
                                     role="switch" id="likelyMedCheck" onclick="selfMedToggle()">
-                                <label class="form-check-label" for="likelyMedCheck">I am likely to start self medicating</label>
+                                <label class="form-check-label" for="likelyMedCheck">I am likely to start self
+                                    medicating</label>
                             </div>
                         </div>
-                        <h3>What I need from my GP</h3>
+                        <details class="mb-2">
+                            <summary>
+                                <h3>What i need from my GP</h3>
+                            </summary>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4>Why is a shared care agreement recommended?</h4>
+                                    A shared care agreement is recommended if you are able to afford assistance from a
+                                    private service, as this will allow you to receive HRT treatment from a specialist,
+                                    without a lengthy GIC referral.
+                                    <hr>
+                                    <h4>Why is the bridging prescription greyed out?</h4>
+                                    If you need a bridging prescription, the GMC and NHS require that you are
+                                    self-prescribing, or likely to self prescribe.
+
+
+                                </div>
+                            </div>
+                        </details>
                         <div class="col-md-12">
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.shared_care.name }}" type="checkbox"
                                     role="switch" id="sharedCareCheck">
-                                <label class="form-check-label" for="sharedCareCheck">I need a shared care agreement with my GP and a private service</label>
+                                <label class="form-check-label" for="sharedCareCheck">I need a shared care agreement
+                                    with my GP and a private service <span
+                                        class="badge rounded-pill text-bg-primary">Recommended</span></label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-check">
                                 <input name="{{ form.bridging_desired.name }}" class="form-check-input" type="checkbox"
                                     role="switch" id="bridgingDesired" disabled>
-                                <label class="form-check-label" for="bridgingDesired">I need a bridging prescription</label>
+                                <label class="form-check-label" for="bridgingDesired">I need a bridging
+                                    prescription</label>
                             </div>
                         </div>
-                        
-                        
+
+
 
                         <hr class="my-4">
                         <h2>About you</h2>
-                        <p class="mb-3 text-muted">All details are optional</p>
+                        <details>
+                            <summary>
+                                <p class="mb-3 text-muted">All details are optional</p>
+                            </summary>
+                            <div class="card">
+                                <div class="card-body">
+                                    Your details are not stored by us or used by us for any other purpose than personalising your document. PDF generation makes use of a 3rd party API to generate the document.
+                                </div>
+                            </div>
+                        </details>
                         <div class="row gy-3">
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">{{ form.name.label }}</label>
@@ -104,11 +164,11 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="email" class="form-label">Email <span
-                                        class="text-muted"></span></label>
-                                <input type="email" class="form-control {% if form.email.errors|length > 0 %} is-invalid {% endif %}" id="email" name="{{ form.email.name }}"
-                                    placeholder="you@example.com">
-                                
+                                <label for="email" class="form-label">Email <span class="text-muted"></span></label>
+                                <input type="email"
+                                    class="form-control {% if form.email.errors|length > 0 %} is-invalid {% endif %}"
+                                    id="email" name="{{ form.email.name }}" placeholder="you@example.com">
+
                                 <div class="invalid-feedback ">
                                     {% for error in form.email.errors %}
                                     {{error}}
@@ -127,9 +187,9 @@
                             <div class="d-flex justify-content-center">
                                 {{ form.captcha }}
                             </div>
-                            
+
                             {% if form.captcha.errors|length > 0 %}
-                                <span class="error text-danger text-center">Captcha incorrect!</span>
+                            <span class="error text-danger text-center">Captcha incorrect!</span>
                             {% endif %}
 
                         </div>
@@ -139,11 +199,11 @@
                             <button class="btn btn-outline-primary btn-lg mr-3" id="docx" name="docx" type="submit"
                                 value="docx" disabled>Generate Docx</button>
                             {% if not pdf_available %}
-                            <button class="btn btn-outline-primary btn-lg disabled"  name="pdf" type="submit"
+                            <button class="btn btn-outline-primary btn-lg disabled" name="pdf" type="submit"
                                 value="pdf">PDF Unavailable</button>
                             {% else %}
-                            <button class="btn btn-outline-primary btn-lg" id="pdf" name="pdf" type="submit"
-                                value="pdf" disabled>Generate PDF</button>
+                            <button class="btn btn-outline-primary btn-lg" id="pdf" name="pdf" type="submit" value="pdf"
+                                disabled>Generate PDF</button>
                             {% endif %}
                         </div>
                 </form>
