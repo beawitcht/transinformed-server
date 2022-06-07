@@ -5,3 +5,4 @@ convertapi
 python-dotenv
 Flask-WTF
 email_validator
+Flask-Limiter
