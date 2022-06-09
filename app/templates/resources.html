@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<header class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="/about" class="nav-link" >About</a></li>
+        <li class="nav-item"><a href="/resources" class="nav-link active" aria-current="page">Resources</a></li>
+    </ul>
+</header>
+
+
+<div class="container">
+    <main>
+        <div class="py-5">
+            <h1 class="text-center">Useful Resources</h1>
+            <hr>
+            <div class="accordion" id="accordionrResources">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="resources-formalDiagnosis">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#resources-collapseOne" aria-expanded="false" aria-controls="resources-collapseOne">
+                            Learn more about getting a formal diagnosis
+                        </button>
+                    </h2>
+                    <div id="resources-collapseOne" class="accordion-collapse collapse" aria-labelledby="resources-formalDiagnosis">
+                        <div class="accordion-body">
+                            Check out <a target="_blank" href="https://genderkit.org.uk/article/formal-diagnosis/">this resource from the Gender Construction Kit</a> to learn more about getting a formal diagnosis
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="resources-privateService">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#resources-collapseTwo" aria-expanded="false" aria-controls="resources-collapseTwo">
+                            Choosing a private healthcare provider
+                        </button>
+                    </h2>
+                    <div id="resources-collapseTwo" class="accordion-collapse collapse"
+                        aria-labelledby="resources-privateService">
+                        <div class="accordion-body">
+                            Check out <a target="_blank" href="https://genderkit.org.uk/resources/gender-services/">this resource from Gender Construction Kit</a> for guidance on choosing a provider.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="resources-sources">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#resources-collapseThree" aria-expanded="false"
+                            aria-controls="resources-collapseThree">
+                            What are your data sources used for the creation of this document?
+                        </button>
+                    </h2>
+                    <div id="resources-collapseThree" class="accordion-collapse collapse"
+                        aria-labelledby="resources-sources">
+                        <div class="accordion-body">
+                            These are some of the sources used to create this document:
+                            <ul class="list-group">
+                                <a target="_blank" class="list-group-item list-group-item" href="https://www.gmc-uk.org/ethical-guidance/ethical-hub/trans-healthcare">GMC Guidance on trans healthcare</a>
+                                <a target="_blank" class="list-group-item list-group-item" href="https://www.england.nhs.uk/wp-content/uploads/2019/07/service-specification-gender-dysphoria-services-non-surgical-june-2019.pdf">NHS England - Gender Identity Services for Adults (Non-Surgical Interventions)</a>
+                                <a target="_blank" class="list-group-item list-group-item" href="https://www.dpt.nhs.uk/download/VjSSV5TQVv">NHS England - Guidance for GPs on working with private online medical service providers </a>
+                                <a target="_blank" class="list-group-item list-group-item" href="https://www.england.nhs.uk/rtt/">NHS England - Referral to treatment guidelines</a>
+                                <a target="_blank" class="list-group-item list-group-item" href="https://www.rcpsych.ac.uk/docs/default-source/improving-care/better-mh-policy/college-reports/cr181-good-practice-guidelines-for-the-assessment-and-treatment-of-adults-with-gender-dysphoria.pdf">Royal College of Psychiatrists - guidelines for treating adults with gender dysphoria</a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+{% endblock %}
