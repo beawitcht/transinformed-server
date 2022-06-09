@@ -20,5 +20,5 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           cd mysite
-          git pull https://github.com/beawitcht/transinformed-server.git
+          git pull https://github.com/beawitcht/transinformed-server main
           touch ${{ secrets.TOUCH_PATH }}
