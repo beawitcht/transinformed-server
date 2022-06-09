@@ -19,6 +19,6 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-        cd mysite
-        git pull https://github.com/beawitcht/transinformed-server.git
-        touch ${{ secrets.TOUCH_PATH }}
+          cd mysite
+          git pull https://github.com/beawitcht/transinformed-server.git
+          touch ${{ secrets.TOUCH_PATH }}
