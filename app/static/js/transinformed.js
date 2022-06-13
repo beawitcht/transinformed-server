@@ -1,3 +1,10 @@
+window.addEventListener('load', function() {
+    document.getElementById('countries').addEventListener('change', checkRequired);
+    document.getElementById('selfMedCheck').addEventListener('click', selfMedToggle);
+    document.getElementById('likelyMedCheck').addEventListener('click', selfMedToggle);
+});
+
+
 function selfMedToggle() {
     var selfMed = document.getElementById("selfMedCheck");
     var selfMedLikely = document.getElementById("likelyMedCheck");
@@ -32,4 +39,3 @@ function checkRequired(){
         document.getElementById("pdf").disabled = true;
     }
 }
-
