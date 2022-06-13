@@ -14,10 +14,15 @@
     <link rel="stylesheet" href="/static/css/bootstrapcritmin.css">
     <link rel="icon" href="/static/images/logo.svg">
     <link rel="stylesheet" href="/static/css/transinformed.css">
-    <link rel="stylesheet" href="/static/css/bootstrapaddmin.css" media="print" onload="this.media='all'; this.onload=null;">
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="stylesheet" id="asyncLoad" href="/static/css/bootstrapaddmin.css" media="print">
+    <script defer nonce="XnblgvdE3O02QzpyhZm49xoyZ69DmYirKQmg7Y7gWlG" > 
+        window.addEventListener('load', (event) => {
+                document.getElementById('asyncLoad').setAttribute('media', 'all');
+            })
+            document.getElementById('asyncLoad')
+    </script>
+    <script defer src="/static/js/bootstrap.bundle.min.js"></script>
 </head>
-
 <body>
     {% block body %}
     

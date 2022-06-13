@@ -32,7 +32,7 @@
                                         class="badge rounded-pill text-bg-danger">Required</span></label>
                                 <select
                                     class="form-select {% if form.countries.errors|length > 0 %} is-invalid {% endif %}"
-                                    id="countries" name="{{ form.countries.name }}" onchange="checkRequired()">
+                                    id="countries" name="{{ form.countries.name }}">
                                     <option selected> Choose... </option>
                                     {% for country in form.countries.choices %}
                                     <option>{{ country }}</option>
@@ -86,14 +86,14 @@
 
                             <div class="form-check">
                                 <input name="{{ form.self_med.name }}" class="form-check-input" type="checkbox"
-                                    role="switch" id="selfMedCheck" onclick="selfMedToggle()">
+                                    role="switch" id="selfMedCheck">
                                 <label class="form-check-label" for="selfMedCheck">I am self medicating</label>
                             </div>
 
 
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.self_med_likely.name }}" type="checkbox"
-                                    role="switch" id="likelyMedCheck" onclick="selfMedToggle()">
+                                    role="switch" id="likelyMedCheck">
                                 <label class="form-check-label" for="likelyMedCheck">I am likely to start self
                                     medicating</label>
                             </div>

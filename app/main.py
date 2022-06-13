@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parent / '.env')
 
 api_key = os.getenv('PDF_API_KEY')
+is_dev = os.getenv('IS_DEV')
 
 # configure app
 app = Flask(__name__)
@@ -22,9 +23,24 @@ app.config['RECAPTCHA_PRIVATE_KEY'] = os.getenv('RECAPTCHA_PRIVATE_KEY')
 app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
 
+@app.after_request
+def add_headers(response):
+    response.headers['Strict-Transport-Security'] = 'max-age=63072000'
+    if is_dev:
+        response.headers['Content-Security-Policy-Report-Only'] = 'default-src \'none\'; script-src \'self\' \'nonce-XnblgvdE3O02QzpyhZm49xoyZ69DmYirKQmg7Y7gWlG\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; img-src \'self\' data:;  style-src \'self\'; font-src \'self\'; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;'
+    else:
+        response.headers['Content-Security-Policy-Report-Only'] = 'default-src \'none\'; script-src \'self\' \'nonce-XnblgvdE3O02QzpyhZm49xoyZ69DmYirKQmg7Y7gWlG\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; img-src \'self\' data:;  style-src \'self\'; font-src \'self\'; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;'
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+    return response
+
+
 @app.route("/", methods=['GET', 'POST'])
 @limiter.limit("5 per day", exempt_when=lambda: request.method == 'GET' or request.form.get('docx'))
 def home():
+
     api_data = json.loads(requests.get(f"https://v2.convertapi.com/user?Secret={api_key}").text)
     seconds_left = api_data['SecondsLeft']
     # check if api limit reached
@@ -52,13 +68,16 @@ def home():
 
     return render_template("index.html", form=form, pdf_available=pdf_available)
 
+
 @app.route("/about", methods=['GET'])
 def about():
     return render_template("about.html")
 
+
 @app.route("/resources", methods=['GET'])
 def resources():
     return render_template("resources.html")
+
 
 if __name__ == '__main__':
     app.run()
