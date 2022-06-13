@@ -29,7 +29,7 @@ def add_headers(response):
     if is_dev:
         response.headers['Content-Security-Policy-Report-Only'] = 'default-src \'none\'; script-src \'self\' \'nonce-XnblgvdE3O02QzpyhZm49xoyZ69DmYirKQmg7Y7gWlG\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; img-src \'self\' data:;  style-src \'self\'; font-src \'self\'; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;'
     else:
-        response.headers['Content-Security-Policy-Report-Only'] = 'default-src \'none\'; script-src \'self\' \'nonce-XnblgvdE3O02QzpyhZm49xoyZ69DmYirKQmg7Y7gWlG\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; img-src \'self\' data:;  style-src \'self\'; font-src \'self\'; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;'
+        response.headers['Content-Security-Policy'] = 'default-src \'none\'; script-src \'self\' \'nonce-XnblgvdE3O02QzpyhZm49xoyZ69DmYirKQmg7Y7gWlG\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; img-src \'self\' data:;  style-src \'self\'; font-src \'self\'; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;'
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['X-XSS-Protection'] = '1; mode=block'
