@@ -8,7 +8,7 @@
 </p>
 
 ## About
-#### ***This service is still a very early prototype and is not suitable for use.***
+#### ***This service is still an early prototype.***
 This is a web app to generate contextualised documents for people to bring to their GPs to provide them with one document containing the most important information for both the GP and the patient.
 
 
