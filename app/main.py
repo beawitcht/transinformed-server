@@ -1,3 +1,4 @@
+import secrets
 from flask import Flask, render_template, send_file, request
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -12,7 +13,7 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parent / '.env')
 
 api_key = os.getenv('PDF_API_KEY')
-
+nonce = secrets.token_urlsafe()
 # configure app
 app = Flask(__name__)
 limiter = Limiter(app, key_func=get_remote_address)
@@ -25,7 +26,7 @@ app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 @app.after_request
 def add_headers(response):
     response.headers['Strict-Transport-Security'] = 'max-age=63072000; includeSubDomains; preload'
-    response.headers['Content-Security-Policy'] = 'default-src \'none\'; script-src \'self\' \'nonce-XnblgvdE3O02QzpyhZm49xoyZ69DmYirKQmg7Y7gWlG\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; img-src \'self\' data:;  style-src \'self\'; font-src \'self\'; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;'
+    response.headers['Content-Security-Policy'] = f'default-src \'none\'; script-src \'self\' \'nonce-{nonce}\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; img-src \'self\' data:;  style-src \'self\'; font-src \'self\'; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;'
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['X-XSS-Protection'] = '1; mode=block'
@@ -62,7 +63,7 @@ def home():
             else:
                 return ("An error occured, please try again later")
 
-    return render_template("index.html", form=form, pdf_available=pdf_available)
+    return render_template("index.html", form=form, pdf_available=pdf_available, nonce=nonce)
 
 
 @app.route("/about", methods=['GET'])

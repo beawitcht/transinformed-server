@@ -15,7 +15,7 @@
     <link rel="icon" href="/static/images/logo.svg">
     <link rel="stylesheet" href="/static/css/transinformed.css">
     <link rel="stylesheet" id="asyncLoad" href="/static/css/bootstrapaddmin.css" media="print">
-    <script defer nonce="XnblgvdE3O02QzpyhZm49xoyZ69DmYirKQmg7Y7gWlG" > 
+    <script defer nonce="{{ nonce }}" > 
         window.addEventListener('load', (event) => {
                 document.getElementById('asyncLoad').setAttribute('media', 'all');
             })
@@ -25,7 +25,6 @@
 </head>
 <body>
     {% block body %}
-    
     {% endblock %}
 </body>
 
