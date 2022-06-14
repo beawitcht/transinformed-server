@@ -1,5 +1,5 @@
 import secrets
-from flask import Flask, render_template, send_file, request
+from flask import Flask, render_template, send_file, request, g
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from docproc.populate_doc import generate_document
@@ -13,7 +13,6 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parent / '.env')
 
 api_key = os.getenv('PDF_API_KEY')
-nonce = secrets.token_urlsafe()
 # configure app
 app = Flask(__name__)
 limiter = Limiter(app, key_func=get_remote_address)
@@ -25,6 +24,7 @@ app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
 @app.after_request
 def add_headers(response):
+    nonce = g.get('nonce')
     response.headers['Strict-Transport-Security'] = 'max-age=63072000; includeSubDomains; preload'
     response.headers['Content-Security-Policy'] = f'default-src \'none\'; script-src \'self\' \'nonce-{nonce}\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; img-src \'self\' data:;  style-src \'self\'; font-src \'self\'; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;'
     response.headers['X-Frame-Options'] = 'DENY'
@@ -37,7 +37,7 @@ def add_headers(response):
 @app.route("/", methods=['GET', 'POST'])
 @limiter.limit("5 per day", exempt_when=lambda: request.method == 'GET' or request.form.get('docx'))
 def home():
-
+    g.nonce = secrets.token_urlsafe()
     api_data = json.loads(requests.get(f"https://v2.convertapi.com/user?Secret={api_key}").text)
     seconds_left = api_data['SecondsLeft']
     # check if api limit reached
@@ -63,17 +63,19 @@ def home():
             else:
                 return ("An error occured, please try again later")
 
-    return render_template("index.html", form=form, pdf_available=pdf_available, nonce=nonce)
+    return render_template("index.html", form=form, pdf_available=pdf_available, nonce=g.nonce)
 
 
 @app.route("/about", methods=['GET'])
 def about():
-    return render_template("about.html")
+    nonce = g.get('nonce')
+    return render_template("about.html", nonce=nonce)
 
 
 @app.route("/resources", methods=['GET'])
 def resources():
-    return render_template("resources.html")
+    nonce = g.get('nonce')
+    return render_template("resources.html",nonce=nonce)
 
 
 if __name__ == '__main__':
