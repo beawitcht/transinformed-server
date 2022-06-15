@@ -49,16 +49,19 @@
                         <div class="col-md-6">
                             <details class="mb-3">
                                 <summary>
-                                    <h3>Diagnosis status</h3>
+                                    <h3>Documents held</h3>
                                 </summary>
                                 <div class="card">
                                     <div class="card-body">
                                         <h4>Why is a formal diagnosis recommended?</h4>
                                         A formal diagnosis is recommended as most GPs will want this before they will
                                         agree to providing gender affirming care.
-                                        <hr>
+                                        <br>
                                         A formal diagnosis is <strong>not</strong> necessary for a bridging
                                         prescription.
+                                        <hr>
+                                        <h4>Why is a recommendation letter recommended?</h4>
+                                        This letter is provided by a gender specialist and will contain the details of what hormone treatment is being recommended, this is what the doctor will prescribe based off. 
                                     </div>
                                 </div>
                             </details>
@@ -69,6 +72,13 @@
                                 <label class="form-check-label" aria-describedby="diagnosisDescription"
                                     for="diagnosisCheck">I have a formal Diagnosis <span
                                         class="badge rounded-pill text-bg-primary">Recommended</span></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" name="{{ form.hrt_recommendation.name }}" type="checkbox"
+                                    role="switch" id="hrtCheck">
+                                <label class="form-check-label" aria-describedby="diagnosisDescription"
+                                    for="hrtCheck">I have a letter of recommendation for HRT <span
+                                    class="badge rounded-pill text-bg-primary">Recommended</span></label>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -89,8 +99,6 @@
                                     role="switch" id="selfMedCheck">
                                 <label class="form-check-label" for="selfMedCheck">I am self medicating</label>
                             </div>
-
-
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.self_med_likely.name }}" type="checkbox"
                                     role="switch" id="likelyMedCheck">
@@ -151,18 +159,12 @@
                         </details>
                         <div class="row gy-3">
                             <div class="col-sm-6">
-                                <label for="firstName" class="form-label">{{ form.name.label }}</label>
+                                <label for="firstName" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="firstName" name="{{ form.name.name }}"
                                     placeholder="Name" value="">
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="lastName" class="form-label">{{ form.surname.label }} </label>
-                                <input type="text" class="form-control" id="lastName" name="{{ form.surname.name }}"
-                                    placeholder="Surname" value="">
-                            </div>
-
-                            <div class="col-12">
                                 <label for="email" class="form-label">Email <span class="text-muted"></span></label>
                                 <input type="email"
                                     class="form-control {% if form.email.errors|length > 0 %} is-invalid {% endif %}"
