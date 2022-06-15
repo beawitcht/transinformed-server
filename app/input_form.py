@@ -9,6 +9,7 @@ class InputForm(FlaskForm):
     self_med = BooleanField("I am self medicating")
     self_med_likely = BooleanField("I am likely to start self medicating")
     formal_diagnosis = BooleanField("I have a formal Diagnosis")
+    hrt_recommendation = BooleanField("I have a letter of recommendation for HRT")
     shared_care = BooleanField("I want a shared care agreement with my GP")
     bridging_desired = BooleanField("I would like a bridging prescription")
     name = StringField("First Name", validators=[Optional()])
