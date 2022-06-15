@@ -159,18 +159,12 @@
                         </details>
                         <div class="row gy-3">
                             <div class="col-sm-6">
-                                <label for="firstName" class="form-label">{{ form.name.label }}</label>
+                                <label for="firstName" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="firstName" name="{{ form.name.name }}"
                                     placeholder="Name" value="">
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="lastName" class="form-label">{{ form.surname.label }} </label>
-                                <input type="text" class="form-control" id="lastName" name="{{ form.surname.name }}"
-                                    placeholder="Surname" value="">
-                            </div>
-
-                            <div class="col-12">
                                 <label for="email" class="form-label">Email <span class="text-muted"></span></label>
                                 <input type="email"
                                     class="form-control {% if form.email.errors|length > 0 %} is-invalid {% endif %}"

@@ -13,7 +13,6 @@ class InputForm(FlaskForm):
     shared_care = BooleanField("I want a shared care agreement with my GP")
     bridging_desired = BooleanField("I would like a bridging prescription")
     name = StringField("First Name", validators=[Optional()])
-    surname = StringField("Last Name", validators=[Optional()])
     email = EmailField("Email", validators=[Optional(), Email()])
     phone = StringField("Phone Number", validators=[Optional()])
     docx = SubmitField("Generate Docx")
