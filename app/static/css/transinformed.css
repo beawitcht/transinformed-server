@@ -1,3 +1,15 @@
 details summary > * {
     display: inline;
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none
+  }
+  summary::marker { content: none; }
+  
+  summary::after {
+    content: '\2B9E More details';
+  }
+  details[open] summary:after {
+    content: '\2B9F More details';
   }

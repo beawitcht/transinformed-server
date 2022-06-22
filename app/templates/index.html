@@ -7,7 +7,7 @@
         <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
         <li class="nav-item"><a href="/resources" class="nav-link">Resources</a></li>
     </ul>
-    <script src="/static/js/transinformed.js"></script>
+    <script src="/static/js/transinformed.min.js"></script>
 </header>
 
 
@@ -68,17 +68,23 @@
 
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.formal_diagnosis.name }}" type="checkbox"
-                                    role="switch" id="diagnosisCheck">
-                                <label class="form-check-label" aria-describedby="diagnosisDescription"
+                                    role="checkbox" id="diagnosisCheck">
+                                <label class="form-check-label"
                                     for="diagnosisCheck">I have a formal Diagnosis <span
                                         class="badge rounded-pill text-bg-primary">Recommended</span></label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.hrt_recommendation.name }}" type="checkbox"
-                                    role="switch" id="hrtCheck">
-                                <label class="form-check-label" aria-describedby="diagnosisDescription"
+                                    role="checkbox" id="hrtCheck">
+                                <label class="form-check-label"
                                     for="hrtCheck">I have a letter of recommendation for HRT <span
                                     class="badge rounded-pill text-bg-primary">Recommended</span></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox"
+                                    role="checkbox" id="noDocCheck">
+                                <label class="form-check-label"
+                                    for="noDocCheck">I do not have any of these documents</label>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -96,13 +102,21 @@
 
                             <div class="form-check">
                                 <input name="{{ form.self_med.name }}" class="form-check-input" type="checkbox"
-                                    role="switch" id="selfMedCheck">
+                                    role="checkbox" id="selfMedCheck">
                                 <label class="form-check-label" for="selfMedCheck">I am self medicating</label>
                             </div>
+
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.self_med_likely.name }}" type="checkbox"
-                                    role="switch" id="likelyMedCheck">
+                                    role="checkbox" id="likelyMedCheck">
                                 <label class="form-check-label" for="likelyMedCheck">I am likely to start self
+                                    medicating</label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox"
+                                    role="checkbox" id="noMedCheck">
+                                <label class="form-check-label" for="noMedCheck">I am not currently or likely to start self
                                     medicating</label>
                             </div>
                         </div>
@@ -120,6 +134,9 @@
                                     <h4>Why is the bridging prescription greyed out?</h4>
                                     If you need a bridging prescription, the GMC and NHS require that you are
                                     self-prescribing, or likely to self prescribe.
+                                    <hr>
+                                    <h4>Why is a bridging prescription not recommended?</h4>
+                                    A bridging prescription is prescribed as "the lowest acceptable dose" and this tends to be too low of a dose to be effective.
 
 
                                 </div>
@@ -128,18 +145,18 @@
                         <div class="col-md-12">
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.shared_care.name }}" type="checkbox"
-                                    role="switch" id="sharedCareCheck">
-                                <label class="form-check-label" for="sharedCareCheck">I need a shared care agreement
-                                    with my GP and a private service <span
+                                    role="checkbox" id="sharedCareCheck">
+                                <label class="form-check-label" for="sharedCareCheck">I need a shared care agreement <span
                                         class="badge rounded-pill text-bg-primary">Recommended</span></label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-check">
                                 <input name="{{ form.bridging_desired.name }}" class="form-check-input" type="checkbox"
-                                    role="switch" id="bridgingDesired" disabled>
+                                    role="checkbox" id="bridgingDesired" disabled>
                                 <label class="form-check-label" for="bridgingDesired">I need a bridging
-                                    prescription</label>
+                                    prescription <span
+                                    class="badge rounded-pill text-bg-warning">Not Recommended</span></label>
                             </div>
                         </div>
 
