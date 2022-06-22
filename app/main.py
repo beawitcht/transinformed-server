@@ -19,7 +19,6 @@ limiter = Limiter(app, key_func=get_remote_address)
 app.config['WTF_CSRF_ENABLED'] = False
 app.config['RECAPTCHA_PUBLIC_KEY'] = os.getenv('RECAPTCHA_PUBLIC_KEY')
 app.config['RECAPTCHA_PRIVATE_KEY'] = os.getenv('RECAPTCHA_PRIVATE_KEY')
-app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
 
 @app.after_request
