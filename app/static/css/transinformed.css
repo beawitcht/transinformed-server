@@ -8,8 +8,10 @@ details summary > * {
   summary::marker { content: none; }
   
   summary::after {
-    content: '\2B9E More details';
+    content: '▷More details';
+    font-size: smaller;
   }
   details[open] summary:after {
-    content: '\2B9F More details';
+    content: '▽More details';
+    font-size: smaller;
   }
