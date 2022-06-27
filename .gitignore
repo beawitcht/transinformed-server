@@ -130,3 +130,6 @@ dmypy.json
 
 # vscode
 .vscode
+
+# flask-cache
+app/tmp/cache/*
