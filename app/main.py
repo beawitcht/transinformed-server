@@ -1,5 +1,4 @@
-import secrets
-from flask import Flask, render_template, send_file, request, g
+from flask import Flask, render_template, send_file, request
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_caching import Cache
@@ -22,6 +21,7 @@ app.config['WTF_CSRF_ENABLED'] = False
 app.config['RECAPTCHA_PUBLIC_KEY'] = os.getenv('RECAPTCHA_PUBLIC_KEY')
 app.config['RECAPTCHA_PRIVATE_KEY'] = os.getenv('RECAPTCHA_PRIVATE_KEY')
 
+# disable caching if in development mode
 if is_dev == '0':
     cache = Cache(app, config={'CACHE_TYPE': 'FileSystemCache', 'CACHE_DIR': '/tmp/cache', 'CACHE_SOURCE_CHECK': True })
 else:
