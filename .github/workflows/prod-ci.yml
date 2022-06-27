@@ -21,4 +21,5 @@ jobs:
         script: |
           cd mysite
           git pull https://github.com/beawitcht/transinformed-server main
+          pip3 install -r requirements.txt
           touch ${{ secrets.TOUCH_PATH }}

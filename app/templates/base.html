@@ -15,19 +15,12 @@
     <link rel="icon" href="/static/images/logo.svg">
     <link rel="stylesheet" href="/static/css/transinformed.css">
     <link rel="stylesheet" id="asyncLoad" href="/static/css/bootstrapaddmin.css" media="print">
-    <script defer nonce="{{ nonce }}" > 
-        window.addEventListener('load', (event) => {
-                document.getElementById('asyncLoad').setAttribute('media', 'all');
-            })
-            document.getElementById('asyncLoad')
-    </script>
     <script defer src="/static/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     {% block body %}
     {% endblock %}
 </body>
-
 <div class="container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
@@ -51,5 +44,4 @@
         </ul>
     </footer>
 </div>
-
 </html>
