@@ -1,0 +1,1 @@
+document.getElementById("asyncLoad").setAttribute("media","all");

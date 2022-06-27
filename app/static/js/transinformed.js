@@ -9,8 +9,7 @@ window.addEventListener('load', function () {
     document.getElementById('diagnosisCheck').addEventListener('click', checkboxStatus);
     document.getElementById('hrtCheck').addEventListener('click', checkboxStatus);
     document.getElementById('noDocCheck').addEventListener('click', checkboxStatus);
-    // Load additional css
-    document.getElementById('asyncLoad').setAttribute('media', 'all');
+    
 });
 
 
