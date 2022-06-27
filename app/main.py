@@ -23,7 +23,7 @@ app.config['RECAPTCHA_PRIVATE_KEY'] = os.getenv('RECAPTCHA_PRIVATE_KEY')
 
 # disable caching if in development mode
 if is_dev == '0':
-    cache = Cache(app, config={'CACHE_TYPE': 'FileSystemCache', 'CACHE_DIR': '/tmp/cache', 'CACHE_SOURCE_CHECK': True })
+    cache = Cache(app, config={'CACHE_TYPE': 'FileSystemCache', 'CACHE_DIR': Path(__file__).resolve().parent / 'tmp' / 'cache', 'CACHE_SOURCE_CHECK': True })
 else:
     cache = Cache(app, config={'CACHE_TYPE': 'NullCache'})
 
