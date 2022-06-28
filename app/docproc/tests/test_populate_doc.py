@@ -16,13 +16,21 @@ def test_possessive():
 def test_generate_doc_docx():
 
     context = {
-        'country': 'England',
+        'countries': 'England',
+        'self_med': True,
+        'self_med_likely': False,
         'formal_diagnosis': True,
+        'hrt_recommendation': False,
+        'shared_care': False,
+        'bridging_desired': False,
+        'gic_referral': True,
+        'chosen_gic': 'Leeds - Wait time (months): 44',
         'name': 'Bea',
-        'surname': '',
         'email': 'test123@test.com',
         'phone': '1234567890',
-        'docx': True
+        'docx': True,
+        'pdf': False,
+        'captcha': None
     }
     docx = generate_document(context, 'docx')
 
