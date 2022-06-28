@@ -1,4 +1,22 @@
 import pandas as pd
+from dotenv import load_dotenv
+from pathlib import Path
+import discord
+import os, ast
+
+load_dotenv(Path(__file__).resolve().parent / '.env')
+# setup discord client
+discord_token = os.getenv("DISCORD_TOKEN")
+discord_server = os.getenv("DISCORD_SERVER")
+discord_channel = os.getenv("DISCORD_CHANNEL")
+client = discord.Client()
+
+@client.event
+async def on_ready():
+    global discord_msg
+    channel = client.get_channel(int(discord_channel))
+    await channel.send(discord_msg)
+    await client.close()
 
 
 options = []
@@ -20,5 +38,20 @@ for i in range(len(df['Service'])):
     else:
         options.append(("England", df['Service'][i] + " - Wait time (months): " + df['To beseen(in months)'][i]))
 
-with open('GICs.txt', 'w') as f:
-    f.write(str(options).strip('[]'))
+
+
+with open('GICs.txt') as f:
+    old_options = f.read()
+# convert options to list of tuples
+old_options = list(ast.literal_eval(old_options))
+
+# on any change, write changes to file and send message of difference to discord
+if old_options != options:
+    global discord_msg
+    discord_msg = f"GICs have changed!\nDifferences (Old, New): \n{set(old_options).symmetric_difference(options)}"
+    with open('GICs.txt', 'w') as f:
+        f.write(str(options).strip('[]'))
+    client.run(discord_token)
+    
+
+
