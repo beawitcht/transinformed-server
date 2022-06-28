@@ -1,9 +1,11 @@
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, SelectField, BooleanField, SubmitField, EmailField
 from wtforms.validators import DataRequired, Email, Optional, AnyOf
+from pathlib import Path
 import ast
+path = Path(__file__).parent.resolve()
 # import options for GICs
-with open('GICs.txt') as f:
+with open(path / 'GICs.txt') as f:
     gicOptions = f.read()
 # convert options to list of tuples
 gicOptions = list(ast.literal_eval(gicOptions))

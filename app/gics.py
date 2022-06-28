@@ -5,6 +5,7 @@ import discord
 import os, ast
 
 load_dotenv(Path(__file__).resolve().parent / '.env')
+path = Path(__file__).parent.resolve()
 # setup discord client
 discord_token = os.getenv("DISCORD_TOKEN")
 discord_server = os.getenv("DISCORD_SERVER")
@@ -39,7 +40,7 @@ for i in range(len(df['Service'])):
 
 
 
-with open('GICs.txt') as f:
+with open(path / 'GICs.txt') as f:
     old_options = f.read()
 # convert options to list of tuples
 old_options = list(ast.literal_eval(old_options))
@@ -47,7 +48,7 @@ old_options = list(ast.literal_eval(old_options))
 # on any change, write changes to file and send message of difference to discord
 if old_options != options:
     discord_msg = f"GICs have changed!\nDifferences (Old, New): \n{set(old_options).symmetric_difference(options)}"
-    with open('GICs.txt', 'w') as f:
+    with open(path / 'GICs.txt', 'w') as f:
         f.write(str(options).strip('[]'))
     client.run(discord_token)
     
