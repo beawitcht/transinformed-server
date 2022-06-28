@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
     // Countries dropdown
-    document.getElementById('countries').addEventListener('change', checkRequired);
+    document.getElementById('countries').addEventListener('change', countryFilters);
     // Medication Status
     document.getElementById('selfMedCheck').addEventListener('click', checkboxStatus);
     document.getElementById('likelyMedCheck').addEventListener('click', checkboxStatus);
@@ -9,7 +9,12 @@ window.addEventListener('load', function () {
     document.getElementById('diagnosisCheck').addEventListener('click', checkboxStatus);
     document.getElementById('hrtCheck').addEventListener('click', checkboxStatus);
     document.getElementById('noDocCheck').addEventListener('click', checkboxStatus);
-    
+    // GIC selector
+    document.getElementById('referralCheck').addEventListener('click', revealContent);
+    $("#gics option[id='Northern Ireland']").hide();
+    $("#gics option[id='Scotland']").hide();
+    $("#gics option[id='Wales']").hide();
+    $("#gics option[id='England']").hide();
 });
 
 
@@ -52,8 +57,9 @@ function checkboxStatus() {
 
 }
 
-function checkRequired() {
+function countryFilters() {
     var countriesSelect = document.getElementById("countries");
+    // Only allow submission when a country is selected
     if (countriesSelect.value !== "Choose...") {
         document.getElementById("docx").disabled = false;
         document.getElementById("pdf").disabled = false;
@@ -62,4 +68,44 @@ function checkRequired() {
         document.getElementById("docx").disabled = true;
         document.getElementById("pdf").disabled = true;
     }
+    // filter valid GICs based on country
+    $("#gics").val(0).change();
+    if (countriesSelect.value === "England") {
+        $("#gics option[id='Northern Ireland']").hide();
+        $("#gics option[id='Scotland']").hide();
+        $("#gics option[id='Wales']").hide();
+        $("#gics option[id='England']").show();
+    }
+    else if (countriesSelect.value === "Northern Ireland") {
+        $("#gics option[id='England']").hide();
+        $("#gics option[id='Scotland']").hide();
+        $("#gics option[id='Wales']").hide();
+        $("#gics option[id='Northern Ireland']").show();
+    }
+    else if (countriesSelect.value === "Scotland") {
+        $("#gics option[id='England']").hide();
+        $("#gics option[id='Northern Ireland']").hide();
+        $("#gics option[id='Wales']").hide();
+        $("#gics option[id='Scotland']").show();
+    }
+    else if (countriesSelect.value === "Wales") {
+        $("#gics option[id='England']").hide();
+        $("#gics option[id='Northern Ireland']").hide();
+        $("#gics option[id='Scotland']").hide();
+        $("#gics option[id='Wales']").show();
+    }
+    else {
+        $("#gics option[id='Northern Ireland']").hide();
+        $("#gics option[id='Scotland']").hide();
+        $("#gics option[id='Wales']").hide();
+        $("#gics option[id='England']").hide();
+    }
+    
+    
+}
+
+function revealContent() {
+    var referralCheck = document.getElementById("referralCheck");
+    var gicSelector = document.getElementById("gicSelector")
+    referralCheck.checked ? gicSelector.hidden = false : gicSelector.hidden = true;
 }

@@ -9,6 +9,7 @@ import requests
 import os
 import json
 
+
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parent / '.env')
 
@@ -20,6 +21,8 @@ limiter = Limiter(app, key_func=get_remote_address)
 app.config['WTF_CSRF_ENABLED'] = False
 app.config['RECAPTCHA_PUBLIC_KEY'] = os.getenv('RECAPTCHA_PUBLIC_KEY')
 app.config['RECAPTCHA_PRIVATE_KEY'] = os.getenv('RECAPTCHA_PRIVATE_KEY')
+
+
 
 # disable caching if in development mode
 if is_dev == '0':
@@ -40,7 +43,7 @@ def add_headers(response):
 
 @app.route("/", methods=['GET', 'POST'])
 @limiter.limit("5 per day", exempt_when=lambda: request.method == 'GET' or request.form.get('docx'))
-@cache.cached(timeout=60 * 60 * 24, unless=lambda: request.method == 'POST')
+@cache.cached(timeout=60 * 60 * 24 * 7, unless=lambda: request.method == 'POST')
 def home():
     api_data = json.loads(requests.get(f"https://v2.convertapi.com/user?Secret={api_key}").text)
     seconds_left = api_data['SecondsLeft']
@@ -52,11 +55,11 @@ def home():
 
     form = InputForm()
     if form.validate_on_submit():
+        
         if form.docx.data:
             filetype = "docx"
         elif form.pdf.data:
             filetype = "pdf"
-
         file = generate_document(form.data, filetype)
 
         try:
@@ -71,13 +74,13 @@ def home():
 
 
 @app.route("/about", methods=['GET'])
-@cache.cached(timeout=60 * 60 * 24)
+@cache.cached(timeout=60 * 60 * 24 * 7)
 def about():
     return render_template("about.html")
 
 
 @app.route("/resources", methods=['GET'])
-@cache.cached(timeout=60 * 60 * 24)
+@cache.cached(timeout=60 * 60 * 24 * 7)
 def resources():
     return render_template("resources.html")
 

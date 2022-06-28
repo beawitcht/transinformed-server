@@ -1,6 +1,12 @@
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, SelectField, BooleanField, SubmitField, EmailField
 from wtforms.validators import DataRequired, Email, Optional, AnyOf
+import ast
+# import options for GICs
+with open('GICs.txt') as f:
+    gicOptions = f.read()
+# convert options to list of tuples
+gicOptions = list(ast.literal_eval(gicOptions))
 
 
 class InputForm(FlaskForm):
@@ -12,6 +18,8 @@ class InputForm(FlaskForm):
     hrt_recommendation = BooleanField("I have a letter of recommendation for HRT")
     shared_care = BooleanField("I want a shared care agreement with my GP")
     bridging_desired = BooleanField("I would like a bridging prescription")
+    gic_referral = BooleanField("I would like to be referred to a GIC")
+    chosen_gic = SelectField("Chosen GIC", choices=gicOptions, validate_choice=False)
     name = StringField("First Name", validators=[Optional()])
     email = EmailField("Email", validators=[Optional(), Email()])
     phone = StringField("Phone Number", validators=[Optional()])
