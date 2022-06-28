@@ -7,6 +7,7 @@
         <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
         <li class="nav-item"><a href="/resources" class="nav-link">Resources</a></li>
     </ul>
+    <script defer src="/static/js/jquery-3.6.0.min.js"></script>
     <script defer src="/static/js/transinformed.min.js"></script>
 </header>
 
@@ -131,6 +132,9 @@
                                     private service, as this will allow you to receive HRT treatment from a specialist,
                                     without a lengthy GIC referral.
                                     <hr>
+                                    <h4>Which Gender Identity Clinic is right for me?</h4>
+                                    All GICs have requirements on who can be referred to them (based on age and location, and if they're accepting referrals). Check out <a target="_blank" href="https://genderkit.org.uk/resources/wait-times/"> this resource from Gender Construction Kit </a> to make sure the GIC in question is the right choice for you.
+                                    <hr>
                                     <h4>Why is the bridging prescription greyed out?</h4>
                                     If you need a bridging prescription, the GMC and NHS require that you are
                                     self-prescribing, or likely to self prescribe.
@@ -152,6 +156,24 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-check">
+                                <input name="{{ form.gic_referral.name }}" class="form-check-input" type="checkbox"
+                                    role="checkbox" id="referralCheck">
+                                <label class="form-check-label" for="referralCheck">I need a referral to a Gender Identity Clinic</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12" hidden id="gicSelector">
+                            <div class="col-md-3">
+                                <label for="{{ form.chosen_gic.name }}" name="gic" class="form-label">Which clinic I want to be referred to</label>
+                                <select class="form-select" id="gics" name="{{ form.chosen_gic.name }}">
+                                    <option value="0" selected> I don't have a preferred clinic </option>
+                                    {% for gic in form.chosen_gic.choices %}
+                                    <option id="{{ gic[0] }}">{{ gic[1] }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-check">
                                 <input name="{{ form.bridging_desired.name }}" class="form-check-input" type="checkbox"
                                     role="checkbox" id="bridgingDesired" disabled>
                                 <label class="form-check-label" for="bridgingDesired">I need a bridging
@@ -159,6 +181,7 @@
                                     class="badge rounded-pill text-bg-warning">Not Recommended</span></label>
                             </div>
                         </div>
+                        
 
 
 
