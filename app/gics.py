@@ -13,7 +13,6 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-    global discord_msg
     channel = client.get_channel(int(discord_channel))
     await channel.send(discord_msg)
     await client.close()
@@ -47,7 +46,6 @@ old_options = list(ast.literal_eval(old_options))
 
 # on any change, write changes to file and send message of difference to discord
 if old_options != options:
-    global discord_msg
     discord_msg = f"GICs have changed!\nDifferences (Old, New): \n{set(old_options).symmetric_difference(options)}"
     with open('GICs.txt', 'w') as f:
         f.write(str(options).strip('[]'))
