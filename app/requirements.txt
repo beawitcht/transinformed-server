@@ -7,3 +7,4 @@ Flask-WTF
 email_validator
 Flask-Limiter
 Flask-Caching
+deepdiff

@@ -15,6 +15,11 @@ window.addEventListener('load', function () {
     $("#gics option[id='Scotland']").hide();
     $("#gics option[id='Wales']").hide();
     $("#gics option[id='England']").hide();
+
+    // Private provider selector
+    document.getElementById('sharedCareCheck').addEventListener('click', revealContent);
+    // Private provider dropdown
+    document.getElementById('privateProviderList').addEventListener('change', privateProviderConditions);
 });
 
 
@@ -106,6 +111,32 @@ function countryFilters() {
 
 function revealContent() {
     var referralCheck = document.getElementById("referralCheck");
+    var sharedCareCheck = document.getElementById("sharedCareCheck");
     var gicSelector = document.getElementById("gicSelector")
+    var privateSelector = document.getElementById("privateSelector")
     referralCheck.checked ? gicSelector.hidden = false : gicSelector.hidden = true;
+    sharedCareCheck.checked ? privateSelector.hidden = false : privateSelector.hidden = true;
+}
+
+function privateProviderConditions(){
+    var privateProviderList = document.getElementById("privateProviderList");
+    var privateProviderWarningMessage = document.getElementById("notUK")
+    var privateProviderPreferredMessage = document.getElementById("preferred")
+    if (privateProviderList.value === "GenderGP") {
+        privateProviderList.classList.remove("is-valid");
+        privateProviderList.classList.add("is-invalid");
+        privateProviderWarningMessage.innerText =  "This provider is not based in the UK, which deters a lot of GPs from agreeing to shared care."
+    }
+    else if (privateProviderList.value.includes("Other") || privateProviderList.value.includes("haven't chosen")) {
+        privateProviderList.classList.remove("is-invalid");
+        privateProviderList.classList.remove("is-valid");
+        privateProviderPreferredMessage.innerText = ""
+        privateProviderWarningMessage.innerText = ""
+
+    }
+    else {
+        privateProviderList.classList.remove("is-invalid");
+        privateProviderList.classList.add("is-valid");
+        privateProviderPreferredMessage.innerText =  "This provider offers GMC registered and UK based specialists."
+    }
 }

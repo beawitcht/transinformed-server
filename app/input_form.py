@@ -8,7 +8,12 @@ path = Path(__file__).parent.resolve()
 with open(path / 'GICs.txt') as f:
     gicOptions = f.read()
 # convert options to list of tuples
-gicOptions = list(ast.literal_eval(gicOptions))
+gicOptions = ast.literal_eval(gicOptions)
+
+# import options for Private HRT providers
+with open(path / 'private_services.txt') as f:
+    privateServices = f.read()
+serviceOptions = ast.literal_eval(privateServices)
 
 
 class InputForm(FlaskForm):
@@ -22,6 +27,7 @@ class InputForm(FlaskForm):
     bridging_desired = BooleanField("I would like a bridging prescription")
     gic_referral = BooleanField("I would like to be referred to a GIC")
     chosen_gic = SelectField("Chosen GIC", choices=gicOptions, validate_choice=False)
+    chosen_private_care = SelectField("Chosen Private Care", choices=serviceOptions, validate_choice=False)
     name = StringField("First Name", validators=[Optional()])
     email = EmailField("Email", validators=[Optional(), Email()])
     phone = StringField("Phone Number", validators=[Optional()])
