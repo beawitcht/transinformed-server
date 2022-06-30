@@ -55,7 +55,6 @@ def home():
 
     form = InputForm()
     if form.validate_on_submit():
-        
         if form.docx.data:
             filetype = "docx"
         elif form.pdf.data:

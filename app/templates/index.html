@@ -154,6 +154,20 @@
                                         class="badge rounded-pill text-bg-primary">Recommended</span></label>
                             </div>
                         </div>
+                        <div class="col-md-12" hidden id="privateSelector">
+                            <div class="col-md-3">
+                                <label for="{{ form.chosen_private_care.name }}" name="gic" class="form-label">My chosen private provider</label>
+                                <select class="form-select" id="privateProviderList" name="{{ form.chosen_private_care.name }}">
+                                    <option selected> I haven't chosen a provider yet </option>
+                                    {% for provider in form.chosen_private_care.choices %}
+                                    <option>{{ provider }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div id="notUK" class="invalid-feedback"></div>
+                                <div id="preferred" class="valid-feedback"></div>
+                            </div>
+                            
+                        </div>
                         <div class="col-md-12">
                             <div class="form-check">
                                 <input name="{{ form.gic_referral.name }}" class="form-check-input" type="checkbox"
@@ -210,7 +224,7 @@
                                     class="form-control {% if form.email.errors|length > 0 %} is-invalid {% endif %}"
                                     id="email" name="{{ form.email.name }}" placeholder="you@example.com">
 
-                                <div class="invalid-feedback ">
+                                <div class="invalid-feedback">
                                     {% for error in form.email.errors %}
                                     {{error}}
                                     {% endfor %}

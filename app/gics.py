@@ -1,3 +1,4 @@
+from deepdiff import DeepDiff
 import pandas as pd
 from dotenv import load_dotenv
 from pathlib import Path
@@ -74,6 +75,8 @@ for i in range(len(df['Service'])):
         options.append(
             ("England", df['Service'][i] + " - Wait time (months): " + df['To beseen(in months)'][i]))
 
+# sort options
+options.sort()
 
 with open(path / 'GICs.txt') as f:
     old_options = f.read()
@@ -82,7 +85,8 @@ old_options = list(ast.literal_eval(old_options))
 
 # on any change, write changes to file and send message of difference to discord
 if old_options != options:
-    discord_msg = f"GICs have changed!\nDifferences (Old, New): \n{set(old_options).symmetric_difference(options)}"
+    diff = DeepDiff(old_options, options, ignore_order=True)
+    discord_msg = f"GICs have changed!\n\nDifferences: \n\n{diff}"
     with open(path / 'GICs.txt', 'w') as f:
-        f.write(str(options).strip('[]'))
+        f.write(str(options))
     client.run(discord_token)
