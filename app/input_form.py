@@ -17,7 +17,7 @@ serviceOptions = ast.literal_eval(privateServices)
 
 
 class InputForm(FlaskForm):
-    countries = SelectField("Country", choices=['England'], validators=[
+    countries = SelectField("Country", choices=['England', 'Northern Ireland', 'Scotland', 'Wales'], validators=[
         DataRequired(), AnyOf(['England', 'Northern Ireland', 'Scotland', 'Wales'], message="Please select a country")])
     self_med = BooleanField("I am self medicating")
     self_med_likely = BooleanField("I am likely to start self medicating")
