@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
 
+{% block head %}
+{{ super() }}
+<title>About - Trans Informed</title>
+<meta name="description" content="Information about the Trans Informed document generation service.">
+<meta name="twitter:title" content="About - Trans Informed">
+<meta name="twitter:description" content="Information about the Trans Informed document generation service." >
+{% endblock %}
+
 {% block body %}
 <header class="d-flex justify-content-center py-3">
     <ul class="nav nav-pills">
         <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
         <li class="nav-item"><a href="/about" class="nav-link active" aria-current="page">About</a></li>
-        <li class="nav-item"><a href="/resources" class="nav-link">Resources</a></li>
+        <li class="nav-item"><a href="/resources" class="nav-link">Useful Resources</a></li>
+        <li class="nav-item"><a href="/sources" class="nav-link" >Data Sources</a></li>
     </ul>
 </header>
 

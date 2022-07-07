@@ -2,21 +2,19 @@
 <html lang="en">
 
 <head>
+    {% block head %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trans Informed</title>
-    <meta name="description" content="Create a guide to accessing HRT through your GP, providing a document with the information they need to provide the best care.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Trans Informed">
     <meta name="twitter:site" content="@beawitcht">
     <meta name="twitter:image" content="https://www.transinformed.co.uk/static/images/twitterimage.png">
-    <meta name="twitter:description" content="Create a guide to accessing HRT through your GP, providing a document with the information they need to provide the best care." >
     <link rel="stylesheet" href="/static/css/bootstrapcritmin.css">
     <link rel="icon" href="/static/images/logo.svg">
     <link rel="stylesheet" href="/static/css/transinformed.css">
     <link rel="stylesheet" id="asyncLoad" href="/static/css/bootstrapaddmin.css" media="print">
     <script defer src="/static/js/bootstrap.bundle.min.js"></script>
     <script defer src="/static/js/defercss.js"></script>
+    {% endblock %}
 </head>
 <body>
     {% block body %}
