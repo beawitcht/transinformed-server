@@ -83,6 +83,11 @@ def about():
 def resources():
     return render_template("resources.html")
 
+@app.route("/sources", methods=['GET'])
+@cache.cached(timeout=60 * 60 * 24 * 7)
+def sources():
+    return render_template("sources.html")
+
 
 if __name__ == '__main__':
     app.run()
