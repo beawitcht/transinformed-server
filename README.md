@@ -31,6 +31,7 @@ $ pip install -r requirements.txt
 PDF_API_KEY=<your-pdf-api-key> # api key for conversion to PDF: convertapi.com
 RECAPTCHA_PUBLIC_KEY=<your-recaptcha-public-key> # google recaptcha public key
 RECAPTCHA_PRIVATE_KEY=<your-recaptcha-private-key> # google recaptcha private key
+IS_DEV = 1 # set to 1 to disable caching
 ```
 ### Run with gunicorn
 #### Install gunicorn:
