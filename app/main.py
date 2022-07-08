@@ -88,9 +88,5 @@ def resources():
 def sources():
     return render_template("sources.html")
 
-@app.route("/sitemap.xml", methods=['GET'])
-def sitemap():
-    return app.send_static_file("sitemap.xml")
-
 if __name__ == '__main__':
     app.run()
