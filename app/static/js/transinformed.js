@@ -20,6 +20,10 @@ window.addEventListener('load', function () {
     document.getElementById('sharedCareCheck').addEventListener('click', revealContent);
     // Private provider dropdown
     document.getElementById('privateProviderList').addEventListener('change', privateProviderConditions);
+
+    // Immigration options
+    document.getElementById('immigrationCheck').addEventListener('click', revealContent);
+    document.getElementById('immigrationCheck').addEventListener('click', checkboxStatus);
 });
 
 
@@ -32,6 +36,8 @@ function checkboxStatus() {
     var diagnosis = document.getElementById("diagnosisCheck");
     var hrt = document.getElementById("hrtCheck");
     var noDoc = document.getElementById("noDocCheck");
+    var immCheck = document.getElementById("immigrationCheck");
+    var immLetter = document.getElementById("immigrationLetterCheck");
 
     // conditions for Documents held
     (diagnosis.checked || hrt.checked) ? (noDoc.disabled = true) : (noDoc.disabled = false);
@@ -57,6 +63,11 @@ function checkboxStatus() {
         selfMed.disabled = false;
         selfMedLikely.disabled = false;
         noMed.disabled = false;
+    }
+
+    // conditions for immigration options
+    if (!immCheck.checked){
+        immLetter.checked = false;
     }
 
 
@@ -112,10 +123,13 @@ function countryFilters() {
 function revealContent() {
     var referralCheck = document.getElementById("referralCheck");
     var sharedCareCheck = document.getElementById("sharedCareCheck");
-    var gicSelector = document.getElementById("gicSelector")
-    var privateSelector = document.getElementById("privateSelector")
+    var gicSelector = document.getElementById("gicSelector");
+    var privateSelector = document.getElementById("privateSelector");
+    var immigrationCheck = document.getElementById("immigrationCheck");
+    var immigrationOption = document.getElementById("immigrationOption");
     referralCheck.checked ? gicSelector.hidden = false : gicSelector.hidden = true;
     sharedCareCheck.checked ? privateSelector.hidden = false : privateSelector.hidden = true;
+    immigrationCheck.checked ? immigrationOption.hidden = false : immigrationOption.hidden = true;
 }
 
 function privateProviderConditions(){

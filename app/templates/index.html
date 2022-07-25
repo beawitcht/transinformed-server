@@ -131,6 +131,16 @@
                                 <label class="form-check-label" for="noMedCheck">I am not currently or likely to start self
                                     medicating</label>
                             </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="{{ form.private_prescription.name }}"
+                                    role="checkbox" id="privateMedCheck">
+                                <label class="form-check-label" for="privateMedCheck">I have a private prescription for HRT</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="{{ form.foreign_prescription.name }}"
+                                    role="checkbox" id="foreignMedCheck">
+                                <label class="form-check-label" for="foreignMedCheck">I have been prescribed HRT outside of the UK</label>
+                            </div>
                         </div>
                         <details class="mb-3">
                             <summary>
@@ -155,8 +165,9 @@
                                     <hr>
                                     <h4>Why is a bridging prescription not recommended?</h4>
                                     A bridging prescription is prescribed as "the lowest acceptable dose" and this tends to be too low of a dose to be effective.
-
-
+                                    <hr>
+                                    <h4>How can I continue with HRT when migrating to the UK?</h4>
+                                    It is highly recommended that you obtain a letter from your previous HRT provider, if you need help deciding the contents of this letter, check out <a target="_blank" rel="noopener" href="https://medium.com/@zoyander/continuing-hrt-after-arriving-in-the-uk-2655abd87fa7#a7f3">this letter template.</a>
                                 </div>
                             </div>
                         </details>
@@ -207,6 +218,21 @@
                                 <label class="form-check-label" for="bridgingDesired">I need a bridging
                                     prescription <span
                                     class="badge rounded-pill text-bg-warning">Not Recommended</span></label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="{{ form.immigration_care.name }}"
+                                    role="checkbox" id="immigrationCheck">
+                                <label class="form-check-label" for="immigrationCheck">I am an immigrant looking to continue my care in the UK</label>
+                            </div>
+                        </div>
+                        <div hidden id="immigrationOption">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="{{ form.immigration_letter.name }}"
+                                    role="checkbox" id="immigrationLetterCheck">
+                                <label class="form-check-label" for="immigrationLetterCheck">I have a letter from my previous HRT healthcare provider <span
+                                    class="badge rounded-pill text-bg-primary">Recommended</span></label>
                             </div>
                         </div>
                         
