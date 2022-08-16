@@ -75,6 +75,11 @@ for i in range(len(df['Service'])):
         options.append(
             ("England", df['Service'][i] + " - Wait time (months): " + df['To beseen(in months)'][i]))
 
+# removing youth services until specific youth document is developed
+for gic in options:
+    if "GIDS" in gic[1] or "KOI" in gic[1] or "Youth" in gic[1]:
+        options.remove(gic)
+
 # sort options
 options.sort()
 
@@ -90,3 +95,4 @@ if old_options != options:
     with open(path / 'GICs.txt', 'w') as f:
         f.write(str(options))
     client.run(discord_token)
+    print("GICs have changed")
