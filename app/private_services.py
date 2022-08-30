@@ -38,6 +38,11 @@ if "Dr Lenihan" in options:
     options.remove("Dr Lenihan")
 if "Kelly Psychology" in options:
     options.remove("Kelly Psychology")
+if "Gender Identity SW" in options:
+    options.remove("Gender Identity SW")
+    options.append("Gender Identity South West")
+
+
 
 # add other services not included in the list
 options.append("GenderGP")

@@ -1,1 +1,1 @@
-['GenderCare', 'GenderDoctors', 'GenderGP', 'Harley Street Gender Clinic', 'London Transgender Clinic', 'Northern Gender Network', 'YourGP', 'Other (UK Based, GMC Registered)', 'Other (Non-UK Based)']
+['Gender Identity South West', 'GenderCare', 'GenderDoctors', 'GenderGP', 'Harley Street Gender Clinic', 'London Transgender Clinic', 'Northern Gender Network', 'YourGP', 'Other (UK Based, GMC Registered)', 'Other (Non-UK Based)']

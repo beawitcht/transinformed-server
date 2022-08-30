@@ -32,6 +32,8 @@ df['Service'] = df['Service'].map(lambda x: x[:-len("more info")])
 df['Service'] = df['Service'].map(lambda x: x.strip())
 
 
+df['To beseen(in months)'] = df['To beseen(in months)'].astype('Int64')
+
 for i in range(len(df['Service'])):
     # Rename to GIC names
     if df['Service'][i] == "Belfast":
@@ -64,16 +66,16 @@ for i in range(len(df['Service'])):
         # assign country to each service
     if "Belfast" in df['Service'][i]:
         options.append(("Northern Ireland", df['Service'][i] +
-                       " - Wait time (months): " + df['To beseen(in months)'][i]))
+                       " - Wait time (months): " + str(df['To beseen(in months)'][i])))
     elif "Cardiff" in df['Service'][i]:
         options.append(
-            ("Wales", df['Service'][i] + " - Wait time (months): " + df['To beseen(in months)'][i]))
+            ("Wales", df['Service'][i] + " - Wait time (months): " + str(df['To beseen(in months)'][i])))
     elif "Edinburgh" in df['Service'][i] or "Glasgow" in df['Service'][i] or "Grampian" in df['Service'][i] or "Inverness" in df['Service'][i]:
         options.append(
-            ("Scotland", df['Service'][i] + " - Wait time (months): " + df['To beseen(in months)'][i]))
+            ("Scotland", df['Service'][i] + " - Wait time (months): " + str(df['To beseen(in months)'][i])))
     else:
         options.append(
-            ("England", df['Service'][i] + " - Wait time (months): " + df['To beseen(in months)'][i]))
+            ("England", df['Service'][i] + " - Wait time (months): " + str(df['To beseen(in months)'][i])))
 
 # removing youth services until specific youth document is developed
 for gic in options:
