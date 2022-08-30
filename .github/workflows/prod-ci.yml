@@ -20,6 +20,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
           cd mysite
+          git reset --hard HEAD
           git pull https://github.com/beawitcht/transinformed-server main
           pip3 install -r app/requirements.txt
           touch ${{ secrets.TOUCH_PATH }}
