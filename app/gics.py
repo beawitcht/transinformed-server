@@ -64,7 +64,7 @@ for i in range(len(df['Service'])):
     elif df['Service'][i] == "Sheffield":
         df['Service'][i] = "Sheffield Porterbrook Clinic"
 
-    print(type(df['To beseen(in months)'][i]))
+
         # assign country to each service
     if "Belfast" in df['Service'][i]:
         options.append(("Northern Ireland", df['Service'][i] +
