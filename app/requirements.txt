@@ -6,7 +6,7 @@ convertapi==1.4.0
 python-dotenv==0.20.0
 Flask-WTF==0.14.3
 email_validator==1.2.1
-Flask-Limiter==2.4.6
+Flask-Limiter==2.6.2
 Flask-Caching==2.0.0
 deepdiff==5.8.1
 MarkupSafe==2.0.1
