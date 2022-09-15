@@ -14,7 +14,8 @@ path = Path(__file__).parent.resolve()
 discord_token = os.getenv("DISCORD_TOKEN")
 discord_server = os.getenv("DISCORD_SERVER")
 discord_channel = os.getenv("DISCORD_CHANNEL")
-client = discord.Client()
+intents = discord.Intents.default()
+client = discord.Client(intents=intents)
 
 
 @client.event
