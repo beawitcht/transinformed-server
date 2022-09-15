@@ -17,7 +17,11 @@ api_key = os.getenv('PDF_API_KEY')
 is_dev = os.getenv('IS_DEV')
 # configure app
 app = Flask(__name__)
-limiter = Limiter(app, key_func=get_remote_address)
+limiter = Limiter(
+    app, 
+    key_func=get_remote_address,
+    storage_uri="memory://",
+)
 app.config['WTF_CSRF_ENABLED'] = False
 app.config['RECAPTCHA_PUBLIC_KEY'] = os.getenv('RECAPTCHA_PUBLIC_KEY')
 app.config['RECAPTCHA_PRIVATE_KEY'] = os.getenv('RECAPTCHA_PRIVATE_KEY')
