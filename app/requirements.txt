@@ -11,6 +11,6 @@ Flask-Caching==2.0.0
 deepdiff==5.8.1
 MarkupSafe==2.0.1
 werkzeug==2.0.1
-discord.py==1.7.3
+discord.py==2.0.1
 pandas==1.4.4
 bs4==0.0.1
