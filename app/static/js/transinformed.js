@@ -87,30 +87,39 @@ function countryFilters() {
     // filter valid GICs based on country
     $("#gics").val(0).change();
     if (countriesSelect.value === "England") {
+        $("#gics option[id='countryNeeded']").hide();
+        $("#gics").val(1).change();
         $("#gics option[id='Northern Ireland']").hide();
         $("#gics option[id='Scotland']").hide();
         $("#gics option[id='Wales']").hide();
         $("#gics option[id='England']").show();
     }
     else if (countriesSelect.value === "Northern Ireland") {
+        $("#gics option[id='countryNeeded']").hide();
+        $("#gics").val(1).change();
         $("#gics option[id='England']").hide();
         $("#gics option[id='Scotland']").hide();
         $("#gics option[id='Wales']").hide();
         $("#gics option[id='Northern Ireland']").show();
     }
     else if (countriesSelect.value === "Scotland") {
+        $("#gics option[id='countryNeeded']").hide();
+        $("#gics").val(1).change();
         $("#gics option[id='England']").hide();
         $("#gics option[id='Northern Ireland']").hide();
         $("#gics option[id='Wales']").hide();
         $("#gics option[id='Scotland']").show();
     }
     else if (countriesSelect.value === "Wales") {
+        $("#gics option[id='countryNeeded']").hide();
+        $("#gics").val(1).change();
         $("#gics option[id='England']").hide();
         $("#gics option[id='Northern Ireland']").hide();
         $("#gics option[id='Scotland']").hide();
         $("#gics option[id='Wales']").show();
     }
     else {
+        $("#gics option[id='countryNeeded']").show();
         $("#gics option[id='Northern Ireland']").hide();
         $("#gics option[id='Scotland']").hide();
         $("#gics option[id='Wales']").hide();

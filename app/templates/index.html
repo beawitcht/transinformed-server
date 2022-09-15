@@ -204,7 +204,8 @@
                             <div class="col-md-3">
                                 <label for="{{ form.chosen_gic.name }}" name="gic" class="form-label">Which clinic I want to be referred to</label>
                                 <select class="form-select" id="gics" name="{{ form.chosen_gic.name }}">
-                                    <option value="0" selected> I don't have a preferred clinic </option>
+                                    <option id="countryNeeded" value="0" selected> Select a country to see GICs </option>
+                                    <option id="default" value="1" > I don't have a preferred clinic </option>
                                     {% for gic in form.chosen_gic.choices %}
                                     <option id="{{ gic[0] }}">{{ gic[1] }}</option>
                                     {% endfor %}
