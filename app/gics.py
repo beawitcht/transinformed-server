@@ -1,5 +1,6 @@
 from deepdiff import DeepDiff
 import pandas as pd
+import numpy as np
 from dotenv import load_dotenv
 from pathlib import Path
 import discord
@@ -63,19 +64,20 @@ for i in range(len(df['Service'])):
     elif df['Service'][i] == "Sheffield":
         df['Service'][i] = "Sheffield Porterbrook Clinic"
 
+
         # assign country to each service
     if "Belfast" in df['Service'][i]:
         options.append(("Northern Ireland", df['Service'][i] +
-                       " - Wait time (months): " + str(df['To beseen(in months)'][i])))
+                       " - Wait time (months): " + str(df['To beseen(in months)'][i]) if not None else "Unknown"))
     elif "Cardiff" in df['Service'][i]:
         options.append(
-            ("Wales", df['Service'][i] + " - Wait time (months): " + str(df['To beseen(in months)'][i])))
+            ("Wales", df['Service'][i] + " - Wait time (months): " + (str(df['To beseen(in months)'][i]) if type(df['To beseen(in months)'][i]) == np.int64 else "Unknown")))
     elif "Edinburgh" in df['Service'][i] or "Glasgow" in df['Service'][i] or "Grampian" in df['Service'][i] or "Inverness" in df['Service'][i]:
         options.append(
-            ("Scotland", df['Service'][i] + " - Wait time (months): " + str(df['To beseen(in months)'][i])))
+            ("Scotland", df['Service'][i] + " - Wait time (months): " + (str(df['To beseen(in months)'][i]) if type(df['To beseen(in months)'][i]) == np.int64 else "Unknown")))
     else:
         options.append(
-            ("England", df['Service'][i] + " - Wait time (months): " + str(df['To beseen(in months)'][i])))
+            ("England", df['Service'][i] + " - Wait time (months): " + (str(df['To beseen(in months)'][i]) if type(df['To beseen(in months)'][i]) == np.int64 else "Unknown")))
 
 # removing youth services until specific youth document is developed
 for gic in options:

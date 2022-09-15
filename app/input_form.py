@@ -33,6 +33,7 @@ class InputForm(FlaskForm):
     immigration_care = BooleanField("I am an immigrant looking to continue my care in the UK")
     immigration_letter = BooleanField("I have a letter from my previous HRT healthcare provider")
     name = StringField("First Name", validators=[Optional()])
+    pronouns = StringField("Pronouns", validators=[Optional()])
     email = EmailField("Email", validators=[Optional(), Email()])
     phone = StringField("Phone Number", validators=[Optional()])
     docx = SubmitField("Generate Docx")

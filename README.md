@@ -17,13 +17,13 @@ This is a web app to generate contextualised documents for people to bring to th
 ### Installation
 
 #### Navigate to app directory:
-```
-$ cd app/
+```bash
+cd app/
 ```
 #### Install with pip:
 
-```
-$ pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
 ```
 ### Configure .env
 #### The following environment variables are required:
@@ -34,13 +34,8 @@ RECAPTCHA_PRIVATE_KEY=<your-recaptcha-private-key> # google recaptcha private ke
 IS_DEV = 1 # set to 1 to disable caching
 ```
 ### Run with gunicorn
-#### Install gunicorn:
-```
-$ pip install gunicorn
-```
-#### Run with gunicorn:
-```
-$ gunicorn -w 4 -b 127.0.0.1:8000 main:app
+```bash
+gunicorn -w 4 -b 127.0.0.1:8000 main:app
 ```
 ***
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/T6T7BLO3U)
