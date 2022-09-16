@@ -1,7 +1,7 @@
 gunicorn==20.1.0
 flask==2.2.2
 docxtpl==0.16.0
-jinja2==3.0.1
+jinja2==3.1.2
 convertapi==1.4.0
 python-dotenv==0.20.0
 Flask-WTF==1.0.1
