@@ -26,12 +26,12 @@ def possessive(name):
 def remove_wait_times(name):
     return name.split('-', 1)[0]
 
-def txt_to_var(txt):
-    if os.path.exists(path / 'templates' / 'gender_journey' / f'{txt}.txt'):
-        with open(path / 'templates' / 'gender_journey' / f'{txt}.txt', "r") as f:
-            return f.read()
-    else:
-        return None
+# def txt_to_var(txt):
+#     if os.path.exists(path / 'templates' / 'gender_journey' / f'{txt}.txt'):
+#         with open(path / 'templates' / 'gender_journey' / f'{txt}.txt', "r") as f:
+#             return f.read()
+#     else:
+#         return None
 
 # formal_diagnosis = txt_to_var('formal_diagnosis')
 # self_med = txt_to_var('self_med')
@@ -49,10 +49,10 @@ def generate_document(context, filetype):
     if context['email'] == '':
         doc.replace_media(path / 'images' / 'email.png', path / 'images' / 'blank.png')
 
-    # adds text sections if selected
-    for key, value in context.items():
-        if txt_to_var(key) is not None and value:
-            context[key] = txt_to_var(key)
+    # # adds text sections if selected
+    # for key, value in context.items():
+    #     if txt_to_var(key) is not None and value:
+    #         context[key] = txt_to_var(key)
 
     doc.render(context, jinja_env)
     doc.save(docx)
