@@ -50,7 +50,11 @@ def add_headers(response):
 @cache.cached(timeout=60 * 60 * 24 * 7, unless=lambda: request.method == 'POST')
 def home():
     api_data = json.loads(requests.get(f"https://v2.convertapi.com/user?Secret={api_key}").text)
-    seconds_left = api_data['SecondsLeft']
+    try:
+        seconds_left = api_data['SecondsLeft']
+    except KeyError:
+        seconds_left = 0
+
     # check if api limit reached
     if int(seconds_left) < 10:
         pdf_available = False
