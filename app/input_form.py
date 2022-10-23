@@ -6,14 +6,16 @@ import ast
 path = Path(__file__).parent.resolve()
 # import options for GICs
 with open(path / 'GICs.txt') as f:
-    gicOptions = f.read()
+    gic_options = f.read()
+# change NaN's to Unkown
+gic_options = gic_options.replace('nan', 'Unknown')
 # convert options to list of tuples
-gicOptions = ast.literal_eval(gicOptions)
+gic_options = ast.literal_eval(gic_options)
 
 # import options for Private HRT providers
 with open(path / 'private_services.txt') as f:
-    privateServices = f.read()
-serviceOptions = ast.literal_eval(privateServices)
+    private_services = f.read()
+service_options = ast.literal_eval(private_services)
 
 
 class InputForm(FlaskForm):
@@ -28,8 +30,8 @@ class InputForm(FlaskForm):
     shared_care = BooleanField("I want a shared care agreement with my GP")
     bridging_desired = BooleanField("I would like a bridging prescription")
     gic_referral = BooleanField("I would like to be referred to a GIC")
-    chosen_gic = SelectField("Chosen GIC", choices=gicOptions, validate_choice=False)
-    chosen_private_care = SelectField("Chosen Private Care", choices=serviceOptions, validate_choice=False)
+    chosen_gic = SelectField("Chosen GIC", choices=gic_options, validate_choice=False)
+    chosen_private_care = SelectField("Chosen Private Care", choices=service_options, validate_choice=False)
     immigration_care = BooleanField("I am an immigrant looking to continue my care in the UK")
     immigration_letter = BooleanField("I have a letter from my previous HRT healthcare provider")
     name = StringField("First Name", validators=[Optional()])

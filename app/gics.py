@@ -1,6 +1,5 @@
 from deepdiff import DeepDiff
 import pandas as pd
-import numpy as np
 from dotenv import load_dotenv
 from pathlib import Path
 import discord
@@ -33,8 +32,10 @@ df = table[0]
 df['Service'] = df['Service'].map(lambda x: x[:-len("more info")])
 df['Service'] = df['Service'].map(lambda x: x.strip())
 
-
-df['To beseen(in months)'] = df['To beseen(in months)'].astype('Int64')
+try:
+    df['To beseen(in months)'] = df['To beseen(in months)'].astype('Int64')
+except ValueError:
+    df['To beseen(in months)'] = df['To beseen(in months)']
 
 for i in range(len(df['Service'])):
     # Rename to GIC names
@@ -72,14 +73,13 @@ for i in range(len(df['Service'])):
                        " - Wait time (months): " + str(df['To beseen(in months)'][i]) if not None else "Unknown"))
     elif "Cardiff" in df['Service'][i]:
         options.append(
-            ("Wales", df['Service'][i] + " - Wait time (months): " + (str(df['To beseen(in months)'][i]) if type(df['To beseen(in months)'][i]) == np.int64 else "Unknown")))
+            ("Wales", df['Service'][i] + " - Wait time (months): " + (str(df['To beseen(in months)'][i]) if type(df['To beseen(in months)'][i]) != str else df['To beseen(in months)'][i])))
     elif "Edinburgh" in df['Service'][i] or "Glasgow" in df['Service'][i] or "Grampian" in df['Service'][i] or "Inverness" in df['Service'][i]:
         options.append(
-            ("Scotland", df['Service'][i] + " - Wait time (months): " + (str(df['To beseen(in months)'][i]) if type(df['To beseen(in months)'][i]) == np.int64 else "Unknown")))
+            ("Scotland", df['Service'][i] + " - Wait time (months): " + (str(df['To beseen(in months)'][i]) if type(df['To beseen(in months)'][i]) != str else df['To beseen(in months)'][i])))
     else:
         options.append(
-            ("England", df['Service'][i] + " - Wait time (months): " + (str(df['To beseen(in months)'][i]) if type(df['To beseen(in months)'][i]) == np.int64 else "Unknown")))
-
+            ("England", df['Service'][i] + " - Wait time (months): " + (str(df['To beseen(in months)'][i]) if type(df['To beseen(in months)'][i]) != str else df['To beseen(in months)'][i])))
 # removing youth services until specific youth document is developed
 for gic in options:
     if "GIDS" in gic[1] or "KOI" in gic[1] or "Youth" in gic[1]:
