@@ -59,38 +59,18 @@
                         </div>
 
                         <div class="col-md-6">
-                            <details class="mb-3">
-                                <summary>
                                     <h3>Documents held</h3>
-                                </summary>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>Why is a formal diagnosis recommended?</h4>
-                                        A formal diagnosis is recommended as most GPs will want this before they will
-                                        agree to providing gender affirming care.
-                                        <br>
-                                        A formal diagnosis is <strong>not</strong> necessary for a bridging
-                                        prescription.
-                                        <hr>
-                                        <h4>Why is a recommendation letter recommended?</h4>
-                                        This letter is provided by a gender specialist and will contain the details of what hormone treatment is being recommended, this is what the doctor will prescribe based off. 
-                                    </div>
-                                </div>
-                            </details>
-
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.formal_diagnosis.name }}" type="checkbox"
                                     role="checkbox" id="diagnosisCheck">
                                 <label class="form-check-label"
-                                    for="diagnosisCheck">I have a formal Diagnosis <span
-                                        class="badge rounded-pill text-bg-primary">Recommended</span></label>
+                                    for="diagnosisCheck">I have a formal Diagnosis</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.hrt_recommendation.name }}" type="checkbox"
                                     role="checkbox" id="hrtCheck">
                                 <label class="form-check-label"
-                                    for="hrtCheck">I have a letter of recommendation for HRT <span
-                                    class="badge rounded-pill text-bg-primary">Recommended</span></label>
+                                    for="hrtCheck">I have a letter of recommendation for HRT</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox"
@@ -148,10 +128,8 @@
                             </summary>
                             <div class="card">
                                 <div class="card-body">
-                                    <h4>Why is a shared care agreement recommended?</h4>
-                                    A shared care agreement is recommended if you are able to afford assistance from a
-                                    private service, as this will allow you to receive HRT treatment from a specialist,
-                                    without a lengthy GIC referral.
+                                    <h4>What is a shared care agreement?</h4>
+                                    Check out <a target="_blank" rel="noopener" href="https://www.nottsapc.nhs.uk/media/1715/shared-care-faq-for-patients.pdf">this faq sheet</a> for info on shared care.
                                     <hr>
                                     <h4>Which Gender Identity Clinic is right for me?</h4>
                                     All GICs have requirements on who can be referred to them (based on age and location, and if they're accepting referrals). Check out <a target="_blank" rel="noopener" href="https://genderkit.org.uk/resources/wait-times/"> this resource from Gender Construction Kit </a> to make sure the GIC in question is the right choice for you.
@@ -163,9 +141,6 @@
                                     If you need a bridging prescription, the GMC and NHS require that you are
                                     self-prescribing, or likely to self prescribe.
                                     <hr>
-                                    <h4>Why is a bridging prescription not recommended?</h4>
-                                    A bridging prescription is prescribed as "the lowest acceptable dose" and this tends to be too low of a dose to be effective.
-                                    <hr>
                                     <h4>How can I continue with HRT when migrating to the UK?</h4>
                                     It is highly recommended that you obtain a letter from your previous HRT provider, if you need help deciding the contents of this letter, check out <a target="_blank" rel="noopener" href="https://medium.com/@zoyander/continuing-hrt-after-arriving-in-the-uk-2655abd87fa7#a7f3">this letter template.</a>
                                 </div>
@@ -175,8 +150,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.shared_care.name }}" type="checkbox"
                                     role="checkbox" id="sharedCareCheck">
-                                <label class="form-check-label" for="sharedCareCheck">I need a shared care agreement <span
-                                        class="badge rounded-pill text-bg-primary">Recommended</span></label>
+                                <label class="form-check-label" for="sharedCareCheck">I need a shared care agreement</label>
                             </div>
                         </div>
                         <div class="col-md-12" hidden id="privateSelector">
@@ -217,8 +191,7 @@
                                 <input name="{{ form.bridging_desired.name }}" class="form-check-input" type="checkbox"
                                     role="checkbox" id="bridgingDesired" disabled>
                                 <label class="form-check-label" for="bridgingDesired">I need a bridging
-                                    prescription <span
-                                    class="badge rounded-pill text-bg-warning">Not Recommended</span></label>
+                                    prescription
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -232,8 +205,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="{{ form.immigration_letter.name }}"
                                     role="checkbox" id="immigrationLetterCheck">
-                                <label class="form-check-label" for="immigrationLetterCheck">I have a letter from my previous HRT healthcare provider <span
-                                    class="badge rounded-pill text-bg-primary">Recommended</span></label>
+                                <label class="form-check-label" for="immigrationLetterCheck">I have a letter from my previous HRT healthcare provider</label>
                             </div>
                         </div>
                         

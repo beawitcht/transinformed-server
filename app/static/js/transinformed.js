@@ -148,7 +148,7 @@ function privateProviderConditions(){
     if (privateProviderList.value === "GenderGP") {
         privateProviderList.classList.remove("is-valid");
         privateProviderList.classList.add("is-invalid");
-        privateProviderWarningMessage.innerText =  "This provider is not based in the UK, which deters a lot of GPs from agreeing to shared care."
+        privateProviderWarningMessage.innerText =  "This provider is not based in the UK, which deters some GPs from agreeing to shared care."
     }
     else if (privateProviderList.value.includes("Other") || privateProviderList.value.includes("haven't chosen")) {
         privateProviderList.classList.remove("is-invalid");
