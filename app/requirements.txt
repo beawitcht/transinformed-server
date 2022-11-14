@@ -9,6 +9,6 @@ email_validator==1.3.0
 Flask-Limiter==2.8.0
 Flask-Caching==2.0.1
 deepdiff==6.2.1
-discord.py==2.0.1
+discord.py==2.1.0
 pandas==1.5.1
 bs4==0.0.1
