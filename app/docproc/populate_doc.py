@@ -26,21 +26,11 @@ def possessive(name):
 def remove_wait_times(name):
     return name.split('-', 1)[0]
 
-# def txt_to_var(txt):
-#     if os.path.exists(path / 'templates' / 'gender_journey' / f'{txt}.txt'):
-#         with open(path / 'templates' / 'gender_journey' / f'{txt}.txt', "r") as f:
-#             return f.read()
-#     else:
-#         return None
-
-# formal_diagnosis = txt_to_var('formal_diagnosis')
-# self_med = txt_to_var('self_med')
-
 
 def generate_document(context, filetype):
     docx = BytesIO()
     doc = DocxTemplate(path / 'templates' / 'template_v1_0.docx')
-    jinja_env = jinja2.Environment()
+    jinja_env = jinja2.Environment(autoescape=True)
     jinja_env.filters['possessive'] = possessive
     jinja_env.filters['format_gic'] = remove_wait_times
     # remove images if text context is empty
@@ -48,11 +38,6 @@ def generate_document(context, filetype):
         doc.replace_media(path / 'images' / 'phone.png', path / 'images' / 'blank.png')
     if context['email'] == '':
         doc.replace_media(path / 'images' / 'email.png', path / 'images' / 'blank.png')
-
-    # # adds text sections if selected
-    # for key, value in context.items():
-    #     if txt_to_var(key) is not None and value:
-    #         context[key] = txt_to_var(key)
 
     doc.render(context, jinja_env)
     doc.save(docx)
@@ -79,3 +64,6 @@ def generate_document(context, filetype):
         pdf_final = BytesIO(pdf_file.content)
         pdf_final.seek(0)
         return pdf_final
+
+    else:
+        return "Error: invalid filetype"
