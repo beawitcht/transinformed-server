@@ -14,6 +14,7 @@ discord_server = os.getenv("DISCORD_SERVER")
 discord_channel = os.getenv("DISCORD_CHANNEL")
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
+touch_path = os.getenv("TOUCH_PATH")
 
 
 @client.event
@@ -101,3 +102,4 @@ if old_options != options:
         f.write(str(options))
     client.run(discord_token)
     print("GICs have changed")
+    Path(touch_path).touch()

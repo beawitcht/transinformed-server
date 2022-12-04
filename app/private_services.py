@@ -14,6 +14,7 @@ path = Path(__file__).parent.resolve()
 discord_token = os.getenv("DISCORD_TOKEN")
 discord_server = os.getenv("DISCORD_SERVER")
 discord_channel = os.getenv("DISCORD_CHANNEL")
+touch_path = os.getenv("TOUCH_PATH")
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 
@@ -67,3 +68,4 @@ if old_options != options:
     with open(path / 'private_services.txt', 'w') as f:
         f.write(str(options))
     client.run(discord_token)
+    Path(touch_path).touch()
