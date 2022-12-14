@@ -86,9 +86,8 @@ for gic in options:
     if "GIDS" in gic[1] or "KOI" in gic[1] or "Youth" in gic[1]:
         options.remove(gic)
 
-# sort options
-options.sort()
-
+# sort options by months remaining
+options.sort(key=lambda x: int(x[1].split(': ')[1][-2:]) if x[1].split(': ')[1] != 'nan' else 9999)
 with open(path / 'GICs.txt') as f:
     old_options = f.read()
 # convert options to list of tuples
