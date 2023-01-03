@@ -1,6 +1,6 @@
 # Trans Informed server
 
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/beawitcht/transinformed-server.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/beawitcht/transinformed-server/context:python) ![LGTM Grade](https://img.shields.io/lgtm/grade/javascript/github/beawitcht/transinformed-server) ![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade/www.transinformed.co.uk?publish) [![Twitter Follow](https://img.shields.io/twitter/follow/beawitcht?style=social)](https://www.twitter.com/beawitcht)
+![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793393353-5ef24de0db746db2e74fdfba) ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m793393353-5ef24de0db746db2e74fdfba) ![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade/www.transinformed.co.uk?publish) ![GitHub](https://img.shields.io/github/license/beawitcht/transinformed-server) [![Twitter Follow](https://img.shields.io/twitter/follow/beawitcht?style=social)](https://www.twitter.com/beawitcht)
 ***
 
 <p align="center">
