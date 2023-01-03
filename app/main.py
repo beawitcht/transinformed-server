@@ -18,7 +18,7 @@ is_dev = os.getenv('IS_DEV')
 # configure app
 app = Flask(__name__)
 limiter = Limiter(
-    app, 
+    app=app, 
     key_func=get_remote_address,
     storage_uri="memory://",
 )
