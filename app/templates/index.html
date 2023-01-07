@@ -18,7 +18,7 @@
         <li class="nav-item"><a href="/resources" class="nav-link">Resources</a></li>
         <li class="nav-item"><a href="/sources" class="nav-link" >Sources</a></li>
     </ul>
-    <script defer src="/static/js/jquery-3.6.0.min.js"></script>
+    <script defer src="/static/js/jquery-3.6.3.min.js"></script>
     <script defer src="/static/js/transinformed.min.js"></script>
 </header>
 
@@ -28,17 +28,17 @@
         <div class="py-5 text-center">
             <img class="d-block mx-auto mb-4" src="/static/images/logo.svg" alt="Trans Informed logo" width="216"
                 height="216" height="57">
-            <h1>Create your guide to accessing HRT</h1>
-            <p class="lead">Providing a document to give your GP all the information they need to provide the best care.</p>
+            <h1>Create your trans healthcare guide</h1>
+            <p class="lead">Create your healthcare aid to accessing HRT and other transition related services you need through your GP.</p>
         </div>
 
-        <div class="row g-5">
+        <div class="row g-5 ">
             <div class="py-5">
                 <h2>Template info</h2>
                 <p class="mb-3 text-muted">Data to be generated</p>
                 <form class="needs-validation" id="generationForm" novalidate target="_blank" action="/" method="post">
                     <div class="row g-3">
-                        <div class="col-md-12 required">
+                        <div class="col-md-12 required border-start border-4 rounded">
                             <div class="col-md-3">
                                 <label for="{{ form.countries.name }}" name="country" class="form-label"> Country <span
                                         class="badge rounded-pill text-bg-danger">Required</span></label>
@@ -58,7 +58,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6 border-start border-4 rounded">
                                     <h3>Documents held</h3>
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.formal_diagnosis.name }}" type="checkbox"
@@ -79,7 +79,7 @@
                                     for="noDocCheck">I do not have any of these documents</label>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 border-start border-4 rounded">
                             <details class="mb-3">
                                 <summary>
                                     <h3>Medication status</h3>
@@ -122,6 +122,8 @@
                                 <label class="form-check-label" for="foreignMedCheck">I have been prescribed HRT outside of the UK</label>
                             </div>
                         </div>
+                        <hr>
+                        <div class="col-md-12 border-start border-4 rounded">
                         <details class="mb-3">
                             <summary>
                                 <h3>What I need from my GP</h3>
@@ -138,22 +140,22 @@
                                     When choosing a private provider, GPs are much more likely to work with a specialist who is based in the UK, and registered with the GMC. Check out <a target="_blank" rel="noopener" href="https://genderkit.org.uk/resources/choosing-gender-service/"> this resource from Gender Construction Kit </a> to help decide on the service that is right for you.
                                     <hr>
                                     <h4>Why is the bridging prescription greyed out?</h4>
-                                    If you need a bridging prescription, the GMC and NHS require that you are
-                                    self-prescribing, or likely to self prescribe.
+                                    If you need a bridging prescription, the GMC and NHS require that transgender people are
+                                    self-prescribing, or likely to self prescribe hormones.
                                     <hr>
                                     <h4>How can I continue with HRT when migrating to the UK?</h4>
                                     It is highly recommended that you obtain a letter from your previous HRT provider, if you need help deciding the contents of this letter, check out <a target="_blank" rel="noopener" href="https://medium.com/@zoyander/continuing-hrt-after-arriving-in-the-uk-2655abd87fa7#a7f3">this letter template.</a>
                                 </div>
                             </div>
                         </details>
-                        <div class="col-md-12">
+                        
                             <div class="form-check">
                                 <input class="form-check-input" name="{{ form.shared_care.name }}" type="checkbox"
                                     role="checkbox" id="sharedCareCheck">
                                 <label class="form-check-label" for="sharedCareCheck">I need a shared care agreement</label>
                             </div>
-                        </div>
-                        <div class="col-md-12" hidden id="privateSelector">
+                        
+                        <div class="" hidden id="privateSelector">
                             <div class="col-md-3">
                                 <label for="{{ form.chosen_private_care.name }}" name="gic" class="form-label">My chosen private provider</label>
                                 <select class="form-select" id="privateProviderList" name="{{ form.chosen_private_care.name }}">
@@ -167,14 +169,14 @@
                             </div>
                             
                         </div>
-                        <div class="col-md-12">
+                        
                             <div class="form-check">
                                 <input name="{{ form.gic_referral.name }}" class="form-check-input" type="checkbox"
                                     role="checkbox" id="referralCheck">
                                 <label class="form-check-label" for="referralCheck">I need a referral to a Gender Identity Clinic</label>
                             </div>
-                        </div>
-                        <div class="col-md-12" hidden id="gicSelector">
+                        
+                        <div hidden id="gicSelector">
                             <div class="col-md-3">
                                 <label for="{{ form.chosen_gic.name }}" name="gic" class="form-label">Which clinic I want to be referred to</label>
                                 <select class="form-select" id="gics" name="{{ form.chosen_gic.name }}">
@@ -186,21 +188,20 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        
                             <div class="form-check">
                                 <input name="{{ form.bridging_desired.name }}" class="form-check-input" type="checkbox"
                                     role="checkbox" id="bridgingDesired" disabled>
                                 <label class="form-check-label" for="bridgingDesired">I need a bridging
                                     prescription
                             </div>
-                        </div>
-                        <div class="col-md-12">
+                        
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="{{ form.immigration_care.name }}"
                                     role="checkbox" id="immigrationCheck">
                                 <label class="form-check-label" for="immigrationCheck">I am an immigrant looking to continue my care in the UK</label>
                             </div>
-                        </div>
+                        
                         <div hidden id="immigrationOption">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="{{ form.immigration_letter.name }}"
@@ -208,10 +209,8 @@
                                 <label class="form-check-label" for="immigrationLetterCheck">I have a letter from my previous HRT healthcare provider</label>
                             </div>
                         </div>
+                        </div>
                         
-
-
-
                         <hr class="my-4">
                         <h2>About you</h2>
                         <details>
