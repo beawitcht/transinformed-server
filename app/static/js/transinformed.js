@@ -32,6 +32,7 @@ function checkboxStatus() {
     var selfMed = document.getElementById("selfMedCheck");
     var selfMedLikely = document.getElementById("likelyMedCheck");
     var bridgingDesired = document.getElementById("bridgingDesired");
+    var bridgingDesiredLabel = document.getElementById("bridgingDesiredLabel");
     var noMed = document.getElementById("noMedCheck");
     var diagnosis = document.getElementById("diagnosisCheck");
     var hrt = document.getElementById("hrtCheck");
@@ -44,7 +45,7 @@ function checkboxStatus() {
     noDoc.checked ? (diagnosis.disabled = true, hrt.disabled = true) : (diagnosis.disabled = false, hrt.disabled = false);
 
     // conditions for bridging
-    (selfMed.checked || selfMedLikely.checked) && !hrt.checked ? (bridgingDesired.disabled = false) : (bridgingDesired.disabled = true, bridgingDesired.checked = false);
+    (selfMed.checked || selfMedLikely.checked) && !hrt.checked ? (bridgingDesired.disabled = false, bridgingDesiredLabel.innerHTML = 'I need a bridging prescription') : (bridgingDesired.disabled = true, bridgingDesired.checked = false, bridgingDesiredLabel.innerHTML = 'I need a bridging prescription (select medication status)');
 
     // conditions for medication status
     if (selfMed.checked) {
