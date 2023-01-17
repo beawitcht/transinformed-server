@@ -34,6 +34,7 @@ class InputForm(FlaskForm):
     chosen_private_care = SelectField("Chosen Private Care", choices=service_options, validate_choice=False)
     immigration_care = BooleanField("I am an immigrant looking to continue my care in the UK")
     immigration_letter = BooleanField("I have a letter from my previous HRT healthcare provider")
+    blood_testing = BooleanField("I want regular blood tests and monitoring")
     name = StringField("First Name", validators=[Optional()])
     pronouns = StringField("Pronouns", validators=[Optional()])
     email = EmailField("Email", validators=[Optional(), Email()])

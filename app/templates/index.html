@@ -195,6 +195,12 @@
                                 <label id="bridgingDesiredLabel" class="form-check-label" for="bridgingDesired">I need a bridging
                                     prescription (select medication status)
                             </div>
+
+                            <div class="form-check">
+                                <input name="{{ form.blood_testing.name }}" class="form-check-input" type="checkbox"
+                                    role="checkbox" id="bloodTests">
+                                <label id="bloodTestsLabel" class="form-check-label" for="bloodTests">I need regular blood testing and monitoring
+                            </div>
                         
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="{{ form.immigration_care.name }}"
