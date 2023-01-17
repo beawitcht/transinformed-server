@@ -46,7 +46,7 @@ def add_headers(response):
 
 
 @app.route("/", methods=['GET', 'POST'])
-@limiter.limit("5 per day", exempt_when=lambda: request.method == 'GET' or request.form.get('docx'))
+@limiter.limit("1/minute", exempt_when=lambda: request.method == 'GET' or request.form.get('docx'))
 @cache.cached(timeout=60 * 60 * 24 * 7, unless=lambda: request.method == 'POST')
 def home():
     api_data = json.loads(requests.get(f"https://v2.convertapi.com/user?Secret={api_key}").text)
