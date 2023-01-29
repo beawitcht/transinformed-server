@@ -1,7 +1,8 @@
-from flask import Flask, render_template, send_file, request
+from flask import Flask, render_template, send_file, request, jsonify, make_response, abort
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_caching import Cache
+from werkzeug.exceptions import HTTPException
 from docproc.populate_doc import generate_document
 from input_form import InputForm
 from pathlib import Path
@@ -37,7 +38,7 @@ else:
 @app.after_request
 def add_headers(response):
     response.headers['Strict-Transport-Security'] = 'max-age=63072000; includeSubDomains; preload'
-    response.headers['Content-Security-Policy'] = f'default-src \'none\'; script-src \'self\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; img-src \'self\' data:;  style-src \'self\'; font-src \'self\'; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;'
+    response.headers['Content-Security-Policy'] = f'default-src \'none\'; script-src \'self\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; img-src \'self\' data: https://http.cat/;  style-src \'self\'; font-src \'self\'; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;'
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['X-XSS-Protection'] = '1; mode=block'
@@ -95,6 +96,10 @@ def resources():
 @cache.cached(timeout=60 * 60 * 24 * 7)
 def sources():
     return render_template("sources.html")
+
+@app.errorhandler(HTTPException)
+def handle_error(error):
+    return make_response(render_template("error.html", name=error.name ,code=error.code, description=error.description), error.code)
 
 if __name__ == '__main__':
     app.run()
