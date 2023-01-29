@@ -15,8 +15,10 @@ load_dotenv(Path(__file__).resolve().parent / '.env')
 
 api_key = os.getenv('PDF_API_KEY')
 is_dev = os.getenv('IS_DEV')
+pdf_limit = os.getenv('PDF_LIMIT')
 
-def get_ip():
+# uses IP as remote address points to load balancer
+def get_client_ip():
     if is_dev == '0':
         return request.headers['X-Real-IP']
     else: 
@@ -26,7 +28,7 @@ def get_ip():
 app = Flask(__name__)
 limiter = Limiter(
     app=app, 
-    key_func=get_ip,
+    key_func=get_client_ip,
     storage_uri="memory://",
 )
 app.config['WTF_CSRF_ENABLED'] = False
@@ -41,6 +43,7 @@ if is_dev == '0':
 else:
     cache = Cache(app, config={'CACHE_TYPE': 'NullCache'})
 
+# Set headers 
 @app.after_request
 def add_headers(response):
     response.headers['Strict-Transport-Security'] = 'max-age=63072000; includeSubDomains; preload'
@@ -53,7 +56,8 @@ def add_headers(response):
 
 
 @app.route("/", methods=['GET', 'POST'])
-@limiter.limit("1/minute", exempt_when=lambda: request.method == 'GET' or request.form.get('docx'))
+# Don't limit GET requests or docx generation
+@limiter.limit(pdf_limit, exempt_when=lambda: request.method == 'GET' or request.form.get('docx'))
 @cache.cached(timeout=60 * 60 * 24 * 7, unless=lambda: request.method == 'POST')
 def home():
     api_data = json.loads(requests.get(f"https://v2.convertapi.com/user?Secret={api_key}").text)
@@ -105,8 +109,9 @@ def sources():
 
 @app.errorhandler(HTTPException)
 def handle_error(error):
+    # make description generic for rate limit
     if error.code == 429:
-        error.description = 'Try again soon.'
+        error.description = 'Try again later.'
     return make_response(render_template("error.html", name=error.name ,code=error.code, description=error.description), error.code)
 
 if __name__ == '__main__':
