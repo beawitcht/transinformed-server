@@ -32,6 +32,7 @@ PDF_API_KEY=<your-pdf-api-key> # api key for conversion to PDF: convertapi.com
 RECAPTCHA_PUBLIC_KEY=<your-recaptcha-public-key> # google recaptcha public key
 RECAPTCHA_PRIVATE_KEY=<your-recaptcha-private-key> # google recaptcha private key
 IS_DEV = 1 # set to 1 to disable caching
+PDF_LIMIT = 100/minute # set rate limit for pdf downloads (see flask-limiter documentation)
 ```
 ### Run with gunicorn
 ```bash
