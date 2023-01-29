@@ -103,11 +103,6 @@ def resources():
 def sources():
     return render_template("sources.html")
 
-@app.route("/limited", methods=['GET'])
-@limiter.limit("2/day")
-def limited():
-    return "Hopefully this works"
-
 @app.errorhandler(HTTPException)
 def handle_error(error):
     if error.code == 429:
