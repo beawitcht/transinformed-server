@@ -10,5 +10,5 @@ Flask-Limiter==3.1.0
 Flask-Caching==2.0.2
 deepdiff==6.2.3
 discord.py==2.1.0
-pandas==1.5.2
+pandas==1.5.3
 bs4==0.0.1
