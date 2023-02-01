@@ -23,6 +23,8 @@ class InputForm(FlaskForm):
         DataRequired(), AnyOf(['England', 'Northern Ireland', 'Scotland', 'Wales'], message="Please select a country")])
     self_med = BooleanField("I am self medicating")
     self_med_likely = BooleanField("I am likely to start self medicating")
+    no_fixed_address = BooleanField("I do not have a fixed address")
+    no_id_proof = BooleanField("I do not have proof of ID")
     private_prescription = BooleanField("I hold a private prescription")
     foreign_prescription = BooleanField("I hold a foreign prescription")
     formal_diagnosis = BooleanField("I have a formal Diagnosis")
