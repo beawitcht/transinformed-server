@@ -82,16 +82,43 @@
                         <div class="col-md-6 border-start border-4 rounded">
                             <details class="mb-3">
                                 <summary>
-                                    <h3>Medication status</h3>
+                                    <h3>My current status</h3>
                                 </summary>
                                 <div class="card">
                                     <div class="card-body">
-                                        If you are currently self medicating or considering self medicating, choose the
-                                        relevant option to add this to your document.
+                                        This section covers areas of healthcare relating to your current circumstances, choose the
+                                        relevant option to add to your document.
+                                        <hr>
+                                        <h4>Why are you asking about my address and ID?</h4>
+                                        We ask you if you have a fixed address or identification to add a section to the document clarifying that you are entitled to access healthcare from a GP without any proof of address or identification
                                     </div>
                                 </div>
                             </details>
 
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="{{ form.no_fixed_address.name }}"
+                                    role="checkbox" id="fixedAddressCheck">
+                                <label class="form-check-label" for="fixedAddressCheck">I do not have any proof of address</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="{{ form.no_id_proof.name }}"
+                                    role="checkbox" id="noIdProofCheck">
+                                <label class="form-check-label" for="noIdProofCheck">I do not have any proof of identification</label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 border-start border-4 rounded">
+                            <details class="mb-3">
+                                <summary>
+                                    <h3>Medication Status</h3>
+                                </summary>
+                                <div class="card">
+                                    <div class="card-body">
+                                        This section contains options regarding what your current medication status is, in regards to HRT.
+                                    </div>
+                                </div>
+                            </details>
+                            
                             <div class="form-check">
                                 <input name="{{ form.self_med.name }}" class="form-check-input" type="checkbox"
                                     role="checkbox" id="selfMedCheck">
@@ -121,9 +148,9 @@
                                     role="checkbox" id="foreignMedCheck">
                                 <label class="form-check-label" for="foreignMedCheck">I have been prescribed HRT outside of the UK</label>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-12 border-start border-4 rounded">
+                            </div>
+
+                        <div class="col-md-6 border-start border-4 rounded">
                         <details class="mb-3">
                             <summary>
                                 <h3>What I need from my GP</h3>
@@ -149,14 +176,14 @@
                             </div>
                         </details>
                         
-                            <div class="form-check">
-                                <input class="form-check-input" name="{{ form.shared_care.name }}" type="checkbox"
-                                    role="checkbox" id="sharedCareCheck">
-                                <label class="form-check-label" for="sharedCareCheck">I need a shared care agreement</label>
-                            </div>
+                        <div class="form-check">
+                            <input class="form-check-input" name="{{ form.shared_care.name }}" type="checkbox"
+                                role="checkbox" id="sharedCareCheck">
+                            <label class="form-check-label" for="sharedCareCheck">I need a shared care agreement</label>
+                        </div>
                         
                         <div class="" hidden id="privateSelector">
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <label for="{{ form.chosen_private_care.name }}" name="gic" class="form-label">My chosen private provider</label>
                                 <select class="form-select" id="privateProviderList" name="{{ form.chosen_private_care.name }}">
                                     <option selected> I haven't chosen a provider yet </option>
@@ -177,7 +204,7 @@
                             </div>
                         
                         <div hidden id="gicSelector">
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <label for="{{ form.chosen_gic.name }}" name="gic" class="form-label">Which clinic I want to be referred to</label>
                                 <select class="form-select" id="gics" name="{{ form.chosen_gic.name }}">
                                     <option id="countryNeeded" value="0" selected> Select a country to see GICs </option>
@@ -216,6 +243,8 @@
                             </div>
                         </div>
                         </div>
+
+                        
                         
                         <hr class="my-4">
                         <h2>About you</h2>
