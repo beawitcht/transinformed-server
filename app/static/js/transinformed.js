@@ -187,6 +187,7 @@ function submitActionsDocx(){
 function submitActionsPdf(){
     $("#gics :selected").val($("#gics :selected").text());
     $(this).append('<input type="hidden" name="pdf" value="pdf" /> ');
+    $("#generationForm").prop("target", "_blank")
     document.getElementById("generationForm").submit();
 }
 
