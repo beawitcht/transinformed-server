@@ -183,7 +183,6 @@ function submitActionsDocx(){
 // do these on submitting pdf
 function submitActionsPdf(){
     $(this).append('<input type="hidden" name="pdf" value="pdf" /> ');
-    $("#generationForm").prop("target", "_blank")
     submitActions();
 }
 
