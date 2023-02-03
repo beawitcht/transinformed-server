@@ -201,8 +201,8 @@
                             
                             <div hidden id="immigrationOption">
                                 <div class="form-check">
-                                    {{form.immigration_letter(class='form-check-input', type='checkbox', role='checkbox', id="immigrationLetterCheck")}}
-                                    {{form.immigration_letter.label(class='form-check-label', for="immigrationLetterCheck")}}
+                                    {{ form.immigration_letter(class='form-check-input', type='checkbox', role='checkbox', id="immigrationLetterCheck") }}
+                                    {{ form.immigration_letter.label(class='form-check-label', for="immigrationLetterCheck") }}
                                 </div>
                             </div>
                         </div>
@@ -223,36 +223,32 @@
                         </details>
                         <div class="row gy-3">
                             <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="firstName" name="{{ form.name.name }}"
-                                    placeholder="Name" value="">
+                                {{ form.name.label(class='form-label', for="firstName") }}
+                                {{form.name(class='form-control', type='text', id="firstName", placeholder="Name")}}
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="email" class="form-label">Email <span class="text-muted"></span></label>
-                                <input type="email"
-                                    class="form-control {% if form.email.errors|length > 0 %} is-invalid {% endif %}"
-                                    id="email" name="{{ form.email.name }}" placeholder="you@example.com">
-
+                                {{form.email.label(class='form-label', for="email")}}
+                                {% if form.email.errors|length > 0 %}
+                                    {{form.email(class='form-control is-invalid', type='email', id="email", placeholder="you@example.com")}}<span class="text-muted"></span>
+                                {% else %}
+                                    {{form.email(class='form-control', type='email', id="email", placeholder="you@example.com")}}<span class="text-muted"></span>
+                                {% endif %}
                                 <div class="invalid-feedback">
                                     {% for error in form.email.errors %}
-                                    {{error}}
+                                        {{error}}
                                     {% endfor %}
                                 </div>
                             </div>
 
                             <div class="col-md-2">
-                                <label for="phoneNumber" class="form-label"> {{form.phone.label}} <span
-                                        class="text-muted"></span></label>
-                                <input type="phoneNumber" class="form-control" name="{{ form.phone.name }}"
-                                    id="phoneNumber" placeholder="+4412345678910">
+                                {{form.phone.label(class='form-label', for="phoneNumber")}}
+                                {{form.phone(class='form-control', type='text', id="phoneNumber", placeholder="+4412345678910")}}<span class="text-muted"></span>
                             </div>
 
                             <div class="col-md-2">
-                                <label for="pronouns" class="form-label"> {{form.pronouns.label}} <span
-                                        class="text-muted"></span></label>
-                                <input type="pronouns" class="form-control" name="{{ form.pronouns.name }}"
-                                    id="pronouns" placeholder="any/any">
+                                {{form.pronouns.label(class='form-label', for="pronouns")}}
+                                {{form.pronouns(class='form-control', type='text', id="pronouns", placeholder="any/any") }} <span class="text-muted"></span>
                             </div>
 
                             <hr class="my-4">

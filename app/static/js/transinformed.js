@@ -1,5 +1,7 @@
 window.addEventListener('load', function () {
-    disableButtonsLogic();
+    revealContent();
+    privateProviderConditions();
+    countryFilters();
     // Countries dropdown
     document.getElementById('countries').addEventListener('change', countryFilters);
     // Medication Status
@@ -12,10 +14,6 @@ window.addEventListener('load', function () {
     document.getElementById('noDocCheck').addEventListener('click', checkboxStatus);
     // GIC selector
     document.getElementById('referralCheck').addEventListener('click', revealContent);
-    $("#gics option[value='Northern Ireland']").hide();
-    $("#gics option[value='Scotland']").hide();
-    $("#gics option[value='Wales']").hide();
-    $("#gics option[value='England']").hide();
 
     // Private provider selector
     document.getElementById('sharedCareCheck').addEventListener('click', revealContent);
@@ -178,16 +176,22 @@ function privateProviderConditions(){
 
 // do these on submitting word
 function submitActionsDocx(){
-    $("#gics :selected").val($("#gics :selected").text());
     $(this).append('<input type="hidden" name="docx" value="docx" /> ');
-    document.getElementById("generationForm").submit();
+    submitActions();
 }
 
 // do these on submitting pdf
 function submitActionsPdf(){
-    $("#gics :selected").val($("#gics :selected").text());
     $(this).append('<input type="hidden" name="pdf" value="pdf" /> ');
     $("#generationForm").prop("target", "_blank")
-    document.getElementById("generationForm").submit();
+    submitActions();
 }
 
+function submitActions(){
+    if (gics.value !==  "0" ){
+        if (gics.value !== "1"){
+            $("#gics :selected").val($("#gics :selected").text());
+        };
+    };
+    document.getElementById("generationForm").submit();
+}
