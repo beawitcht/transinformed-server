@@ -1,4 +1,5 @@
 window.addEventListener('load', function () {
+    disableButtonsLogic();
     // Countries dropdown
     document.getElementById('countries').addEventListener('change', countryFilters);
     // Medication Status
@@ -24,6 +25,10 @@ window.addEventListener('load', function () {
     // Immigration options
     document.getElementById('immigrationCheck').addEventListener('click', revealContent);
     document.getElementById('immigrationCheck').addEventListener('click', checkboxStatus);
+
+    document.getElementById("docx").addEventListener('click', submitActionsDocx);
+    document.getElementById("pdf").addEventListener('click', submitActionsPdf);
+
 });
 
 
@@ -74,7 +79,7 @@ function checkboxStatus() {
 
 }
 
-function countryFilters() {
+function disableButtonsLogic(){
     var countriesSelect = document.getElementById("countries");
     // Only allow submission when a country is selected
     if (countriesSelect.value !== "Choose...") {
@@ -85,6 +90,12 @@ function countryFilters() {
         document.getElementById("docx").disabled = true;
         document.getElementById("pdf").disabled = true;
     }
+}
+
+function countryFilters() {
+    var countriesSelect = document.getElementById("countries");
+    // Only allow submission when a country is selected
+    disableButtonsLogic();
     // filter valid GICs based on country
     $("#gics").val(0).change();
     if (countriesSelect.value === "England") {
@@ -164,3 +175,18 @@ function privateProviderConditions(){
         privateProviderPreferredMessage.innerText =  "This provider offers GMC registered and UK based specialists."
     }
 }
+
+// do these on submitting word
+function submitActionsDocx(){
+    $("#gics :selected").val($("#gics :selected").text());
+    $(this).append('<input type="hidden" name="docx" value="docx" /> ');
+    document.getElementById("generationForm").submit();
+}
+
+// do these on submitting pdf
+function submitActionsPdf(){
+    $("#gics :selected").val($("#gics :selected").text());
+    $(this).append('<input type="hidden" name="pdf" value="pdf" /> ');
+    document.getElementById("generationForm").submit();
+}
+
