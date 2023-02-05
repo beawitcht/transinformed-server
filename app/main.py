@@ -141,7 +141,9 @@ def handle_error(error):
 # add header rows on blog posts before each heading
 @app.template_filter('stylish')
 def stylish(text):
-    return text.replace("<h3>", "\n<hr>\n<h3>")
+    text = text.replace("<h3>", "\n<hr>\n<h3>")
+    text = text.replace("<img", "<img class=\"img-fluid rounded mx-auto d-block\"")
+    return text
 
 if __name__ == '__main__':
     app.run()

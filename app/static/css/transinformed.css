@@ -17,7 +17,7 @@ details summary > * {
   }
   .blog-content {
     margin: auto;
-    width: 50%;
+    width: 100%;
   }
 
   .blog-content h3 {
@@ -28,8 +28,6 @@ details summary > * {
     text-align: center;
   }
   .blog-content img {
-    display: block;
-    margin: auto;
     max-width: 100%;
     height: auto;
   }
