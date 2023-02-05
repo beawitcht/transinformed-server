@@ -14,7 +14,7 @@
 
 {% block body %}
 <header class="d-flex justify-content-center py-3">
-    <ul class="nav nav-pills">
+    <ul class="d-flex justify-content-center nav nav-pills">
         <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
         <li class="nav-item"><a href="/about" class="nav-link" >About</a></li>
         <li class="nav-item"><a href="/resources" class="nav-link">Resources</a></li>
@@ -31,8 +31,8 @@
             <hr>
             <ul class="list-group">
                 {% for blog in medium_feed %}
-                    <a class="list-group-item list-group-item" href="/blogs/{{blog.url_title}}">{{blog.title}}
-                    <small><br>{{blog.summary}}</small>
+                    <a class="list-group-item list-group-item" href="/blogs/{{blog.url_title}}"><h4>{{blog.title}}</h4>
+                    <small>{{blog.summary}}</small>
                     </a>
                 {% endfor %}
             </ul>
