@@ -9,7 +9,7 @@ from input_form import InputForm
 from pathlib import Path
 import requests
 import os
-import json, re
+import json
 
 
 from dotenv import load_dotenv
@@ -125,7 +125,7 @@ def blog(title):
                     
     try:
         blog = entries[blog_number]
-    except:
+    except NameError:
         abort(404)
     
     return render_template("blog.html", blog=blog, url_title=title)
