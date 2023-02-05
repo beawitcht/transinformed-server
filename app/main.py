@@ -1,14 +1,16 @@
-from flask import Flask, render_template, send_file, request, make_response
+from flask import Flask, render_template, send_file, request, make_response, abort
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_caching import Cache
 from werkzeug.exceptions import HTTPException
 from docproc.populate_doc import generate_document
+from utilities import prepare_blogs
 from input_form import InputForm
 from pathlib import Path
 import requests
 import os
 import json
+
 
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parent / '.env')
@@ -47,12 +49,14 @@ else:
 @app.after_request
 def add_headers(response):
     response.headers['Strict-Transport-Security'] = 'max-age=63072000; includeSubDomains; preload'
-    response.headers['Content-Security-Policy'] = f'default-src \'none\'; script-src \'self\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; img-src \'self\' data: https://http.cat/;  style-src \'self\'; font-src \'self\'; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;'
+    response.headers['Content-Security-Policy'] = f'default-src \'none\'; script-src \'self\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; img-src \'self\' data: https://http.cat/ https://*.medium.com/;  style-src \'self\'; font-src \'self\'; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/;'
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['X-XSS-Protection'] = '1; mode=block'
     response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
     return response
+
+entries = prepare_blogs("https://medium.com/feed/@transinformed")
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -107,12 +111,35 @@ def resources():
 def sources():
     return render_template("sources.html")
 
+@app.route("/blogs", methods=['GET'])
+@cache.cached(timeout=60 * 60 * 24 * 7)
+def blogs():
+    return render_template("blogs.html", medium_feed=entries)
+
+@app.route("/blogs/<string:title>", methods=['GET'])
+@cache.cached(timeout=60 * 60 * 24 * 7)
+def blog(title):
+    for rss_blog in entries:
+        if rss_blog.title.replace(" ", "-") == title:
+            blog_number = entries.index(rss_blog)
+                    
+    try:
+        blog = entries[blog_number]
+    except NameError:
+        abort(404)
+    
+    return render_template("blog.html", blog=blog, url_title=title)
+
 @app.errorhandler(HTTPException)
 def handle_error(error):
     # make description generic for rate limit
     if error.code == 429:
         error.description = 'Try again later.'
     return make_response(render_template("error.html", name=error.name ,code=error.code, description=error.description), error.code)
+
+@app.template_filter('stylish')
+def stylish(text):
+    return text.replace("<h3>", "\n<hr>\n<h3>")
 
 if __name__ == '__main__':
     app.run()

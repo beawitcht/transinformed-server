@@ -15,3 +15,24 @@ details summary > * {
     content: '▽More details';
     font-size: smaller;
   }
+  .blog-content {
+    margin: auto;
+    width: 50%;
+  }
+
+  .blog-content h3 {
+    text-align: center;
+  }
+
+  .blog-content figcaption {
+    text-align: center;
+  }
+  .blog-content img {
+    display: block;
+    margin: auto;
+    max-height: 50%;
+    width: auto;
+  }
+  .blog-content p {
+    font-size: large;
+  }

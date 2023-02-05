@@ -13,3 +13,4 @@ discord.py==2.1.0
 pandas==1.5.3
 bs4==0.0.1
 setuptools==67.1.0
+feedparser==6.0.10
