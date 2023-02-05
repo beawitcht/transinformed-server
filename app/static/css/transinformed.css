@@ -30,8 +30,8 @@ details summary > * {
   .blog-content img {
     display: block;
     margin: auto;
-    max-height: 50%;
-    width: auto;
+    max-width: 100%;
+    height: auto;
   }
   .blog-content p {
     font-size: large;

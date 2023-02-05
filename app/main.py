@@ -129,7 +129,7 @@ def blog(title):
     except NameError:
         abort(404)
     
-    return render_template("blog.html", blog=blog, url_title=title)
+    return render_template("blog.html", blog=blog)
 
 @app.errorhandler(HTTPException)
 def handle_error(error):

@@ -21,6 +21,4 @@ def prepare_blogs(url):
             tags += term['term'] + ','
         item.tags = tags[:-1]
 
-        
-    
     return entries
