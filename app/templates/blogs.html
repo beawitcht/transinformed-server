@@ -31,7 +31,9 @@
             <hr>
             <ul class="list-group">
                 {% for blog in medium_feed %}
-                    <a class="list-group-item list-group-item" href="/blogs/{{blog.url_title}}">{{blog.title}}</a>
+                    <a class="list-group-item list-group-item" href="/blogs/{{blog.url_title}}">{{blog.title}}
+                    <small><br>{{blog.summary}}</small>
+                    </a>
                 {% endfor %}
             </ul>
         </div>

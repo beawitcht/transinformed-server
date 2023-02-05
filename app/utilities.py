@@ -1,13 +1,13 @@
 import feedparser, re
+# formats blogs from rss to usable for the site
 def prepare_blogs(url):
-    
     feed = feedparser.parse(url)
     entries = feed.entries
     for item in entries:
         tags=''
         # remove queries from url
         item.link = item.link.split('?')[0]
-        # add url title
+        # add url title with hyphens
         item.url_title = item.title.replace(" ", "-")
         
         # format summary

@@ -56,6 +56,7 @@ def add_headers(response):
     response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
     return response
 
+# get blogs
 entries = prepare_blogs("https://medium.com/feed/@transinformed")
 
 
@@ -120,9 +121,9 @@ def blogs():
 @cache.cached(timeout=60 * 60 * 24 * 7)
 def blog(title):
     for rss_blog in entries:
-        if rss_blog.title.replace(" ", "-") == title:
+        if rss_blog.url_title == title:
             blog_number = entries.index(rss_blog)
-                    
+   # return 404 if failed to match blog                 
     try:
         blog = entries[blog_number]
     except NameError:
@@ -137,6 +138,7 @@ def handle_error(error):
         error.description = 'Try again later.'
     return make_response(render_template("error.html", name=error.name ,code=error.code, description=error.description), error.code)
 
+# add header rows on blog posts before each heading
 @app.template_filter('stylish')
 def stylish(text):
     return text.replace("<h3>", "\n<hr>\n<h3>")
