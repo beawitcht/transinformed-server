@@ -39,8 +39,9 @@
                     <div id="resources-collapseBlog" class="accordion-collapse collapse" aria-labelledby="resources-blogPosts">
                         <div class="accordion-body">
                             <ul class="list-group">
-                                <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="https://medium.com/@transinformed/accessing-hrt-as-a-trans-person-in-the-uk-c28bd9b5b0df">Accessing HRT as a trans person in the UK</a>
-                                <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="https://medium.com/@transinformed/getting-a-shared-care-agreement-from-your-gp-e21f265df050">Getting a shared care agreement from your GP</a>
+                                {% for blog in medium_feed %}
+                                    <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="{{blog.link}}">{{blog.title}}</a>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>

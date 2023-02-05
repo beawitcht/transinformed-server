@@ -9,6 +9,7 @@ from pathlib import Path
 import requests
 import os
 import json
+import feedparser
 
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parent / '.env')
@@ -100,7 +101,8 @@ def about():
 @app.route("/resources", methods=['GET'])
 @cache.cached(timeout=60 * 60 * 24 * 7)
 def resources():
-    return render_template("resources.html")
+    medium_feed = feedparser.parse("https://medium.com/feed/@transinformed")
+    return render_template("resources.html", medium_feed=medium_feed.entries)
 
 @app.route("/sources", methods=['GET'])
 @cache.cached(timeout=60 * 60 * 24 * 7)
