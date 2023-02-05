@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<title>Data Sources - Trans Informed</title>
+<link rel="canonical" href="https://www.transinformed.co.uk/sources" />
+<meta name="description" content="Data sources used in the creation of the document on access to HRT and other trans related healthcare needs.">
+<meta name="twitter:title" content="Trans Informed - Sources">
+<meta name="twitter:description" content="Data sources used in the creation of the document on access to HRT and other trans related healthcare needs." >
+<meta name="og:title" content="Trans Informed - Sources">
+<meta name="og:description" content="Data sources used in the creation of the document on access to HRT and other trans related healthcare needs." >
+<meta name="keywords" content="trans,transgender,HRT,hormones,data sources,health,healthcare,sources,legislation,guidance">
+{% endblock %}
+
+{% block body %}
+<header class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="/about" class="nav-link" >About</a></li>
+        <li class="nav-item"><a href="/resources" class="nav-link">Resources</a></li>
+        <li class="nav-item"><a href="/sources" class="nav-link">Sources</a></li>
+        <li class="nav-item"><a href="/blogs" class="nav-link active" aria-current="page">Blogs</a></li>
+    </ul>
+</header>
+
+
+<div class="container">
+    <main>
+        <div class="py-5">
+            <h1 class="text-center">Blog Posts</h1>
+            <hr>
+            <ul class="list-group">
+                {% for blog in medium_feed %}
+                    <a class="list-group-item list-group-item" href="/blogs/{{blog.url_title}}">{{blog.title}}</a>
+                {% endfor %}
+            </ul>
+        </div>
+    </main>
+</div>
+                       
+
+{% endblock %}
