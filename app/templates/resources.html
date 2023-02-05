@@ -40,7 +40,7 @@
                         <div class="accordion-body">
                             <ul class="list-group">
                                 {% for blog in medium_feed %}
-                                    <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="{{blog.link[:-31]}}">{{blog.title}}</a>
+                                    <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="{{blog.link}}">{{blog.title}}</a>
                                 {% endfor %}
                             </ul>
                         </div>

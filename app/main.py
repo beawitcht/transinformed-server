@@ -56,6 +56,9 @@ def add_headers(response):
     return response
 
 medium_feed = feedparser.parse("https://medium.com/feed/@transinformed")
+entries = medium_feed.entries
+for item in entries:
+    item.link = item.link.split('?')[0]
 
 @app.route("/", methods=['GET', 'POST'])
 # Don't limit GET requests or docx generation
@@ -102,7 +105,7 @@ def about():
 @app.route("/resources", methods=['GET'])
 @cache.cached(timeout=60 * 60 * 24 * 7)
 def resources():
-    return render_template("resources.html", medium_feed=medium_feed.entries)
+    return render_template("resources.html", medium_feed=entries)
 
 @app.route("/sources", methods=['GET'])
 @cache.cached(timeout=60 * 60 * 24 * 7)
