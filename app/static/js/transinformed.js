@@ -177,12 +177,14 @@ function privateProviderConditions(){
 // do these on submitting word
 function submitActionsDocx(){
     $(this).append('<input type="hidden" name="docx" value="docx" /> ');
+    $("#generationForm").removeProp("target");
     submitActions();
 }
 
 // do these on submitting pdf
 function submitActionsPdf(){
     $(this).append('<input type="hidden" name="pdf" value="pdf" /> ');
+    $("#generationForm").prop({"target": "_blank"});
     submitActions();
 }
 
