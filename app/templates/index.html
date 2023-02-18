@@ -196,7 +196,7 @@
                         <div class="col-md-6 border-start border-4 rounded">
                             <details class="mb-3">
                                 <summary>
-                                    <h3>Services I need referral to</h3>
+                                    <h3>Service referrals and letters</h3>
                                 </summary>
                                 <div class="card">
                                     <div class="card-body">
@@ -221,6 +221,11 @@
                             <div class="form-check">
                                 {{ form.slt_referral(class='form-check-input', type='checkbox', role='checkbox', id="sltCheck") }}
                                 {{ form.slt_referral.label(class='form-check-label', for="sltCheck") }}
+                            </div>
+
+                            <div class="form-check">
+                                {{ form.passport_letter(class='form-check-input', type='checkbox', role='checkbox', id="passportCheck") }}
+                                {{ form.passport_letter.label(class='form-check-label', for="passportCheck") }}
                             </div>
                         </div>
                         
