@@ -7,9 +7,9 @@ import ast
 import urllib
 import bs4
 
+path = Path(__file__).parent.parent.resolve()
+load_dotenv(path / '.env')
 
-load_dotenv(Path(__file__).resolve().parent / '.env')
-path = Path(__file__).parent.resolve()
 # setup discord client
 discord_token = os.getenv("DISCORD_TOKEN")
 discord_server = os.getenv("DISCORD_SERVER")
