@@ -14,16 +14,13 @@ def _main():
         print("PATH=[{}] FILENAME=[{}] EVENT_TYPES={}".format(
               path, filename, type_names))
         
-        if "access" and "gz" in filename and type_names[0] == 'IN_MODIFY':
+        if "access" and "gz" in filename and 'IN_MODIFY' in type_names:
             with gzip.open(path + "/" + filename) as log:
                 data = log.readlines()
                 for entry in data:
                     if "POST" in str(entry):
-                        with open("/home/Beawitched/files_generated.txt", 'r') as f:
-                            count = int(f.read())
-                            count+= 1
-                        with open("/home/Beawitched/files_generated.txt", 'w') as f:
-                            f.write(str(count))
+                        with open("/home/Beawitched/files_generated.txt", 'a') as f:
+                            f.write(f'{str(entry)}\n')
 
 
 if __name__ == '__main__':
