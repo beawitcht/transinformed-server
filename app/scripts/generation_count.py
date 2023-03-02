@@ -1,30 +1,31 @@
-import inotify.adapters
-import gzip
+import os, time
+from datetime import datetime
 
 # Script to update total number of files generated
 
-def _main():
-    i = inotify.adapters.Inotify()
 
-    i.add_watch('/var/log')
+path = '/var/log/www.transinformed.co.uk.access.log'
+output_path = '/home/Beawitched/files_generated.txt'
+timestamp_path = '/home/Beawitched/last_update_timestamp.txt'
 
-    for event in i.event_gen(yield_nones=False):
-        (_, type_names, path, filename) = event
+with open(timestamp_path) as old_time:
+    prev_update = datetime.strptime(old_time.read(), '%Y-%m-%d %H:%M:%S')
 
-        print("PATH=[{}] FILENAME=[{}] EVENT_TYPES={}".format(
-              path, filename, type_names))
-        
-        if "access" and "gz" in filename and type_names[0] == 'IN_MODIFY':
-            with gzip.open(path + "/" + filename) as log:
-                data = log.readlines()
-                for entry in data:
-                    if "POST" in str(entry):
-                        with open("/home/Beawitched/files_generated.txt", 'r') as f:
-                            count = int(f.read())
-                            count+= 1
-                        with open("/home/Beawitched/files_generated.txt", 'w') as f:
-                            f.write(str(count))
+# get modified time and make it a datetime obj
+modified = os.path.getmtime(path)
+mod_time = datetime.fromtimestamp(time.mktime(time.strptime(time.ctime(modified))))
 
+# when the file is modified append any new post requests to file
+if mod_time > prev_update:
+    with open(timestamp_path,'w') as old_time:
+        old_time.write(str(mod_time))
 
-if __name__ == '__main__':
-    _main()
+    with open(output_path) as output:
+        saved_data = output.readlines()
+
+    with open(path) as log:
+        data = log.readlines()
+        for entry in data:
+            if "POST" in entry and entry not in saved_data:
+                with open(output_path, 'a') as f:
+                    f.write(entry)
