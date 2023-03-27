@@ -26,6 +26,6 @@ if mod_time > prev_update:
     with open(path) as log:
         data = log.readlines()
         for entry in data:
-            if "POST" and "200" in entry and entry not in saved_data:
+            if "POST" in entry and "200" in entry and entry not in saved_data:
                 with open(output_path, 'a') as f:
                     f.write(entry)
