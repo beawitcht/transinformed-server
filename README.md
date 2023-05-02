@@ -9,7 +9,7 @@
 
 ## About
 #### ***This service is still an early prototype.***
-This is a web app to generate contextualised documents for people to bring to their GPs to provide them with one document containing the most important information for both the GP and the patient.
+This is a web app to generate personalised documents for gender diverse people to use as an aid in their conversations with their GPs around accessing gender affirming care.
 
 
 ## Setup guide
@@ -39,4 +39,4 @@ PDF_LIMIT = 100/minute # set rate limit for pdf downloads (see flask-limiter doc
 gunicorn -w 4 -b 127.0.0.1:8000 main:app
 ```
 ***
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/T6T7BLO3U)
+[![open collective](https://opencollective.com/beawitching/donate/button.png?color=blue)](https://opencollective.com/beawitching)
