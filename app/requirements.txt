@@ -9,7 +9,7 @@ email_validator==2.0.0.post2
 Flask-Limiter==3.3.0
 Flask-Caching==2.0.2
 deepdiff==6.3.0
-discord.py==2.2.2
+discord.py==2.2.3
 pandas==2.0.1
 bs4==0.0.1
 feedparser==6.0.10
