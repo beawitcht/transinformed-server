@@ -8,7 +8,7 @@ path = Path(__file__).parent.resolve()
 # import options for GICs
 with open(path / 'GICs.txt') as f:
     gic_options = f.read()
-# change NaN's to Unkown
+# change NaN's to Unknown
 gic_options = gic_options.replace('nan', 'Unknown')
 # convert options to list of tuples
 gic_options = ast.literal_eval(gic_options)
