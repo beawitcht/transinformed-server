@@ -32,7 +32,7 @@ jobs:
         url: ${{ secrets.CF_API_URL }}
         method: 'POST'
         data: "{\"purge_everything\": true}"
-        headers: "{\"Authorization\": \"Bearer ${{ secrets.CF_API_KEY }}\"}"
+        customHeaders: "{\"Authorization\": \"Bearer ${{ secrets.CF_API_KEY }}\"}"
     - name: Response status
       run: |
         echo ${{ fromJson(steps.cfPurge.outputs.response).success }}
