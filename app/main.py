@@ -138,7 +138,7 @@ def handle_error(error):
         error.description = 'Try again later.'
     return make_response(render_template("error.html", name=error.name ,code=error.code, description=error.description), error.code)
 
-# add header rows on blog posts before each heading
+# add header rows on blog posts before each heading and style images
 @app.template_filter('stylish')
 def stylish(text):
     text = text.replace("<h3>", "\n<hr>\n<h3>")
