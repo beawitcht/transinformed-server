@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 from pathlib import Path
 import discord
 import os
-import ast
+import re
+import json
 
 path = Path(__file__).parent.parent.resolve()
 load_dotenv(path / '.env')
@@ -13,6 +14,7 @@ load_dotenv(path / '.env')
 discord_token = os.getenv("DISCORD_TOKEN")
 discord_server = os.getenv("DISCORD_SERVER")
 discord_channel = os.getenv("DISCORD_CHANNEL")
+is_dev = os.getenv("IS_DEV")
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 touch_path = os.getenv("TOUCH_PATH")
@@ -34,72 +36,66 @@ df = table[0]
 df['Service'] = df['Service'].map(lambda x: x[:-len("more info")])
 df['Service'] = df['Service'].map(lambda x: x.strip())
 
-try:
-    df['To beseen(in months)'] = df['To beseen(in months)'].astype('Int64')
-except ValueError:
-    df['To beseen(in months)'] = df['To beseen(in months)']
-
-for i in range(len(df['Service'])):
-    # Rename to GIC names
-    if df['Service'][i] == "Belfast":
-        df['Service'][i] = "Belfast Brackenburn Clinic"
-    elif df['Service'][i] == "Edinburgh":
-        df['Service'][i] = "Edinburgh Chalmers Centre"
-    elif df['Service'][i] == "Exeter":
-        df['Service'][i] = "Exeter Devon Partnership Trust"
-    elif df['Service'][i] == "Glasgow":
-        df['Service'][i] = "Glasgow Sandyford"
-    elif df['Service'][i] == "Glasgow Youth":
-        df['Service'][i] = "Glasgow Youth Sandyford"
-    elif df['Service'][i] == "Inverness":
-        df['Service'][i] = "Inverness Highland Sexual Health"
-    elif df['Service'][i] == "Leeds":
-        df['Service'][i] = "Leeds and York Partnership Trust"
-    elif df['Service'][i] == "London GIC":
-        df['Service'][i] = "London Tavistock and Portman Trust"
-    elif df['Service'][i] == "London GIDS":
-        df['Service'][i] = "London GIDS Tavistock and Portman Trust"
-    elif df['Service'][i] == "Newcastle":
-        df['Service'][i] = "Newcastle Northern Region Gender Dysphoria Service"
-    elif df['Service'][i] == "Northants":
-        df['Service'][i] = "Northants Northamptonshire Healthcare Trust"
-    elif df['Service'][i] == "Nottingham":
-        df['Service'][i] = "Nottingham Centre for Transgender Health"
-    elif df['Service'][i] == "Sheffield":
-        df['Service'][i] = "Sheffield Porterbrook Clinic"
 
 
-        # assign country to each service
-    if "Belfast" in df['Service'][i]:
-        options.append(("Northern Ireland", df['Service'][i] +
-                       " - Wait time (months): " + str(df['To beseen(in months)'][i]) if not None else "Unknown"))
-    elif "Cardiff" in df['Service'][i]:
-        options.append(
-            ("Wales", df['Service'][i] + " - Wait time (months): " + (str(df['To beseen(in months)'][i]) if type(df['To beseen(in months)'][i]) != str else df['To beseen(in months)'][i])))
-    elif "Edinburgh" in df['Service'][i] or "Glasgow" in df['Service'][i] or "Grampian" in df['Service'][i] or "Inverness" in df['Service'][i]:
-        options.append(
-            ("Scotland", df['Service'][i] + " - Wait time (months): " + (str(df['To beseen(in months)'][i]) if type(df['To beseen(in months)'][i]) != str else df['To beseen(in months)'][i])))
+# Map names to full names
+name_mappings = {
+    "Belfast": "Belfast Brackenburn Clinic",
+    "Edinburgh": "Edinburgh Chalmers Centre",
+    "Exeter": "Exeter Devon Partnership Trust",
+    "Glasgow": "Glasgow Sandyford",
+    "Glasgow Youth": "Glasgow Youth Sandyford",
+    "Inverness": "Inverness Highland Sexual Health",
+    "Leeds": "Leeds and York Partnership Trust",
+    "London GIC": "London Tavistock and Portman Trust",
+    "London GIDS": "London GIDS Tavistock and Portman Trust",
+    "Newcastle": "Newcastle Northern Region Gender Dysphoria Service",
+    "Northants": "Northants Northamptonshire Healthcare Trust",
+    "Nottingham": "Nottingham Centre for Transgender Health",
+    "Sheffield": "Sheffield Porterbrook Clinic"
+}
+df['Service'] = df['Service'].map(lambda x: name_mappings.get(x, x))
+
+for _, row in df.iterrows():
+    country = ""
+    service = row['Service']
+    to_be_seen = row['To beseen(in months)']
+    
+    if "Belfast" in service:
+        country = "Northern Ireland"
+    elif "Cardiff" in service:
+        country = "Wales"
+    elif re.search(r"\b(Edinburgh|Glasgow|Grampian|Inverness)\b", service):
+        country = "Scotland"
     else:
-        options.append(
-            ("England", df['Service'][i] + " - Wait time (months): " + (str(df['To beseen(in months)'][i]) if type(df['To beseen(in months)'][i]) != str else df['To beseen(in months)'][i])))
-# removing youth services until specific youth document is developed
-for gic in options:
-    if "GIDS" in gic[1] or "KOI" in gic[1] or "Youth" in gic[1]:
-        options.remove(gic)
+        country = "England"
 
-# sort options by months remaining
+    options.append((country, f"{service} - Wait time (months): {to_be_seen}" if pd.notna(to_be_seen) else "Unknown"))
+
+# Filter out specific services
+options = [gic for gic in options if "GIDS" not in gic[1] and "KOI" not in gic[1] and "Youth" not in gic[1]]
+
+# Sort options by months remaining
 options.sort(key=lambda x: int(x[1].split(': ')[1][-2:]) if x[1].split(': ')[1] != 'nan' else 9999)
-with open(path / 'GICs.txt') as f:
-    old_options = f.read()
-# convert options to list of tuples
-old_options = list(ast.literal_eval(old_options))
+
+options = {"GICs": options}
+options = json.dumps(options)
+
+with open(path / 'GICs.json') as f:
+    old_options = json.loads(f.read())
+
 
 # on any change, write changes to file and send message of difference to discord
-if old_options != options:
-    diff = DeepDiff(old_options, options, ignore_order=True)
-    discord_msg = f"GICs have changed!\n\nDifferences: \n\n{diff}"
-    with open(path / 'GICs.txt', 'w') as f:
-        f.write(str(options))
+if old_options != json.loads(options):
+    diff = json.dumps(DeepDiff(old_options["GICs"], json.loads(options)['GICs'], ignore_order=True), indent=4)
+    if len(str(diff)) > 1900:
+        discord_msg = "GICs Changes too long check file"
+    elif is_dev == '1':
+        discord_msg = f"DEVLEOPMENT TEST: GICs have changed!\n\nDifferences: \n\n{diff}"
+    else:
+        discord_msg = f"GICs have changed!\n\nDifferences: \n\n{diff}"
+    with open(path / 'GICs.json', 'w') as f:
+        f.write(options)
     client.run(discord_token)
     print("GICs have changed")
     Path(touch_path).touch()
