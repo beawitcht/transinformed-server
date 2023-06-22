@@ -3,22 +3,24 @@ from wtforms import StringField, SelectField, BooleanField, SubmitField, EmailFi
 from wtforms.validators import DataRequired, Email, Optional, AnyOf
 from pathlib import Path
 from custom_form_elements import CustomSelect
-import ast
+import json
 path = Path(__file__).parent.resolve()
 # import options for GICs
-with open(path / 'GICs.txt') as f:
-    gic_options = f.read()
+with open(path / 'GICs.json') as f:
+    gic_options = json.loads(f.read())
+
+# convert from JSON to list of tuples - show nan as Unknown for wait times
+gic_options = gic_options["GICs"]
+gic_options = [(country, clinic.replace('nan', 'Unknown')) for country, clinic in gic_options]
 # change NaN's to Unknown
-gic_options = gic_options.replace('nan', 'Unknown')
-# convert options to list of tuples
-gic_options = ast.literal_eval(gic_options)
+
 gic_options.insert(0,("0", "Select a country to see GICs"))
 gic_options.insert(1,("1", "I don't have a preferred clinic"))
 
 # import options for Private HRT providers
-with open(path / 'private_services.txt') as f:
-    private_services = f.read()
-service_options = ast.literal_eval(private_services)
+with open(path / 'private_services.json') as f:
+    private_services = json.loads(f.read())
+service_options = private_services["Private Services"]
 service_options.insert(0,"I haven't chosen a provider yet")
 
 
