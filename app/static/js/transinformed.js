@@ -195,4 +195,14 @@ function submitActions(){
         };
     };
     document.getElementById("generationForm").submit();
-}
+    
+    const alertPlaceholder = document.getElementById('alertPlaceholder')
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = [
+        `<div class="alert alert-success alert-dismissible" role="alert">`,
+        `   <div>Thank you for using our document generator, if you found this service useful please <a href="https://opencollective.com/beawitching/donate/" class="alert-link" target="_blank" >consider donating</a> so that we can maintain this service.</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+    ].join('')
+    alertPlaceholder.append(wrapper)
+    }
