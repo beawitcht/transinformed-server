@@ -89,7 +89,7 @@ def home():
             return send_file(file, download_name=f"myhealthcareguide.{filetype}")
         except file.getvalue() is None:
             if filetype == "pdf":
-                return ("PDF downloads maxxed please download .docx version")
+                return ("PDF download limit reached, please download .docx version")
             else:
                 return ("An error occured, please try again later")
 
