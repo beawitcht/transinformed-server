@@ -29,7 +29,6 @@ window.addEventListener('load', function () {
 
 });
 
-
 function checkboxStatus() {
     // set check boxes
     var selfMed = document.getElementById("selfMedCheck");
@@ -40,15 +39,34 @@ function checkboxStatus() {
     var diagnosis = document.getElementById("diagnosisCheck");
     var hrt = document.getElementById("hrtCheck");
     var noDoc = document.getElementById("noDocCheck");
+    var privMed = document.getElementById("privateMedCheck");
+    var immMed = document.getElementById("foreignMedCheck");
     var immCheck = document.getElementById("immigrationCheck");
     var immLetter = document.getElementById("immigrationLetterCheck");
 
+    if (noMed.checked) {
+        bridgingDesired.disabled = true;
+        bridgingDesired.innerHTML = 'I)';
+    }
+    
     // conditions for Documents held
     (diagnosis.checked || hrt.checked) ? (noDoc.disabled = true) : (noDoc.disabled = false);
     noDoc.checked ? (diagnosis.disabled = true, hrt.disabled = true) : (diagnosis.disabled = false, hrt.disabled = false);
 
     // conditions for bridging
-    (selfMed.checked || selfMedLikely.checked) && !hrt.checked ? (bridgingDesired.disabled = false, bridgingDesiredLabel.innerHTML = 'I need a bridging prescription') : (bridgingDesired.disabled = true, bridgingDesired.checked = false, bridgingDesiredLabel.innerHTML = 'I need a bridging prescription (select medication status)');
+    (selfMed.checked || selfMedLikely.checked) && !hrt.checked && !noMed.checked ? (bridgingDesired.disabled = false, bridgingDesiredLabel.innerHTML = 'I need a bridging prescription') : (bridgingDesired.disabled = true, bridgingDesired.checked = false, bridgingDesiredLabel.innerHTML = 'I need a bridging prescription (invalid medication status for bridging)');
+    
+    if (hrt.checked) {
+        bridgingDesired.disabled = true;
+        bridgingDesired.checked = false;
+        bridgingDesiredLabel.innerHTML = 'I need a bridging prescription (invalid document status for bridging)';
+    }
+
+    if ($('.med-status-check:checked').length === 0 && !hrt.checked){
+        bridgingDesired.disabled = true;
+        bridgingDesired.checked = false;
+        bridgingDesiredLabel.innerHTML = "I need a bridging prescription (select medication status)";
+    }
 
     // conditions for medication status
     if (selfMed.checked) {
@@ -73,8 +91,6 @@ function checkboxStatus() {
     if (!immCheck.checked){
         immLetter.checked = false;
     }
-
-
 }
 
 function disableButtonsLogic(){
@@ -92,51 +108,33 @@ function disableButtonsLogic(){
 
 function countryFilters() {
     var countriesSelect = document.getElementById("countries");
+    var selectedCountry = countriesSelect.value;
+
     // Only allow submission when a country is selected
     disableButtonsLogic();
-    // filter valid GICs based on country
+
+    // Define a mapping between countries and their corresponding GIC options
+    var countryGICMapping = {
+        "England": ["England"],
+        "Northern Ireland": ["Northern Ireland"],
+        "Scotland": ["Scotland"],
+        "Wales": ["Wales"]
+    };
+
+    // Filter valid GICs based on country
     $("#gics").val(0).change();
-    if (countriesSelect.value === "England") {
-        $("#gics option[value='countryNeeded']").hide();
-        $("#gics").val(1).change();
-        $("#gics option[value='Northern Ireland']").hide();
-        $("#gics option[value='Scotland']").hide();
-        $("#gics option[value='Wales']").hide();
-        $("#gics option[value='England']").show();
-    }
-    else if (countriesSelect.value === "Northern Ireland") {
-        $("#gics option[value='countryNeeded']").hide();
-        $("#gics").val(1).change();
-        $("#gics option[value='England']").hide();
-        $("#gics option[value='Scotland']").hide();
-        $("#gics option[value='Wales']").hide();
-        $("#gics option[value='Northern Ireland']").show();
-    }
-    else if (countriesSelect.value === "Scotland") {
-        $("#gics option[value='countryNeeded']").hide();
-        $("#gics").val(1).change();
-        $("#gics option[value='England']").hide();
-        $("#gics option[value='Northern Ireland']").hide();
-        $("#gics option[value='Wales']").hide();
-        $("#gics option[value='Scotland']").show();
-    }
-    else if (countriesSelect.value === "Wales") {
-        $("#gics option[value='countryNeeded']").hide();
-        $("#gics").val(1).change();
-        $("#gics option[value='England']").hide();
-        $("#gics option[value='Northern Ireland']").hide();
-        $("#gics option[value='Scotland']").hide();
-        $("#gics option[value='Wales']").show();
-    }
-    else {
+
+    // Hide all country options initially
+    $("#gics option[value='England'], #gics option[value='Northern Ireland'], #gics option[value='Scotland'], #gics option[value='Wales']").hide();
+
+    // Show the options related to the selected country
+    if (countryGICMapping[selectedCountry]) {
+        countryGICMapping[selectedCountry].forEach(option => {
+            $("#gics option[value='" + option + "']").show();
+        });
+    } else {
         $("#gics option[value='countryNeeded']").show();
-        $("#gics option[value='Northern Ireland']").hide();
-        $("#gics option[value='Scotland']").hide();
-        $("#gics option[value='Wales']").hide();
-        $("#gics option[value='England']").hide();
     }
-    
-    
 }
 
 function revealContent() {
