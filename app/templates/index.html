@@ -177,6 +177,16 @@
                                 {{form.blood_testing(class='form-check-input', type='checkbox', role='checkbox', id="bloodTests")}}
                                 {{form.blood_testing.label(class='form-check-label', for="bloodTests")}}
                             </div>
+
+                            <div class="form-check">
+                                {{form.nhs_record_gender(class='form-check-input', type='checkbox', role='checkbox', id="nhsRecordGenderCheck")}}
+                                {{form.nhs_record_gender.label(class='form-check-label', for="nhsRecordGenderCheck")}}
+                            </div>
+
+                            <div class="form-check">
+                                {{form.nhs_record_name(class='form-check-input', type='checkbox', role='checkbox', id="nhsRecordNameCheck")}}
+                                {{form.nhs_record_name.label(class='form-check-label', for="nhsRecordNameCheck")}}
+                            </div>
                         
                             <div class="form-check">
                                 {{form.immigration_care(class='form-check-input', type='checkbox', role='checkbox', id="immigrationCheck")}}
@@ -227,9 +237,10 @@
                             </div>
 
                             <div class="form-check">
-                                {{ form.GRC_letter(class='form-check-input', type='checkbox', role='checkbox', id="grcCheck") }}
-                                {{ form.GRC_letter.label(class='form-check-label', for="grcCheck") }}
+                                {{ form.grc_letter(class='form-check-input', type='checkbox', role='checkbox', id="grcCheck") }}
+                                {{ form.grc_letter.label(class='form-check-label', for="grcCheck") }}
                             </div>
+                            
                         </div>
                         
                         <hr class="my-4">
