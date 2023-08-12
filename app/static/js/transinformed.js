@@ -39,8 +39,6 @@ function checkboxStatus() {
     var diagnosis = document.getElementById("diagnosisCheck");
     var hrt = document.getElementById("hrtCheck");
     var noDoc = document.getElementById("noDocCheck");
-    var privMed = document.getElementById("privateMedCheck");
-    var immMed = document.getElementById("foreignMedCheck");
     var immCheck = document.getElementById("immigrationCheck");
     var immLetter = document.getElementById("immigrationLetterCheck");
 
