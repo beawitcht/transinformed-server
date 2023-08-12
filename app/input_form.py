@@ -42,6 +42,7 @@ class InputForm(FlaskForm):
     gic_referral = BooleanField("I need a referral to a Gender Identity Clinic")
     slt_referral = BooleanField("I need a referral to a Speech & Language Therapist")
     passport_letter = BooleanField("I need a letter to update the gender marker on my passport")
+    GRC_letter = BooleanField("I need a report for my Gender Recognition Certificate (GRC) application")
     chosen_gic = SelectField("Chosen GIC", choices=gic_options, validate_choice=False, widget=CustomSelect())
     chosen_private_care = SelectField("My chosen private provider", choices=service_options, validate_choice=False)
     immigration_care = BooleanField("I am an immigrant looking to continue my care in the UK")
