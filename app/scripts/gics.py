@@ -36,10 +36,10 @@ df['Service'] = df['Service'].map(lambda x: x[:-len("more info")])
 df['Service'] = df['Service'].map(lambda x: x.strip())
 
 
-
 # Map names to full names
 name_mappings = {
     "Belfast": "Belfast Brackenburn Clinic",
+    "Cardiff": "Welsh Gender Service - Cardiff",
     "Edinburgh": "Edinburgh Chalmers Centre",
     "Exeter": "Exeter Devon Partnership Trust",
     "Glasgow": "Glasgow Sandyford",
