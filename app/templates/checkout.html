@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<title>Checkout - Trans Informed</title>
+<script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+
+{% block body %}
+<a href="/"><img class="mx-auto d-block pt-3" src="/static/images/combinedlogo.png" alt="Beawitching Communities logo and link to home" width="330" height="130" ></a>
+<header class="d-flex justify-content-center py-3">
+    <ul class="d-flex justify-content-center nav nav-pills">
+        <li class="nav-item"><a href="/about" class="nav-link" >About</a></li>
+        <li class="nav-item"><a href="/resources" class="nav-link" >Resources</a></li>
+        <li class="nav-item"><a href="/sources" class="nav-link" >Sources</a></li>
+        <li class="nav-item"><a href="/blogs" class="nav-link" aria-current="page">Blogs</a></li>
+    </ul>
+</header>
+<div class="container">
+    <main>
+            <div class="py-5">
+            <h1>Buy your premium booklet</h3>
+            <p>
+                Purchase your healthcare document in an A4 booklet format, printed in full colour on 200gsm paper, with a soft touch laminated card cover. 
+                After completing your purchase you will be redirected to a page where you can upload your document, please create and review your document and make any changes you need before purchasing.
+            </p>
+
+            
+            <form action="/checkout" method="POST">
+                {{form.document_ready(class='form-check-input', type='checkbox', role='checkbox', id='documentReady')}}
+                {{form.document_ready.label(class='form-check-label', for='documentReady')}}
+                <br>
+                {{form.data_ready(class='form-check-input', type='checkbox', role='checkbox', id='dataReady')}}
+                {{form.data_ready.label(class='form-check-label', for='dataReady')}}
+                <br>
+                {{form.third_party_consent(class='form-check-input', type='checkbox', role='checkbox', id='thirdParty')}}
+                {{form.third_party_consent.label(class='form-check-label', for='thirdParty')}}
+                <br>
+                {{form.submit(class='btn btn-success btn-lg mt-2', type='submit', id='checkout-button')}}
+            </form>
+
+        </div>
+    </main>
+</div>
+{% endblock %}

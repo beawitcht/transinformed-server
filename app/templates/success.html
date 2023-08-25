@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<title>Purchase Complete - Trans Informed</title>
+{% endblock %}
+
+{% block body %}
+<a href="/"><img class="mx-auto d-block pt-3" src="/static/images/combinedlogo.png" alt="Beawitching Communities logo and link to home" width="330" height="130" ></a>
+<header class="d-flex justify-content-center py-3">
+    <ul class="d-flex justify-content-center nav nav-pills">
+        <li class="nav-item"><a href="/about" class="nav-link" >About</a></li>
+        <li class="nav-item"><a href="/resources" class="nav-link" >Resources</a></li>
+        <li class="nav-item"><a href="/sources" class="nav-link" >Sources</a></li>
+        <li class="nav-item"><a href="/blogs" class="nav-link" aria-current="page">Blogs</a></li>
+    </ul>
+</header>
+
+<div class="container">
+    <h3> Thanks for your purchase! </h3>
+    <div class="alert alert-info alert-dismissible mt-2" role="alert">
+        <div> If you need to upload again within 24 hours, <a href="{{ site_url }}/success?session_id={{ session_id }}">Use this link</a></div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <p>
+        This page will be valid for 24 hours, please make note of the URL in case you wish to upload an updated version within that time.
+        <br> Contact us at <a href="mailto:contact@beawitching.co.uk">contact@beawitching.co.uk</a> if you need assistance with this.
+    </p>
+    <div>
+        <form action="/success" method="POST"  enctype="multipart/form-data">
+            {{form.upload.label(class='form-label', for='fileUpload')}}
+            {{form.upload(class='form-control form-control-lg', type='file', id='fileUpload')}}
+            <br>
+            {{form.id}}
+            
+            {{form.submit(class='btn btn-primary btn-lg mt-2', type='submit')}}
+
+            
+            {% if uploaded %}
+            <div class="alert alert-success alert-dismissible mt-2" role="alert">
+                <div> File succesfully uploaded! We will begin processing your document 24 hours after purchase.</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+{% endblock %}
