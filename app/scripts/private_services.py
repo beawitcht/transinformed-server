@@ -58,7 +58,7 @@ options.append("Other (Non-UK Based)")
 # output as json
 options = {"Private Services": options}
 
-with open(path / 'private_services.json') as f:
+with open(path / 'forms' / 'private_services.json') as f:
         old_options = json.loads(f.read())
         
 # on any change, write changes to file and send message of difference to discord
@@ -71,7 +71,7 @@ if old_options != options:
         discord_msg = f"DEVLEOPMENT TEST: Private Services have changed!\n\nDifferences: \n\n{diff}"
     else:
         discord_msg = f"Private Services have changed!\n\nDifferences: \n\n{diff}"
-    with open(path / 'private_services.json', 'w') as f:
+    with open(path / 'forms' / 'private_services.json', 'w') as f:
         f.write(json.dumps(options))
     client.run(discord_token)
     Path(touch_path).touch()

@@ -81,7 +81,7 @@ options.sort(key=lambda x: int(x[1].split(': ')[1][-2:]) if x[1].split(': ')[1] 
 new_options = {"GICs": options}
 new_options = json.dumps(new_options)
 
-with open(path / 'GICs.json') as f:
+with open(path / 'forms' / 'GICs.json') as f:
     old_options = json.loads(f.read())
 
 
@@ -128,7 +128,7 @@ if diff:
         discord_msg = f"DEVELOPMENT TEST: {diff_message}"
     else:
         discord_msg = diff_message
-    with open(path / 'GICs.json', 'w') as f:
+    with open(path / 'forms' / 'GICs.json', 'w') as f:
         f.write(new_options)
     client.run(discord_token)
     
