@@ -21,4 +21,12 @@ def prepare_blogs(url):
             tags += term['term'] + ','
         item.tags = tags[:-1]
 
+        # format content
+        # remove tracking pixels from RSS
+        tracking_pixel = re.compile(r'<img[^>]*height="1"[^>]*>')
+        match = tracking_pixel.search(item.content[0].value)
+        while match:
+            item.content[0].value = item.content[0].value.replace(match.group(), '')
+            match = tracking_pixel.search(item.content[0].value)
+
     return entries
