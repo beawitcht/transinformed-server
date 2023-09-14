@@ -30,7 +30,7 @@ options = []
 url = "https://genderkit.org.uk/resources/gender-services/"
 soup = bs4.BeautifulSoup(urllib.request.urlopen(url).read(), "lxml")
 # find the list of paid services
-service_list = soup.find(text="Paid UK-based services").findNext('ul')
+service_list = soup.find(string="Paid UK-based services").findNext('ul')
 # extract name of each service
 for li in service_list.findAll('li'):
     options.append(li.find('a').text)
