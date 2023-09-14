@@ -52,11 +52,10 @@ def add_headers(response):
 # get blogs
 entries = prepare_blogs("https://medium.com/feed/@transinformed")
 
-from blueprints import core_bp, blog_bp, checkout_bp
+from blueprints import core_bp, blog_bp
 
 app.register_blueprint(core_bp)
 app.register_blueprint(blog_bp)
-app.register_blueprint(checkout_bp)
 
 @app.errorhandler(HTTPException)
 def handle_error(error):
