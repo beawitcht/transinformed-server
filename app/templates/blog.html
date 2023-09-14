@@ -13,9 +13,6 @@
 {% endblock %}
 
 {% block body %}
-<div class="alert alert-info" role="alert">
-    If you found this blog useful please <a href="https://opencollective.com/beawitching/donate/" class="alert-link" target="_blank" >consider donating</a> so that we can maintain this service.
-</div>
 <a href="/"><img class="mx-auto d-block pt-3" src="/static/images/combinedlogo.png" alt="Beawitching Communities logo and link to home" width="330" height="130" ></a>
 <header class="d-flex justify-content-center py-3">
     <ul class="d-flex justify-content-center nav nav-pills">
@@ -29,6 +26,8 @@
     <div class="blog-content">
         <h1 class="text-center">{{blog.title}}</h1>
         {{blog.content[0].value| stylish| safe}}
+        <hr>
+        <a href="https://ko-fi.com/beawitching_cic/shop" target="_blank"><img class="img-fluid rounded mx-auto d-block" src="/static/images/product.png" alt="Support us, Ethically sourced snake shed jewellery and more! All handmade by trans people. Click Here."> </a>
     </div>
 </div>
 {% endblock %}
