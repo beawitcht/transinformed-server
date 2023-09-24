@@ -16,10 +16,12 @@ def prepare_blogs(url):
         item.summary = re.sub("<[^>]*>", "",item.summary)
         item.summary = item.summary.replace(u"\u00A0", " ")
 
-        # format tags       
-        for term in item.tags:
-            tags += term['term'] + ','
-        item.tags = tags[:-1]
+        # # format tags 
+        if hasattr(item, 'tags'):
+            for term in item.tags:
+                tags += term['term'] + ','
+            item.tags = tags[:-1]
+        
 
         # format content
         # remove tracking pixels from RSS
