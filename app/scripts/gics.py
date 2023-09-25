@@ -72,8 +72,9 @@ for _, row in df.iterrows():
 
     options.append((country, f"{service} - Wait time (months): {to_be_seen}" if pd.notna(to_be_seen) else "Unknown"))
 
-# Filter out specific services
-options = [gic for gic in options if "GIDS" not in gic[1] and "KOI" not in gic[1] and "Youth" not in gic[1]]
+# Filter out under 18 services
+youth_services = ["GIDS", "KOI", "Youth", "Hub"]
+options = [gic for gic in options if all(service not in gic[1] for service in youth_services)]
 
 # Sort options by months remaining
 options.sort(key=lambda x: int(x[1].split(': ')[1][-2:]) if x[1].split(': ')[1] != 'nan' else 9999)
