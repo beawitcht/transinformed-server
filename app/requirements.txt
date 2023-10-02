@@ -1,5 +1,5 @@
 gunicorn==21.2.0
-flask==2.3.3
+flask==3.0.0
 docxtpl==0.16.7
 jinja2==3.1.2
 convertapi==1.7.0
