@@ -93,14 +93,19 @@ function checkboxStatus() {
 
 function disableButtonsLogic(){
     var countriesSelect = document.getElementById("countries");
+    let docx =  document.getElementById("docx")
+    let pdf =  document.getElementById("pdf")
     // Only allow submission when a country is selected
     if (countriesSelect.value !== "Choose...") {
-        document.getElementById("docx").disabled = false;
-        document.getElementById("pdf").disabled = false;
+        docx.disabled = false;
+        if (pdf.innerText !== "PDF Unavailable") {
+            pdf.disabled = false;
+        }
+        
     }
     else {
-        document.getElementById("docx").disabled = true;
-        document.getElementById("pdf").disabled = true;
+        docx.disabled = true;
+        pdf.disabled = true;
     }
 }
 

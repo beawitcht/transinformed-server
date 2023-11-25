@@ -302,8 +302,8 @@
                             <button class="btn btn-outline-primary btn-lg mr-3" id="docx" name="docx" type="submit"
                                 value="docx" disabled>Generate Docx</button>
                             {% if not pdf_available %}
-                            <button class="btn btn-outline-primary btn-lg disabled" name="pdf" type="submit"
-                                value="pdf">PDF Unavailable</button>
+                            <button class="btn btn-outline-primary btn-lg" id="pdf" name="pdf" type="submit"
+                                value="pdf" disabled>PDF Unavailable</button>
                             {% else %}
                             <button class="btn btn-outline-primary btn-lg" id="pdf" name="pdf" type="submit" value="pdf"
                                 disabled>Generate PDF</button>
