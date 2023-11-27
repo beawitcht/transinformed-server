@@ -73,9 +73,9 @@ for _, row in df.iterrows():
     if "Not accepting new patients" not in to_be_seen:
         options.append((country, f"{service} - Wait time (months): {to_be_seen}" if pd.notna(to_be_seen) else "Unknown"))
 
-# Filter out under 18 services
-youth_services = ["GIDS", "KOI", "Youth", "Hub"]
-options = [gic for gic in options if all(service not in gic[1] for service in youth_services)]
+# # Filter out under 18 services
+# youth_services = ["GIDS", "KOI", "Youth", "Hub"]
+# options = [gic for gic in options if all(service not in gic[1] for service in youth_services)]
 
 # Filter services not taking referrals from GP/self
 invalid_services = ["London TransPlus"]

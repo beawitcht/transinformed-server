@@ -53,6 +53,20 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12 required border-start border-4 rounded">
+                            <div class="col-md-3">
+                                {{ form.services.label(for='form.services.name', name='service', class='form-label') }} <span
+                                class="badge rounded-pill text-bg-danger">Required</span>
+                                {% if form.services.errors|length > 0 %} {{ form.services(class='form-select is-invalid', id='services')}}
+                                {% else %} {{ form.services(class='form-select', id='services')}}
+                                {% endif %}
+                                <div class="invalid-feedback ">
+                                    {% for error in form.services.errors %}
+                                    {{error}}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="col-md-6 border-start border-4 rounded">
                                     <h3>Documents held</h3>

@@ -27,6 +27,8 @@ service_options.insert(0,"I haven't chosen a provider yet")
 class InputForm(FlaskForm):
     countries = SelectField("Country", choices=['Choose...','England', 'Northern Ireland', 'Scotland', 'Wales'], validators=[
         DataRequired(), AnyOf(['England', 'Northern Ireland', 'Scotland', 'Wales'], message="Please select a country")])
+    services = SelectField("Services", choices=['Choose...','Adult', 'Youth'], validators=[
+        DataRequired(), AnyOf(['Adult', 'Youth'], message="Please select adult or youth services")])
     self_med = BooleanField("I am self medicating")
     self_med_likely = BooleanField("I am likely to start self medicating")
     no_self_med = BooleanField("I am not currently or likely to start self medicating")
