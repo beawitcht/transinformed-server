@@ -11,5 +11,5 @@ Flask-Caching==2.1.0
 deepdiff==6.7.1
 discord.py==2.3.2
 pandas==2.1.4
-bs4==0.0.1
+bs4==0.0.2
 feedparser==6.0.11
