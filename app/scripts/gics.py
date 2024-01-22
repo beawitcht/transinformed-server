@@ -70,8 +70,8 @@ for _, row in df.iterrows():
     else:
         country = "England"
     
-    if "Not accepting new patients" not in to_be_seen:
-        options.append((country, f"{service} - Wait time (months): {to_be_seen}" if pd.notna(to_be_seen) else "Unknown"))
+    if "Not accepting new patients" not in str(to_be_seen):
+        options.append((country, f"{service} - Wait time (months): {to_be_seen}" if pd.notna(to_be_seen) else f"{service} - Wait time (months): Unknown"))
 
 # Filter out under 18 services
 youth_services = ["GIDS", "KOI", "Youth", "Hub"]
@@ -86,7 +86,9 @@ options = [(country, re.sub(r'<|>', '', option)) for country, option in options]
 
 
 # Sort options by months remaining
-options.sort(key=lambda x: int(re.search(r'\d+', str(x[1].split(': ')[1])).group()) if pd.notna(x[1].split(': ')[1]) and re.search(r'\d+', str(x[1].split(': ')[1])) else 9999)
+print(options)
+options = sorted(options, key=lambda x: int(re.search(r'\d+', str(x[1].split(': ')[1] if len(x) == 2 and 'Unknown' not in x[1] else '0')).group()))
+print(options)
 
 new_options = {"GICs": options}
 new_options = json.dumps(new_options)
