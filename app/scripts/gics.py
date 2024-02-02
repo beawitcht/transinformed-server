@@ -86,9 +86,7 @@ options = [(country, re.sub(r'<|>', '', option)) for country, option in options]
 
 
 # Sort options by months remaining
-print(options)
 options = sorted(options, key=lambda x: int(re.search(r'\d+', str(x[1].split(': ')[1] if len(x) == 2 and 'Unknown' not in x[1] else '0')).group()))
-print(options)
 
 new_options = {"GICs": options}
 new_options = json.dumps(new_options)
