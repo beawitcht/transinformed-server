@@ -14,7 +14,7 @@ gic_options = gic_options["GICs"]
 gic_options = [(country, clinic.replace('nan', 'Unknown')) for country, clinic in gic_options]
 # change NaN's to Unknown
 
-gic_options.insert(0,("0", "Select a country to see GICs"))
+gic_options.insert(0,("0", "Select a country and service to see GICs"))
 gic_options.insert(1,("1", "I don't have a preferred clinic"))
 
 # import options for Private HRT providers
@@ -27,8 +27,8 @@ service_options.insert(0,"I haven't chosen a provider yet")
 class InputForm(FlaskForm):
     countries = SelectField("Country", choices=['Choose...','England', 'Northern Ireland', 'Scotland', 'Wales'], validators=[
         DataRequired(), AnyOf(['England', 'Northern Ireland', 'Scotland', 'Wales'], message="Please select a country")])
-    services = SelectField("Services", choices=['Choose...','Adult', 'Youth'], validators=[
-        DataRequired(), AnyOf(['Adult', 'Youth'], message="Please select adult or youth services")])
+    services = SelectField("Services", choices=['Choose...','Adult (17+)', 'Youth (≤16)'], validators=[
+        DataRequired(), AnyOf(['Adult (17+)', 'Youth (≤16)'], message="Please select adult or youth services")])
     self_med = BooleanField("I am self medicating")
     self_med_likely = BooleanField("I am likely to start self medicating")
     no_self_med = BooleanField("I am not currently or likely to start self medicating")

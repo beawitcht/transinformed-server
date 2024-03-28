@@ -2,8 +2,11 @@ window.addEventListener('load', function () {
     revealContent();
     privateProviderConditions();
     countryFilters();
+    serviceFilters();
     // Countries dropdown
     document.getElementById('countries').addEventListener('change', countryFilters);
+    // Services dropdown
+    document.getElementById('services').addEventListener('change', serviceFilters);
     // Medication Status
     document.getElementById('selfMedCheck').addEventListener('click', checkboxStatus);
     document.getElementById('likelyMedCheck').addEventListener('click', checkboxStatus);
@@ -93,10 +96,11 @@ function checkboxStatus() {
 
 function disableButtonsLogic(){
     var countriesSelect = document.getElementById("countries");
+    var servicesSelect = document.getElementById("services");
     let docx =  document.getElementById("docx")
     let pdf =  document.getElementById("pdf")
-    // Only allow submission when a country is selected
-    if (countriesSelect.value !== "Choose...") {
+    // Only allow submission when a country and service is selected
+    if (countriesSelect.value !== "Choose..." && servicesSelect.value !== "Choose...") {
         docx.disabled = false;
         if (pdf.innerText !== "PDF Unavailable") {
             pdf.disabled = false;
@@ -113,31 +117,61 @@ function countryFilters() {
     var countriesSelect = document.getElementById("countries");
     var selectedCountry = countriesSelect.value;
 
+    var servicesSelect = document.getElementById("services");
+    var selectedService = servicesSelect.value;
+
     // Only allow submission when a country is selected
     disableButtonsLogic();
 
     // Define a mapping between countries and their corresponding GIC options
-    var countryGICMapping = {
-        "England": ["England"],
-        "Northern Ireland": ["Northern Ireland"],
-        "Scotland": ["Scotland"],
-        "Wales": ["Wales"]
-    };
+    if (selectedService == "Youth (≤16)") {
+        var countryGICMapping = {
+            "Y-England": ["Y-England"],
+            "Y-Northern Ireland": ["Y-Northern Ireland"],
+            "Y-Scotland": ["Y-Scotland"],
+            "Y-Wales": ["Y-Wales"]
+        };
+    } else {
+        var countryGICMapping = {
+            "England": ["England"],
+            "Northern Ireland": ["Northern Ireland"],
+            "Scotland": ["Scotland"],
+            "Wales": ["Wales"]
+        };
+    }
+       
 
     // Filter valid GICs based on country
     $("#gics").val(0).change();
 
     // Hide all country options initially
+    
+    $("#gics option[value='Y-England'], #gics option[value='Y-Northern Ireland'], #gics option[value='Y-Scotland'], #gics option[value='Y-Wales']").hide();
+
     $("#gics option[value='England'], #gics option[value='Northern Ireland'], #gics option[value='Scotland'], #gics option[value='Wales']").hide();
+    
+    
 
     // Show the options related to the selected country
     if (countryGICMapping[selectedCountry]) {
         countryGICMapping[selectedCountry].forEach(option => {
             $("#gics option[value='" + option + "']").show();
         });
+    } else if (countryGICMapping["Y-" + selectedCountry]) {
+        countryGICMapping["Y-" + selectedCountry].forEach(option => {
+            $("#gics option[value='" + option + "']").show();
+        });
+        
     } else {
         $("#gics option[value='countryNeeded']").show();
     }
+    
+}
+
+function serviceFilters() {
+    countryFilters();
+
+    // TODO: update youth options available
 }
 
 function revealContent() {
