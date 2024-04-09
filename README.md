@@ -8,7 +8,6 @@
 </p>
 
 ## About
-#### ***This service is still an early prototype.***
 This is a web app to generate personalised documents for gender diverse people to use as an aid in their conversations with their GPs around accessing gender affirming care.
 
 
