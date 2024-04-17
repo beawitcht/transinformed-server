@@ -169,9 +169,13 @@ function countryFilters() {
 }
 
 function serviceFilters() {
+    var servicesSelect = document.getElementById("services");
+    var grcCheck = document.getElementById("grcCheck")
     countryFilters();
 
-    // TODO: update youth options available
+    //  change youth options to available services
+    servicesSelect.value == "Youth (≤16)" ? grcCheck.disabled = true : grcCheck.disabled = false;
+
 }
 
 function revealContent() {
