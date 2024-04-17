@@ -27,6 +27,9 @@ window.addEventListener('load', function () {
     document.getElementById('immigrationCheck').addEventListener('click', revealContent);
     document.getElementById('immigrationCheck').addEventListener('click', checkboxStatus);
 
+    //Age checkbox
+    document.getElementById('under16Check').addEventListener('click', checkboxStatus);
+
     document.getElementById("docx").addEventListener('click', submitActionsDocx);
     document.getElementById("pdf").addEventListener('click', submitActionsPdf);
 
@@ -44,10 +47,11 @@ function checkboxStatus() {
     var noDoc = document.getElementById("noDocCheck");
     var immCheck = document.getElementById("immigrationCheck");
     var immLetter = document.getElementById("immigrationLetterCheck");
+    var ageCheck = document.getElementById("under16Check");
+    var serviceSelect = document.getElementById("services")
 
     if (noMed.checked) {
         bridgingDesired.disabled = true;
-        bridgingDesired.innerHTML = 'I)';
     }
     
     // conditions for Documents held
@@ -91,6 +95,32 @@ function checkboxStatus() {
     // conditions for immigration options
     if (!immCheck.checked){
         immLetter.checked = false;
+    }
+
+    // conditions for age options
+    if (ageCheck.checked){
+        sharedCareCheck.parentNode.hidden = true;
+        sharedCareCheck.checked = false;
+        privateSelector.hidden = true;
+        privateProviderList.value = "I haven't chosen a provider yet";
+        bridgingDesired.parentNode.hidden = true;
+        bloodTests.parentNode.hidden = true;
+        grcCheck.parentNode.hidden = true;
+        medStatusSection.hidden = true;
+        serviceSelect.value = "Youth (≤16)"
+        $("#services option[value='Adult (17+)']").hide();
+        serviceFilters();
+    }
+    else{
+        sharedCareCheck.parentNode.hidden = false;
+        bridgingDesired.parentNode.hidden = false;
+        bloodTests.parentNode.hidden = false;
+        grcCheck.parentNode.hidden = false;
+        medStatusSection.hidden = false;
+        
+        
+        $("#services option[value='Adult (17+)']").show();
+        serviceFilters();
     }
 }
 
@@ -175,7 +205,7 @@ function serviceFilters() {
 
     //  change youth options to available services
     servicesSelect.value == "Youth (≤16)" ? grcCheck.disabled = true : grcCheck.disabled = false;
-
+    
 }
 
 function revealContent() {

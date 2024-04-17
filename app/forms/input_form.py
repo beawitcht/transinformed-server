@@ -32,6 +32,7 @@ class InputForm(FlaskForm):
     self_med = BooleanField("I am self medicating")
     self_med_likely = BooleanField("I am likely to start self medicating")
     no_self_med = BooleanField("I am not currently or likely to start self medicating")
+    under_16 = BooleanField("I am 15 or under")
     no_fixed_address = BooleanField("I do not have any proof of address")
     no_id_proof = BooleanField("I do not have any proof of identification")
     private_prescription = BooleanField("I have a private prescription for HRT")

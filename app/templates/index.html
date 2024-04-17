@@ -95,10 +95,16 @@
                                         <hr>
                                         <h4>Why are you asking about my address and ID?</h4>
                                         We ask you if you have a fixed address or identification to add a section to the document clarifying that you are entitled to access healthcare from a GP without any proof of address or identification
+                                        <hr>
+                                        <h4>Why are you asking my age?</h4>
+                                        The NHS won't normally prescribe to those under 16, and current NHS protocols do not allow for prescription of puberty blockers, these are still available privately.
                                     </div>
                                 </div>
                             </details>
-
+                            <div class="form-check">
+                                {{form.under_16(class='form-check-input', type='checkbox', role='checkbox', id='under16Check')}}
+                                {{form.under_16.label(class='form-check-label', for='under16Check')}}
+                            </div>
                             <div class="form-check">
                                 {{form.no_fixed_address(class='form-check-input', type='checkbox', role='checkbox', id='fixedAddressCheck')}}
                                 {{form.no_fixed_address.label(class='form-check-label', for='fixedAddressCheck')}}
@@ -109,7 +115,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-md-6 border-start border-4 rounded">
+                        <div id="medStatusSection" class="col-md-6 border-start border-4 rounded">
                             <details class="mb-3">
                                 <summary>
                                     <h3>Medication Status</h3>
