@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, abort
 from main import cache, entries
+import urllib.parse
 
 
 blog_bp = Blueprint('blog', __name__)
@@ -14,7 +15,7 @@ def blogs():
 @cache.cached(timeout=60 * 60 * 24 * 7)
 def blog(title):
     for rss_blog in entries:
-        if rss_blog.url_title == title:
+        if rss_blog.url_title == urllib.parse.quote_plus(title):
             blog_number = entries.index(rss_blog)
    # return 404 if failed to match blog                 
     try:

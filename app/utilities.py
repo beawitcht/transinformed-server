@@ -1,4 +1,4 @@
-import feedparser, re
+import feedparser, re, urllib.parse
 # formats blogs from rss to usable for the site
 def prepare_blogs(url):
     feed = feedparser.parse(url)
@@ -9,6 +9,7 @@ def prepare_blogs(url):
         item.link = item.link.split('?')[0]
         # add url title with hyphens
         item.url_title = item.title.replace(" ", "-")
+        item.url_title = urllib.parse.quote_plus(item.url_title)
         
         # format summary
         if len(item.summary) > 150:
