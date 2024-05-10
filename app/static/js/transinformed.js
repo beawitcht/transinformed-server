@@ -131,7 +131,29 @@ function serviceFilters() {
     countryServiceFilters();
 
     //  change youth options to available services
-    services.value == "Youth (≤16)" ? grcCheck.disabled = true : grcCheck.disabled = false;
+    if (services.value == "Youth (≤16)") {
+        grcCheck.parentNode.hidden = true;
+        bridgingDesired.parentNode.hidden = true;
+        bridgingDesired.checked = false;
+        grcCheck.checked = false;
+        bloodTests.parentNode.hidden = true;
+        bloodTests.checked = false;
+        medStatusSection.hidden = true;
+        // unchecks all medStatusSection checkboxes
+        $('#medStatusSection').find('input:checked[type=checkbox]').prop('checked', false);
+        $("#privateProviderList option[value='GenderGP']").hide();
+        $("#privateProviderList option[value='Other (Non-UK Based)']").hide();
+
+    }
+    else {
+        grcCheck.parentNode.hidden = false;
+        bridgingDesired.parentNode.hidden = false;
+        medStatusSection.hidden = false;
+        bloodTests.parentNode.hidden = false;
+        $("#privateProviderList option[value='GenderGP']").show();
+        $("#privateProviderList option[value='Other (Non-UK Based)']").show();
+    }
+
 
 }
 
