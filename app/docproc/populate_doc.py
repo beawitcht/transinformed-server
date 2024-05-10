@@ -29,7 +29,10 @@ def remove_wait_times(name):
 
 def generate_document(context, filetype):
     docx = BytesIO()
-    doc = DocxTemplate(path / 'templates' / 'template_v1_0.docx')
+    if context['under_16'] == True:
+        doc = DocxTemplate(path / 'templates' / 'under_16_template.docx')
+    else:
+        doc = DocxTemplate(path / 'templates' / 'template_v1_0.docx')
     jinja_env = jinja2.Environment(autoescape=True)
     jinja_env.filters['possessive'] = possessive
     jinja_env.filters['format_gic'] = remove_wait_times

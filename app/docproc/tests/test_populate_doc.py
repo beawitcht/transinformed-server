@@ -17,6 +17,7 @@ def test_generate_doc_docx():
 
     context = {
         'countries': 'England',
+        'services': 'Adult (17+)',
         'self_med': True,
         'self_med_likely': False,
         'formal_diagnosis': True,
@@ -25,6 +26,7 @@ def test_generate_doc_docx():
         'bridging_desired': False,
         'gic_referral': True,
         'chosen_gic': 'Leeds - Wait time (months): 44',
+        'under_16': False,
         'name': 'Bea',
         'email': 'test123@test.com',
         'phone': '1234567890',

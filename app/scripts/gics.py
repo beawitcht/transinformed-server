@@ -35,7 +35,10 @@ df = table[0]
 df['Service'] = df['Service'].map(lambda x: x[:-len("more info")])
 df['Service'] = df['Service'].map(lambda x: x.strip())
 
-
+# get youth wait times for England and Wales
+youth_table = pd.read_html(url, match="Longest wait")
+youth_df = youth_table[0]
+youth_times = youth_df["Longest wait"][0]
 # Map names to full names
 name_mappings = {
     "Belfast": "Belfast Brackenburn Clinic",
@@ -59,7 +62,8 @@ for _, row in df.iterrows():
     country = ""
     service = row['Service']
     to_be_seen = row['To beseen(in months)']
-    
+    youth_services = ["GIDS", "KOI", "Youth", "Hub"]
+
     # Determine the country based on the service name
     if "Belfast" in service:
         country = "Northern Ireland"
@@ -69,21 +73,27 @@ for _, row in df.iterrows():
         country = "Scotland"
     else:
         country = "England"
+
+    # Determine if youth service
+    for identifier in youth_services:
+        if identifier in service:
+            country = "Y-" + country
     
     if "Not accepting new patients" not in str(to_be_seen):
         options.append((country, f"{service} - Wait time (months): {to_be_seen}" if pd.notna(to_be_seen) else f"{service} - Wait time (months): Unknown"))
 
-# Filter out under 18 services
-youth_services = ["GIDS", "KOI", "Youth", "Hub"]
-options = [gic for gic in options if all(service not in gic[1] for service in youth_services)]
 
-# Filter services not taking referrals from GP/self
-invalid_services = ["London TransPlus"]
+
+# Filter services not taking new referrals from GP/self
+invalid_services = ["London TransPlus", "The Northern Hub", "The Southern Hub"]
 options = [gic for gic in options if all(service not in gic[1] for service in invalid_services)]
 
 # filter out < > from options
 options = [(country, re.sub(r'<|>', '', option)) for country, option in options]
 
+# Add NRSS or the very concise name: NATIONAL REFERRAL SUPPORT SERVICE FOR THE NHS GENDER INCONGRUENCE SERVICE FOR CHILDREN AND YOUNG PEOPLE
+options.append(("Y-England", f"National Referral Support Service - Wait time: {youth_times}"))
+options.append(("Y-Wales", f"National Referral Support Service - Wait time: {youth_times}"))
 
 # Sort options by months remaining
 options = sorted(options, key=lambda x: int(re.search(r'\d+', str(x[1].split(': ')[1] if len(x) == 2 and 'Unknown' not in x[1] else '0')).group()))
