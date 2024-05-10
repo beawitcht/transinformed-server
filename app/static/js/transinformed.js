@@ -1,154 +1,143 @@
 window.addEventListener('load', function () {
-    revealContent();
+    revealContentReferral();
+    revealContentSharedCare();
+    revealContentImmigration();
     privateProviderConditions();
-    countryFilters();
+    countryServiceFilters();
     serviceFilters();
     // Countries dropdown
-    document.getElementById('countries').addEventListener('change', countryFilters);
+    document.getElementById('countries').addEventListener('change', countryServiceFilters);
     // Services dropdown
     document.getElementById('services').addEventListener('change', serviceFilters);
     // Medication Status
-    document.getElementById('selfMedCheck').addEventListener('click', checkboxStatus);
-    document.getElementById('likelyMedCheck').addEventListener('click', checkboxStatus);
-    document.getElementById('noMedCheck').addEventListener('click', checkboxStatus);
+    document.getElementById('selfMedCheck').addEventListener('click', checkMedStatus);
+    document.getElementById('likelyMedCheck').addEventListener('click', checkMedStatus);
+    document.getElementById('noMedCheck').addEventListener('click', checkMedStatus);
     // Documents Held
-    document.getElementById('diagnosisCheck').addEventListener('click', checkboxStatus);
-    document.getElementById('hrtCheck').addEventListener('click', checkboxStatus);
-    document.getElementById('noDocCheck').addEventListener('click', checkboxStatus);
+    document.getElementById('diagnosisCheck').addEventListener('click', checkDocStatus);
+    document.getElementById('hrtCheck').addEventListener('click', checkDocStatus);
+    document.getElementById('noDocCheck').addEventListener('click', checkDocStatus);
     // GIC selector
-    document.getElementById('referralCheck').addEventListener('click', revealContent);
+    document.getElementById('referralCheck').addEventListener('click', revealContentReferral);
 
     // Private provider selector
-    document.getElementById('sharedCareCheck').addEventListener('click', revealContent);
+    document.getElementById('sharedCareCheck').addEventListener('click', revealContentSharedCare);
     // Private provider dropdown
     document.getElementById('privateProviderList').addEventListener('change', privateProviderConditions);
 
     // Immigration options
-    document.getElementById('immigrationCheck').addEventListener('click', revealContent);
-    document.getElementById('immigrationCheck').addEventListener('click', checkboxStatus);
+    document.getElementById('immigrationCheck').addEventListener('click', revealContentImmigration);
 
     //Age checkbox
-    document.getElementById('under16Check').addEventListener('click', checkboxStatus);
+    document.getElementById('under16Check').addEventListener('click', checkAgeStatus);
 
     document.getElementById("docx").addEventListener('click', submitActionsDocx);
     document.getElementById("pdf").addEventListener('click', submitActionsPdf);
 
 });
 
-function checkboxStatus() {
-    // set check boxes
-    var selfMed = document.getElementById("selfMedCheck");
-    var selfMedLikely = document.getElementById("likelyMedCheck");
-    var bridgingDesired = document.getElementById("bridgingDesired");
-    var bridgingDesiredLabel = document.getElementById("bridgingDesiredLabel");
-    var noMed = document.getElementById("noMedCheck");
-    var diagnosis = document.getElementById("diagnosisCheck");
-    var hrt = document.getElementById("hrtCheck");
-    var noDoc = document.getElementById("noDocCheck");
-    var immCheck = document.getElementById("immigrationCheck");
-    var immLetter = document.getElementById("immigrationLetterCheck");
-    var ageCheck = document.getElementById("under16Check");
-    var serviceSelect = document.getElementById("services")
-
-    if (noMed.checked) {
-        bridgingDesired.disabled = true;
-    }
-    
+function checkDocStatus() {
     // conditions for Documents held
-    (diagnosis.checked || hrt.checked) ? (noDoc.disabled = true) : (noDoc.disabled = false);
-    noDoc.checked ? (diagnosis.disabled = true, hrt.disabled = true) : (diagnosis.disabled = false, hrt.disabled = false);
+    (diagnosisCheck.checked || hrtCheck.checked) ? (noDocCheck.disabled = true) : (noDocCheck.disabled = false);
+    noDocCheck.checked ? (diagnosisCheck.disabled = true, hrtCheck.disabled = true) : (diagnosisCheck.disabled = false, hrtCheck.disabled = false);
 
-    // conditions for bridging
-    (selfMed.checked || selfMedLikely.checked) && !hrt.checked && !noMed.checked ? (bridgingDesired.disabled = false, bridgingDesiredLabel.innerHTML = 'I need a bridging prescription') : (bridgingDesired.disabled = true, bridgingDesired.checked = false, bridgingDesiredLabel.innerHTML = 'I need a bridging prescription (invalid medication status for bridging)');
-    
-    if (hrt.checked) {
-        bridgingDesired.disabled = true;
-        bridgingDesired.checked = false;
-        bridgingDesiredLabel.innerHTML = 'I need a bridging prescription (invalid document status for bridging)';
-    }
+    // update bridging status as relevant
+    bridgingCheck();
 
-    if ($('.med-status-check:checked').length === 0 && !hrt.checked){
-        bridgingDesired.disabled = true;
-        bridgingDesired.checked = false;
-        bridgingDesiredLabel.innerHTML = "I need a bridging prescription (select medication status)";
-    }
+}
 
-    // conditions for medication status
-    if (selfMed.checked) {
-        selfMedLikely.disabled = true;
-        noMed.disabled = true;
-    }
-    else if (selfMedLikely.checked) {
-        selfMed.disabled = true;
-        noMed.disabled = true;
-    }
-    else if (noMed.checked) {
-        selfMed.disabled = true;
-        selfMedLikely.disabled = true;
-    }
-    else {
-        selfMed.disabled = false;
-        selfMedLikely.disabled = false;
-        noMed.disabled = false;
-    }
-
-    // conditions for immigration options
-    if (!immCheck.checked){
-        immLetter.checked = false;
-    }
-
+function checkAgeStatus() {
     // conditions for age options
-    if (ageCheck.checked){
+    if (under16Check.checked) {
         sharedCareCheck.parentNode.hidden = true;
         sharedCareCheck.checked = false;
         privateSelector.hidden = true;
         privateProviderList.value = "I haven't chosen a provider yet";
         bridgingDesired.parentNode.hidden = true;
+        bridgingDesired.checked = false
         bloodTests.parentNode.hidden = true;
+        bloodTests.checked = false;
         grcCheck.parentNode.hidden = true;
+        grcCheck.checked = false;
         medStatusSection.hidden = true;
-        serviceSelect.value = "Youth (≤16)"
+        // unchecks all medStatusSection checkboxes
+        $('#medStatusSection').find('input:checked[type=checkbox]').prop('checked', false);
+        services.value = "Youth (≤16)";
         $("#services option[value='Adult (17+)']").hide();
         serviceFilters();
     }
-    else{
+    else {
         sharedCareCheck.parentNode.hidden = false;
         bridgingDesired.parentNode.hidden = false;
         bloodTests.parentNode.hidden = false;
         grcCheck.parentNode.hidden = false;
         medStatusSection.hidden = false;
-        
-        
+
         $("#services option[value='Adult (17+)']").show();
         serviceFilters();
     }
 }
 
-function disableButtonsLogic(){
-    var countriesSelect = document.getElementById("countries");
-    var servicesSelect = document.getElementById("services");
-    let docx =  document.getElementById("docx")
-    let pdf =  document.getElementById("pdf")
-    // Only allow submission when a country and service is selected
-    if (countriesSelect.value !== "Choose..." && servicesSelect.value !== "Choose...") {
-        docx.disabled = false;
-        if (pdf.innerText !== "PDF Unavailable") {
-            pdf.disabled = false;
-        }
-        
+function bridgingCheck() {
+    if (noMedCheck.checked) {
+        bridgingDesired.disabled = true;
     }
-    else {
-        docx.disabled = true;
-        pdf.disabled = true;
+
+    // conditions for bridging
+    (selfMedCheck.checked || likelyMedCheck.checked) && !hrtCheck.checked && !noMedCheck.checked ? (bridgingDesired.disabled = false, bridgingDesiredLabel.innerHTML = 'I need a bridging prescription') : (bridgingDesired.disabled = true, bridgingDesired.checked = false, bridgingDesiredLabel.innerHTML = 'I need a bridging prescription (invalid medication status for bridging)');
+
+    if (hrtCheck.checked) {
+        bridgingDesired.disabled = true;
+        bridgingDesired.checked = false;
+        bridgingDesiredLabel.innerHTML = 'I need a bridging prescription (invalid document status for bridging)';
+    }
+
+    if ($('.med-status-check:checked').length === 0 && !hrtCheck.checked) {
+        bridgingDesired.disabled = true;
+        bridgingDesired.checked = false;
+        bridgingDesiredLabel.innerHTML = "I need a bridging prescription (select medication status)";
     }
 }
 
-function countryFilters() {
-    var countriesSelect = document.getElementById("countries");
-    var selectedCountry = countriesSelect.value;
+function checkMedStatus() {
+    // set check boxes
+    if (noMedCheck.checked) {
+        bridgingDesired.disabled = true;
+    }
+    // conditions for medication status
+    if (selfMedCheck.checked) {
+        likelyMedCheck.disabled = true;
+        noMedCheck.disabled = true;
+    }
+    else if (likelyMedCheck.checked) {
+        selfMedCheck.disabled = true;
+        noMedCheck.disabled = true;
+    }
+    else if (noMedCheck.checked) {
+        selfMedCheck.disabled = true;
+        likelyMedCheck.disabled = true;
+    }
+    else {
+        selfMedCheck.disabled = false;
+        likelyMedCheck.disabled = false;
+        noMedCheck.disabled = false;
+    }
+    // update bridging status as relevant
+    bridgingCheck();
+}
 
-    var servicesSelect = document.getElementById("services");
-    var selectedService = servicesSelect.value;
+function serviceFilters() {
+    // selected country dependent on youth services for valid options
+    countryServiceFilters();
+
+    //  change youth options to available services
+    services.value == "Youth (≤16)" ? grcCheck.disabled = true : grcCheck.disabled = false;
+
+}
+
+function countryServiceFilters() {
+    var selectedCountry = countries.value;
+    var selectedService = services.value;
 
     // Only allow submission when a country is selected
     disableButtonsLogic();
@@ -169,102 +158,118 @@ function countryFilters() {
             "Wales": ["Wales"]
         };
     }
-       
-
-    // Filter valid GICs based on country
-    $("#gics").val(0).change();
 
     // Hide all country options initially
-    
+
     $("#gics option[value='Y-England'], #gics option[value='Y-Northern Ireland'], #gics option[value='Y-Scotland'], #gics option[value='Y-Wales']").hide();
 
     $("#gics option[value='England'], #gics option[value='Northern Ireland'], #gics option[value='Scotland'], #gics option[value='Wales']").hide();
-    
-    
 
-    // Show the options related to the selected country
-    if (countryGICMapping[selectedCountry]) {
+
+
+    // Show the options related to the selected country and service
+    if (countryGICMapping[selectedCountry] && selectedService !== "Choose...") {
         countryGICMapping[selectedCountry].forEach(option => {
             $("#gics option[value='" + option + "']").show();
         });
-    } else if (countryGICMapping["Y-" + selectedCountry]) {
+        $("#gics").val(1).change();
+        $("#gics option[value='0']").hide();
+        $("#gics option[value='1']").show();
+
+    } else if (countryGICMapping["Y-" + selectedCountry] && selectedService !== "Choose...") {
         countryGICMapping["Y-" + selectedCountry].forEach(option => {
             $("#gics option[value='" + option + "']").show();
         });
-        
+        $("#gics").val(1).change();
+        $("#gics option[value='0']").hide();
+        $("#gics option[value='1']").show();
+
     } else {
-        $("#gics option[value='countryNeeded']").show();
+        $("#gics option[value='0']").show();
+        $("#gics option[value='1']").hide();
     }
-    
+
 }
 
-function serviceFilters() {
-    var servicesSelect = document.getElementById("services");
-    var grcCheck = document.getElementById("grcCheck")
-    countryFilters();
-
-    //  change youth options to available services
-    servicesSelect.value == "Youth (≤16)" ? grcCheck.disabled = true : grcCheck.disabled = false;
-    
+function revealContentReferral() {
+    referralCheck.checked ? gicSelector.hidden = false : (gicSelector.hidden = true, countryServiceFilters());
 }
 
-function revealContent() {
-    var referralCheck = document.getElementById("referralCheck");
-    var sharedCareCheck = document.getElementById("sharedCareCheck");
-    var gicSelector = document.getElementById("gicSelector");
-    var privateSelector = document.getElementById("privateSelector");
-    var immigrationCheck = document.getElementById("immigrationCheck");
-    var immigrationOption = document.getElementById("immigrationOption");
-    referralCheck.checked ? gicSelector.hidden = false : gicSelector.hidden = true;
-    sharedCareCheck.checked ? privateSelector.hidden = false : privateSelector.hidden = true;
-    immigrationCheck.checked ? immigrationOption.hidden = false : immigrationOption.hidden = true;
+function revealContentSharedCare() {
+    if (sharedCareCheck.checked) {
+        privateSelector.hidden = false;
+    }
+    else {
+        privateSelector.hidden = true;
+        privateProviderList.value = "I haven't chosen a provider yet";
+        $("#privateProviderList").removeClass("is-valid");
+        $("#privateProviderList").removeClass("is-invalid");
+    }
 }
 
-function privateProviderConditions(){
-    var privateProviderList = document.getElementById("privateProviderList");
-    var privateProviderWarningMessage = document.getElementById("notUK")
-    var privateProviderPreferredMessage = document.getElementById("preferred")
+function revealContentImmigration() {
+    immigrationCheck.checked ? immigrationOption.hidden = false : (immigrationOption.hidden = true, immigrationLetterCheck.checked = false);
+}
+
+function privateProviderConditions() {
+    var privateProviderWarningMessage = document.getElementById("notUK");
+    var privateProviderPreferredMessage = document.getElementById("preferred");
     if (privateProviderList.value === "GenderGP") {
         privateProviderList.classList.remove("is-valid");
         privateProviderList.classList.add("is-invalid");
-        privateProviderWarningMessage.innerText =  "This provider is not based in the UK, which deters some GPs from agreeing to shared care."
+        privateProviderWarningMessage.innerText = "This provider is not based in the UK, which deters some GPs from agreeing to shared care."
     }
     else if (privateProviderList.value.includes("Other") || privateProviderList.value.includes("haven't chosen")) {
         privateProviderList.classList.remove("is-invalid");
         privateProviderList.classList.remove("is-valid");
-        privateProviderPreferredMessage.innerText = ""
-        privateProviderWarningMessage.innerText = ""
-
+        privateProviderPreferredMessage.innerText = "";
+        privateProviderWarningMessage.innerText = "";
     }
     else {
         privateProviderList.classList.remove("is-invalid");
         privateProviderList.classList.add("is-valid");
-        privateProviderPreferredMessage.innerText =  "This provider offers GMC registered and UK based specialists."
+        privateProviderPreferredMessage.innerText = "This provider offers GMC registered and UK based specialists.";
     }
 }
 
+function disableButtonsLogic() {
+    let docx = document.getElementById("docx")
+    let pdf = document.getElementById("pdf")
+    // Only allow submission when a country and service is selected
+    if (countries.value !== "Choose..." && services.value !== "Choose...") {
+        docx.disabled = false;
+        if (pdf.innerText !== "PDF Unavailable") {
+            pdf.disabled = false;
+        }
+
+    }
+    else {
+        docx.disabled = true;
+        pdf.disabled = true;
+    }
+}
 // do these on submitting word
-function submitActionsDocx(){
+function submitActionsDocx() {
     $(this).append('<input type="hidden" name="docx" value="docx" /> ');
     $("#generationForm").removeProp("target");
     submitActions();
 }
 
 // do these on submitting pdf
-function submitActionsPdf(){
+function submitActionsPdf() {
     $(this).append('<input type="hidden" name="pdf" value="pdf" /> ');
-    $("#generationForm").prop({"target": "_blank"});
+    $("#generationForm").prop({ "target": "_blank" });
     submitActions();
 }
 
-function submitActions(){
-    if (gics.value !==  "0" ){
-        if (gics.value !== "1"){
+function submitActions() {
+    if (gics.value !== "0") {
+        if (gics.value !== "1") {
             $("#gics :selected").val($("#gics :selected").text());
         };
     };
     document.getElementById("generationForm").submit();
-    
+
     const alertPlaceholder = document.getElementById('alertPlaceholder')
     const wrapper = document.createElement('div')
     wrapper.innerHTML = [
@@ -274,4 +279,4 @@ function submitActions(){
         '</div>'
     ].join('')
     alertPlaceholder.append(wrapper)
-    }
+}
