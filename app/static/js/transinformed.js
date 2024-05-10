@@ -54,7 +54,7 @@ function checkAgeStatus() {
         privateSelector.hidden = true;
         privateProviderList.value = "I haven't chosen a provider yet";
         bridgingDesired.parentNode.hidden = true;
-        bridgingDesired.checked = false
+        bridgingDesired.checked = false;
         bloodTests.parentNode.hidden = true;
         bloodTests.checked = false;
         grcCheck.parentNode.hidden = true;
@@ -239,7 +239,7 @@ function privateProviderConditions() {
     if (privateProviderList.value === "GenderGP") {
         privateProviderList.classList.remove("is-valid");
         privateProviderList.classList.add("is-invalid");
-        privateProviderWarningMessage.innerText = "This provider is not based in the UK, which deters some GPs from agreeing to shared care."
+        privateProviderWarningMessage.innerText = "This provider is not based in the UK, which deters some GPs from agreeing to shared care.";
     }
     else if (privateProviderList.value.includes("Other") || privateProviderList.value.includes("haven't chosen")) {
         privateProviderList.classList.remove("is-invalid");
