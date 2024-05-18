@@ -1,29 +1,55 @@
 <link rel="stylesheet" href="/static/css/transinformed.css">
+<script defer src="/static/js/mobilenav.js"></script>
 
 <div class="header">
     <div class="header-logo-container">
         <img class="bc-logo" src="/static/images/redesign/bclogo.png" />
         <img class="ti-logo" src="/static/images/redesign/tilogo.svg" />
+
     </div>
-    <div class="nav-bar">
-        <div class="header-link-container">
-            <div class="header-link">About</div>
-        </div>
-        <div class="header-link-container">
-            <div class="header-link">Resources</div>
-        </div>
-        <div class="header-link-container">
-            <div class="header-link">Sources</div>
-        </div>
-        <div class="header-link-container">
-            <div class="header-link">Blogs</div>
-        </div>
-        <div class="header-link-container">
-            <div class="header-link">Shop</div>
-        </div>
-    </div>
+
+    <button id="hamburger" class="hamburger-btn" src="/static/images/redesign/hamburger.svg" aria-controls="navigation-menu" aria-expanded="false"> 
+        <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="Hamburger">
+            <path id="Vector" d="M3 7H32" stroke="#6BCACC" stroke-width="5.97618" stroke-linecap="round" stroke-linejoin="round"/>
+            <path id="Vector_2" d="M3 17H32" stroke="#6BCACC" stroke-width="5.97618" stroke-linecap="round" stroke-linejoin="round"/>
+            <path id="Vector_3" d="M3 27H32" stroke="#6BCACC" stroke-width="5.97618" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            </svg>
+    </button>
+
+        <nav class="nav-bar">
+            <div class="header-link-container">
+                <div class="header-link">About</div>
+            </div>
+            <div class="header-link-container">
+                <div class="header-link">Resources</div>
+            </div>
+            <div class="header-link-container">
+                <div class="header-link">Sources</div>
+            </div>
+            <div class="header-link-container">
+                <div class="header-link">Blogs</div>
+            </div>
+            <div class="header-link-container">
+                <div class="header-link">Shop</div>
+            </div>
+        </nav>
 </div>
 
+<nav class="nav-bar-mobile" id="mobile">
+
+    <span class="mobile-link">About</span>
+
+    <span class="mobile-link">Resources</span>
+
+    <span class="mobile-link">Sources</span>
+
+    <span class="mobile-link">Blogs</span>
+
+    <span class="mobile-link">Shop</span>
+
+</nav>
 
 <div class="main-content">
     <div class="layout-card-container">

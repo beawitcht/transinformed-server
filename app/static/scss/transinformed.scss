@@ -1,0 +1,393 @@
+@media (min-width: 778px) {
+    .nav-bar-mobile {
+        display: none;
+    }
+
+    .hamburger-btn {
+        display: none;
+    }
+
+    #hamburger {
+        display: none;
+    }
+
+    .mobile-link-container {
+        display: none;
+    }
+
+    .mobile-link {
+        display: none;
+
+    }
+
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        flex: 1 1 0;
+        align-self: stretch;
+        background: #F9F8F6;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        display: inline-flex;
+    }
+
+    .header {
+        align-self: stretch;
+        height: 256px;
+        background: #0D2846;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        display: flex;
+    }
+
+    .header-link-container {
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        display: flex;
+        padding-bottom: 10px;
+    }
+
+    .header-link {
+        text-align: center;
+        color: white;
+        font-size: 30px;
+        font-family: Montserrat;
+        font-weight: 300;
+        line-height: 36.55px;
+        word-wrap: break-word
+    }
+
+    .header-logo-container {
+        width: 498px;
+        height: 142.98px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        display: inline-flex
+    }
+
+    .nav-bar {
+        padding-left: 10px;
+        padding-right: 10px;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        display: inline-flex
+    }
+
+    .bc-logo {
+        width: 362px;
+        height: 122px
+    }
+
+    .ti-logo {
+        width: 128px;
+        height: 128px
+    }
+
+    .main-content {
+        align-self: stretch;
+        flex: 1 1 0;
+        padding-left: 64px;
+        padding-right: 64px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background: #F9F8F6;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        display: inline-flex
+    }
+
+    .layout-card-container {
+        flex: 1 1 0;
+        height: 748px;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 10px;
+        display: flex;
+        flex-wrap: wrap
+    }
+
+    .card-container {
+        width: 320px;
+        height: 343px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        display: inline-flex
+    }
+
+    .card-image-container {
+        align-self: stretch;
+        height: 205px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        display: flex
+    }
+
+    .card-image {
+        align-self: stretch;
+        flex: 1 1 0
+    }
+
+    .card-text-container {
+        align-self: stretch;
+        flex: 1 1 0;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background: white;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 14px;
+        display: flex
+    }
+
+    .card-heading-container {
+        align-self: stretch;
+        height: 44px;
+        padding-left: 12px;
+        padding-right: 12px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        display: flex
+    }
+
+    .card-heading {
+        align-self: stretch;
+        color: black;
+        font-size: 20px;
+        font-family: Montserrat;
+        font-weight: 600;
+        line-height: 24.37px;
+        word-wrap: break-word
+    }
+
+    .card-description-container {
+        align-self: stretch;
+        height: 40px;
+        padding-left: 12px;
+        padding-right: 12px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        display: flex
+    }
+
+    .card-description {
+        align-self: stretch;
+        flex: 1 1 0;
+        color: black;
+        font-size: 16px;
+        font-family: Montserrat;
+        font-weight: 400;
+        line-height: 19.49px;
+        word-wrap: break-word
+    }
+}
+
+@media (max-width: 777px) {
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        flex: 1 1 0;
+        align-self: stretch;
+        background: #F9F8F6;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        display: inline-flex;
+    }
+
+    .header {
+        align-self: stretch;
+        height: 120px;
+        background: #0D2846;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        display: flex;
+        column-gap: 60%;
+
+    }
+
+    .nav-bar-mobile {
+        display: none;
+    }
+    .nav-bar-mobile[aria-expanded="true"] {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        top: 120px;
+        justify-content: center;
+        background: #0D2846;
+        width: 100%;
+        gap: 24px;
+    }
+
+    .header-link-container {
+        display: none;
+    }
+
+    .header-link {
+        display: none;
+
+    }
+
+    
+    .mobile-link {
+
+        color: #FFF;
+        text-align: center;
+        font-family: Montserrat;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 121.833%;
+        /* 36.55px */
+
+    }
+
+    .header-logo-container {
+        width: 112px;
+        height: 112px;
+        justify-content: flex-start;
+        align-items: center;
+        display: inline-flex;
+        padding: 16px;
+    }
+
+    .hamburger-btn {
+        position: absolute;
+        right: 16px;
+        background: transparent;
+        border: none;
+    }
+
+    .bc-logo {
+        display: none;
+    }
+
+    .ti-logo {
+        width: 112px;
+        height: 112px;
+    }
+
+    .main-content {
+        align-self: stretch;
+        flex: 1 1 0;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background: #F9F8F6;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        display: inline-flex
+    }
+
+    .layout-card-container {
+        flex: 1 1 0;
+        height: 748px;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 10px;
+        display: flex;
+        flex-wrap: wrap
+    }
+
+    .card-container {
+        width: 320px;
+        height: 343px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        display: inline-flex
+    }
+
+    .card-image-container {
+        align-self: stretch;
+        height: 205px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        display: flex
+    }
+
+    .card-image {
+        align-self: stretch;
+        flex: 1 1 0
+    }
+
+    .card-text-container {
+        align-self: stretch;
+        flex: 1 1 0;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background: white;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 14px;
+        display: flex
+    }
+
+    .card-heading-container {
+        align-self: stretch;
+        height: 44px;
+        padding-left: 12px;
+        padding-right: 12px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        display: flex
+    }
+
+    .card-heading {
+        align-self: stretch;
+        color: black;
+        font-size: 20px;
+        font-family: Montserrat;
+        font-weight: 600;
+        line-height: 24.37px;
+        word-wrap: break-word
+    }
+
+    .card-description-container {
+        align-self: stretch;
+        height: 40px;
+        padding-left: 12px;
+        padding-right: 12px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        display: flex
+    }
+
+    .card-description {
+        align-self: stretch;
+        flex: 1 1 0;
+        color: black;
+        font-size: 16px;
+        font-family: Montserrat;
+        font-weight: 400;
+        line-height: 19.49px;
+        word-wrap: break-word
+    }
+}
