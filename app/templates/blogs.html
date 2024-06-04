@@ -8,65 +8,71 @@
 
     </div>
 
-    <button id="hamburger" class="hamburger-btn" src="/static/images/redesign/hamburger.svg" aria-controls="navigation-menu" aria-expanded="false"> 
+    <button id="hamburger" class="hamburger-btn" src="/static/images/redesign/hamburger.svg"
+        aria-controls="navigation-menu" aria-expanded="false">
         <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="Hamburger">
-            <path id="Vector" d="M3 7H32" stroke="#6BCACC" stroke-width="5.97618" stroke-linecap="round" stroke-linejoin="round"/>
-            <path id="Vector_2" d="M3 17H32" stroke="#6BCACC" stroke-width="5.97618" stroke-linecap="round" stroke-linejoin="round"/>
-            <path id="Vector_3" d="M3 27H32" stroke="#6BCACC" stroke-width="5.97618" stroke-linecap="round" stroke-linejoin="round"/>
+                <path id="Vector" d="M3 7H32" stroke="#6BCACC" stroke-width="5.97618" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path id="Vector_2" d="M3 17H32" stroke="#6BCACC" stroke-width="5.97618" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path id="Vector_3" d="M3 27H32" stroke="#6BCACC" stroke-width="5.97618" stroke-linecap="round"
+                    stroke-linejoin="round" />
             </g>
-            </svg>
+        </svg>
     </button>
 
-        <nav class="nav-bar">
-            <div class="header-link-container">
-                <div class="header-link">About</div>
-            </div>
-            <div class="header-link-container">
-                <div class="header-link">Resources</div>
-            </div>
-            <div class="header-link-container">
-                <div class="header-link">Sources</div>
-            </div>
-            <div class="header-link-container">
-                <div class="header-link">Blogs</div>
-            </div>
-            <div class="header-link-container">
-                <div class="header-link">Shop</div>
-            </div>
-        </nav>
+    <nav class="nav-bar">
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/about">About</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/resources">Resources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/sources">Sources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link-active" href="/blogs">Blogs</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/shop">Shop</a></div>
+        </div>
+    </nav>
 </div>
 
 <nav class="nav-bar-mobile" id="mobile">
 
-    <span class="mobile-link">About</span>
+    <span class="mobile-link"><a class="nav-link" href="/about">About</a></span>
 
-    <span class="mobile-link">Resources</span>
+    <span class="mobile-link"><a class="nav-link" href="/resources">Resources</a></span>
 
-    <span class="mobile-link">Sources</span>
+    <span class="mobile-link"><a class="nav-link" href="/sources">Sources</a></span>
 
-    <span class="mobile-link">Blogs</span>
+    <span class="mobile-link"><a class="nav-link-active" href="/blogs">Blogs</a></span>
 
-    <span class="mobile-link">Shop</span>
+    <span class="mobile-link"><a class="nav-link" href="/shop">Shop</a></span>
 
 </nav>
 
 <div class="main-content">
     <div class="layout-card-container">
         {% for blog in medium_feed %}
-        <div class="card-container">
-            <div class="card-image-container">
-                {{blog.card_img | safe}}
-            </div>
-            <div class="card-text-container">
-                <div class="card-heading-container">
-                    <div class="card-heading">{{blog.title}}</div>
+        <a href="/blogs/{{ blog.url_title }}">
+            <div class="card-container">
+                <div class="card-image-container">
+                    {{blog.card_img | safe}}
                 </div>
-                <div class="card-description-container">
-                    <div class="card-description">{{blog.summary}}</div>
+                <div class="card-text-container">
+                    <div class="card-heading-container">
+                        <div class="card-heading">{{blog.title}}</div>
+                    </div>
+                    <div class="card-description-container">
+                        <div class="card-description">{{blog.summary}}</div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
         {% endfor %}
     </div>
 </div>

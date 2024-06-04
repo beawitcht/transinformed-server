@@ -1,3 +1,52 @@
+$secondary: #6BCACC;
+
+.nav-link {
+    color: #FFF;
+    text-decoration: none;
+    
+}
+.nav-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 8px;
+    
+}
+.nav-link-active {
+    color: #FFF;
+    font-weight: bold;
+    text-underline-offset: 8px;
+}
+
+.layout-card-container {
+    flex: 1 1 0;
+    height: 748px;
+    justify-content: center;
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-container {
+    width: 320px;
+    height: 343px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: all;
+    transition-duration: 0.15s;
+}
+
+.card-container:hover {
+    padding-right: 8px;
+    padding-bottom: 8px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    background: $secondary;
+    
+}
+
 @media (min-width: 778px) {
     .nav-bar-mobile {
         display: none;
@@ -104,15 +153,6 @@
         display: inline-flex
     }
 
-    .layout-card-container {
-        flex: 1 1 0;
-        height: 748px;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 10px;
-        display: flex;
-        flex-wrap: wrap
-    }
 
     .card-container {
         width: 320px;
@@ -260,6 +300,7 @@
 
     }
 
+
     .header-logo-container {
         width: 112px;
         height: 112px;
@@ -298,25 +339,7 @@
         gap: 10px;
         display: inline-flex
     }
-
-    .layout-card-container {
-        flex: 1 1 0;
-        height: 748px;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 10px;
-        display: flex;
-        flex-wrap: wrap
-    }
-
-    .card-container {
-        width: 320px;
-        height: 343px;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        display: inline-flex
-    }
+   
 
     .card-image-container {
         align-self: stretch;
