@@ -1,6 +1,18 @@
-<link rel="stylesheet" href="/static/css/transinformed.css">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<script defer src="/static/js/mobilenav.js"></script>
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<title>Blogs - Trans Informed</title>
+<link rel="canonical" href="https://www.transinformed.co.uk/blogs" />
+<meta name="description" content="Blogs around trans healthcare in the uk">
+<meta name="twitter:title" content="Trans Informed - Sources">
+<meta name="twitter:description" content="Blogs around trans healthcare in the uk" >
+<meta name="og:title" content="Trans Informed - Sources">
+<meta name="og:description" content="Blogs around trans healthcare in the uk" >
+<meta name="keywords" content="trans,transgender,HRT,hormones,blogs,health,healthcare,blogging,legislation,guidance">
+{% endblock %}
+
+{% block body %}
 
 <div class="header">
     <a href="/">
@@ -76,3 +88,5 @@
         {% endfor %}
     </div>
 </div>
+
+{% endblock %}

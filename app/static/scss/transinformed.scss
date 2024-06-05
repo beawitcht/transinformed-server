@@ -5,10 +5,17 @@ $nav-link-text-colour: #FFF;
 $card-hover-transition: 180ms;
 $nav-link-hover-transition-in: 250ms;
 $nav-link-hover-transition-out: 150ms;
+$hamburger-anim-time: 200ms;
+
 
 @keyframes slideIn {
-    from { width: 0; }
-      to { width: 100%; }
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
 }
 
 body {
@@ -273,7 +280,7 @@ body {
         height: 100%;
         transition: all 300ms linear;
         transition-behavior: allow-discrete;
-        
+
     }
 
     .nav-bar-mobile[aria-expanded="true"] {
@@ -287,7 +294,7 @@ body {
         gap: 24px;
         padding-bottom: 10px;
         opacity: 1;
-        scale:  1;
+        scale: 1;
         left: 0;
         animation: slideIn 300ms;
         transition-behavior: allow-discrete;
@@ -331,33 +338,36 @@ body {
         right: 16px;
         background: transparent;
         border: none;
-      
+
+        .line {
+            transition: transform $hamburger-anim-time ease-in $hamburger-anim-time, rotate $hamburger-anim-time ease-in, opacity 0ms $hamburger-anim-time;
+            transform-origin: center;
+        }
+
     }
-      
-      .hamburger-btn .line {
-        transition: transform 300ms ease-in 300ms, rotate 300ms ease-in, opacity 0ms 300ms;
-        transform-origin: center;
-      }
-      
-      .hamburger-btn[aria-expanded="true"] .line {
-        transition: transform 300ms ease-in, rotate 300ms ease-in 300ms, opacity 0ms 300ms;
-      }
-      
-      .hamburger-btn[aria-expanded="true"] .bottom {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      
-      .hamburger-btn[aria-expanded="true"] .top {
-        rotate: 45deg;
-        transform: translateY(20px);
-      }
-      
-      
-      .hamburger-btn[aria-expanded="true"] .middle {
-        rotate: -45deg;
-        
-      }
+
+
+    .hamburger-btn[aria-expanded="true"] {
+        .line {
+            transition: transform $hamburger-anim-time ease-in, rotate $hamburger-anim-time ease-in $hamburger-anim-time, opacity 0ms $hamburger-anim-time;
+        }
+
+        .bottom {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .top {
+            rotate: 45deg;
+            transform: translateY(20px);
+        }
+
+        .middle {
+            rotate: -45deg;
+
+        }
+
+    }
 
     .bc-logo {
         display: none;

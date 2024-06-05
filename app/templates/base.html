@@ -5,52 +5,24 @@
     {% block head %}
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.transinformed.co.uk/static/images/twitterimage.png">
-    <meta property="og:image:alt" content="Looking to discuss your gender related healthcare needs with a GP? Create a document tailored to your needs in just a few clicks.">
+    <meta property="og:image:alt"
+        content="Looking to discuss your gender related healthcare needs with a GP? Create a document tailored to your needs in just a few clicks.">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@beawitcht">
     <meta name="twitter:image" content="https://www.transinformed.co.uk/static/images/twitterimage.png">
-    <meta property="twitter:image:alt" content="Looking to discuss your gender related healthcare needs with a GP? Create a document tailored to your needs in just a few clicks.">
-    <link rel="stylesheet" href="/static/css/bootstrapcritmin.css">
+    <meta property="twitter:image:alt"
+        content="Looking to discuss your gender related healthcare needs with a GP? Create a document tailored to your needs in just a few clicks.">
     <link rel="icon" href="/static/images/logo.svg">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="/static/css/transinformed.css">
-    <link rel="stylesheet" id="asyncLoad" href="/static/css/bootstrapaddmin.css" media="print">
-    <script defer src="/static/js/bootstrap.bundle.min.js"></script>
-    <script defer src="/static/js/defercss.js"></script>
+    <script defer src="/static/js/mobilenav.js"></script>
     {% endblock %}
 </head>
-<body>
-    {% block body %}
-    {% endblock %}
-</body>
-<div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-            <span class="mb-3 mb-md-0 text-muted">©️ Knowledge belongs to all without limits</span>
-        </div>
+{% block body %}
 
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="https://twitter.com/beawitching_cic" target="_blank">
-                    <image src="/static/images/twitter.png" class="img-fluid" width="24" height="24" alt="Link to Twitter" role="link">
-                    </image>
-                </a></li>
-            <li class="ms-3"><a class="text-muted" href="https://www.facebook.com/beawitching/" target="_blank">
-                <image src="/static/images/facebook.svg" class="img-fluid" width="24"
-                    height="24" alt="Link to facebook" role="link">
-                </image>
-            </a></li>
-            <li class="ms-3"><a class="text-muted" href="https://github.com/beawitcht/transinformed-server" target="_blank">
-                    <image src="/static/images/github.png" class="img-fluid" width="24" height="24" alt="Link to the trans informed GitHub repo" role="link">
-                    </image>
-                </a></li>
-            <li class="ms-3"><a class="text-muted" href="https://opencollective.com/beawitching" target="_blank">
-                    <image src="/static/images/opencollective.svg" class="img-fluid" width="24"
-                        height="24" alt="Link to open collective page" role="link">
-                    </image>
-                </a></li>
-        </ul>
-    </footer>
-</div>
+{% endblock %}
+
+
 </html>
