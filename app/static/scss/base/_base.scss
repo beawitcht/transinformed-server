@@ -1,0 +1,66 @@
+$background: #F9F8F6;
+$nav-link-text-colour: #FFF;
+$nav-link-hover-transition-in: 250ms;
+$nav-link-hover-transition-out: 150ms;
+$font: Montserrat;
+
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    flex: 1 1 0;
+    align-self: stretch;
+    background: $background;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+}
+
+.footer {
+    flex-shrink: 0;
+    width: 100%;
+    background: #0D2846;
+    color: #FFF;
+    align-content: space-between;
+    font-size: 14px;
+    font-family: $font;
+    line-height: 24.37px;
+
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+}
+
+.footer-links {
+    padding: 8px;
+    gap: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-link {
+    color: $nav-link-text-colour;
+    text-decoration: none;
+    text-underline-offset: 8px;
+    text-decoration: underline rgba(255, 255, 255, 0);
+    transition: text-decoration-color $nav-link-hover-transition-out, text-underline-offset $nav-link-hover-transition-out;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 8px;
+    text-decoration-color: #FFF;
+    transition: text-decoration-color $nav-link-hover-transition-in, text-underline-offset $nav-link-hover-transition-in;
+}
+
+
+.nav-link-active {
+    color: $nav-link-text-colour;
+    font-weight: bold;
+    text-underline-offset: 8px;
+}

@@ -1,0 +1,12 @@
+@use 'base';
+
+$font: base.$font;
+
+@mixin text-properties($color: #000, $font-size: 20px, $font-style: normal, $font-weight: 400) {
+    color: $color;
+    font-family: $font;
+    font-size: $font-size;
+    font-style: $font-style;
+    font-weight: $font-weight;
+    line-height: 121.833%;
+}
