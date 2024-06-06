@@ -13,21 +13,64 @@
 {% endblock %}
 
 {% block body %}
-<a href="/"><img class="mx-auto d-block pt-3" src="/static/images/combinedlogo.png" alt="Beawitching Communities logo and link to home" width="330" height="130" ></a>
-<header class="d-flex justify-content-center py-3">
-    <ul class="d-flex justify-content-center nav nav-pills">
-        <li class="nav-item"><a href="/about" class="nav-link" >About</a></li>
-        <li class="nav-item"><a href="/resources" class="nav-link" >Resources</a></li>
-        <li class="nav-item"><a href="/sources" class="nav-link" >Sources</a></li>
-        <li class="nav-item"><a href="/blogs" class="nav-link active" aria-current="page">Blogs</a></li>
-    </ul>
-</header>
-<div class="container">
-    <div class="blog-content">
-        <h1 class="text-center">{{blog.title}}</h1>
-        {{blog.content[0].value| stylish| safe}}
-        <hr>
-        <a href="https://ko-fi.com/beawitching_cic/shop" target="_blank"><img class="img-fluid rounded mx-auto d-block" src="/static/images/product.png" alt="Support us, Ethically sourced snake shed jewellery and more! All handmade by trans people. Click Here."> </a>
-    </div>
+
+<div class="header">
+    <a href="/">
+        <div class="header-logo-container">
+            <img class="bc-logo" src="/static/images/redesign/bclogo.png" />
+            <img class="ti-logo" src="/static/images/redesign/tilogo.svg" />
+        </div>
+    </a>
+
+    <button id="hamburger" class="hamburger-btn" src="/static/images/redesign/hamburger.svg"
+        aria-controls="navigation-menu" aria-expanded="false">
+        <svg fill="#6BCACC" class="hamburger" viewBox="0 0 100 100" width="35" height="35" xmlns="http://www.w3.org/2000/svg">
+            <rect class="line top" width="80" height="10" x="10" y="25" rx="5">
+            </rect>
+            <rect class="line middle" width="80" height="10" x="10" y="45" rx="5">
+            </rect>
+            <rect class="line bottom" width="80" height="10" x="10" y="65" rx="5">
+            </rect>
+          </svg>
+    </button>
+
+    <nav class="nav-bar">
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/about">About</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/resources">Resources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/sources">Sources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link-active" href="/blogs">Blogs</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/shop">Shop</a></div>
+        </div>
+    </nav>
 </div>
+
+<nav class="nav-bar-mobile" id="mobile">
+
+    <span class="mobile-link"><a class="nav-link" href="/about">About</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/resources">Resources</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/sources">Sources</a></span>
+
+    <span class="mobile-link"><a class="nav-link-active" href="/blogs">Blogs</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/shop">Shop</a></span>
+
+</nav>
+
+<div class="blog-main-content">
+    <h1 class="blog-title">{{ blog.title }}</h1>
+    {% block blog_body %}
+    {% endblock %}
+</div>
+{{ super() }}
 {% endblock %}
