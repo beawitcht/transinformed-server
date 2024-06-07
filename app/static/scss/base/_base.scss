@@ -1,6 +1,18 @@
-@use 'basevars';
-@use 'navsmall';
-@use 'navlarge';
+// Base css to be used across all pages
+@use '../variables/global-vars';
+@use 'nav-small';
+@use 'nav-large';
+
+@keyframes slideIn {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
 
 body {
     min-height: 100vh;
@@ -8,7 +20,7 @@ body {
     margin: 0;
     flex: 1 1 0;
     align-self: stretch;
-    background: basevars.$background;
+    background: global-vars.$background;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -18,11 +30,11 @@ body {
 .footer {
     flex-shrink: 0;
     width: 100%;
-    background: basevars.$primary;
+    background: global-vars.$primary;
     color: #FFF;
     align-content: space-between;
     font-size: 14px;
-    font-family: basevars.$font;
+    font-family: global-vars.$font;
     line-height: 24.37px;
 
 }
@@ -41,23 +53,23 @@ body {
 }
 
 .nav-link {
-    color: basevars.$nav-link-text-colour;
+    color: global-vars.$nav-link-text-colour;
     text-decoration: none;
     text-underline-offset: 8px;
     text-decoration: underline rgba(255, 255, 255, 0);
-    transition: text-decoration-color basevars.$nav-link-hover-transition-out, text-underline-offset basevars.$nav-link-hover-transition-out;
+    transition: text-decoration-color global-vars.$nav-link-hover-transition-out, text-underline-offset global-vars.$nav-link-hover-transition-out;
 }
 
 .nav-link:hover {
     text-decoration: underline;
     text-underline-offset: 8px;
     text-decoration-color: #FFF;
-    transition: text-decoration-color basevars.$nav-link-hover-transition-in, text-underline-offset basevars.$nav-link-hover-transition-in;
+    transition: text-decoration-color global-vars.$nav-link-hover-transition-in, text-underline-offset global-vars.$nav-link-hover-transition-in;
 }
 
 
 .nav-link-active {
-    color: basevars.$nav-link-text-colour;
+    color: global-vars.$nav-link-text-colour;
     font-weight: bold;
     text-underline-offset: 8px;
 }

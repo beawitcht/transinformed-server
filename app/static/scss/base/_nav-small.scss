@@ -1,4 +1,5 @@
-@use 'basevars';
+// Mobile header/navigation
+@use '../variables/global-vars';
 @use 'mixins';
 
 @media (max-width: 777px) {
@@ -6,7 +7,7 @@
     .header {
         align-self: stretch;
         height: 120px;
-        background: basevars.$primary;
+        background: global-vars.$primary;
         flex-direction: row;
         justify-content: start;
         align-items: center;
@@ -21,7 +22,7 @@
         align-items: center;
         top: 120px;
         justify-content: center;
-        background: basevars.$primary;
+        background: global-vars.$primary;
         width: 100%;
         gap: 24px;
         padding-bottom: 10px;
@@ -39,7 +40,7 @@
         align-items: center;
         top: 120px;
         justify-content: center;
-        background: basevars.$primary;
+        background: global-vars.$primary;
         width: 100%;
         gap: 24px;
         padding-bottom: 10px;
@@ -62,7 +63,7 @@
 
     .mobile-link {
         text-align: center;
-        @include mixins.text-properties($font-size: 30px, $font-weight: 300, $color: basevars.$nav-link-text-colour);
+        @include mixins.text-properties($font-size: 30px, $font-weight: 300, $color: global-vars.$nav-link-text-colour);
         /* 36.55px */
 
     }
@@ -84,7 +85,7 @@
         border: none;
 
         .line {
-            transition: transform basevars.$hamburger-anim-time ease-in basevars.$hamburger-anim-time, rotate basevars.$hamburger-anim-time ease-in, opacity 0ms basevars.$hamburger-anim-time;
+            transition: transform global-vars.$hamburger-anim-time ease-in global-vars.$hamburger-anim-time, rotate global-vars.$hamburger-anim-time ease-in, opacity 0ms global-vars.$hamburger-anim-time;
             transform-origin: center;
         }
 
@@ -93,7 +94,7 @@
 
     .hamburger-btn[aria-expanded="true"] {
         .line {
-            transition: transform basevars.$hamburger-anim-time ease-in, rotate basevars.$hamburger-anim-time ease-in basevars.$hamburger-anim-time, opacity 0ms basevars.$hamburger-anim-time;
+            transition: transform global-vars.$hamburger-anim-time ease-in, rotate global-vars.$hamburger-anim-time ease-in global-vars.$hamburger-anim-time, opacity 0ms global-vars.$hamburger-anim-time;
         }
 
         .bottom {

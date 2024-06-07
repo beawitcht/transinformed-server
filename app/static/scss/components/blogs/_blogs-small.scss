@@ -1,0 +1,18 @@
+// small screen blogs selection page
+@use '../../variables/global-vars';
+
+@media (max-width: 777px) {
+    .main-content {
+        align-self: stretch;
+        flex: 1 1 0;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background: global-vars.$background;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        display: inline-flex
+    }
+}
