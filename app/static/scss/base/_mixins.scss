@@ -12,3 +12,10 @@ $font: global-vars.$font;
     font-weight: $font-weight;
     line-height: 121.833%;
 }
+
+@mixin left-aligned-body {
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+    align-self: stretch;
+}

@@ -10,111 +10,76 @@
 <meta name="og:title" content="Trans Informed - Resources">
 <meta name="og:description" content="Additional resources for HRT access and other transgender related healthcare needs." >
 <meta name="keywords" content="trans,transgender,HRT,hormones,useful resources,health,healthcare,resources,blog">
+<link rel="stylesheet" href="/static/css/resources.css">
 {% endblock %}
 
 {% block body %}
-<a href="/"><img class="mx-auto d-block pt-3" src="/static/images/combinedlogo.png" alt="Beawitching Communities logo and link to home" width="330" height="130" ></a>
-<header class="d-flex justify-content-center py-3">
-    <ul class="d-flex justify-content-center nav nav-pills">
-        <li class="nav-item"><a href="/about" class="nav-link" >About</a></li>
-        <li class="nav-item"><a href="/resources" class="nav-link active" aria-current="page">Resources</a></li>
-        <li class="nav-item"><a href="/sources" class="nav-link" >Sources</a></li>
-        <li class="nav-item"><a href="/blogs" class="nav-link">Blogs</a></li>
-    </ul>
-</header>
 
+<div class="header">
+    {% block header %}
+    {{ super() }}
+    {% endblock %}
 
-<div class="container">
-    <main>
-        <div class="py-5">
-            <h1 class="text-center">Useful Resources</h1>
-            <hr>
-            <div class="accordion" id="accordionrResources">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="resources-formalDiagnosis">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#resources-collapseOne" aria-expanded="false" aria-controls="resources-collapseOne">
-                            Learn more about getting a formal diagnosis
-                        </button>
-                    </h2>
-                    <div id="resources-collapseOne" class="accordion-collapse collapse" aria-labelledby="resources-formalDiagnosis">
-                        <div class="accordion-body">
-                            Check out <a target="_blank" rel="noopener" href="https://genderkit.org.uk/article/formal-diagnosis/">this resource from the Gender Construction Kit</a> to learn more about getting a formal diagnosis
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="resources-formalDiagnosis">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#resources-collapseFour" aria-expanded="false" aria-controls="resources-collapseFour">
-                            Learn more about getting a letter of recommendation for HRT
-                        </button>
-                    </h2>
-                    <div id="resources-collapseFour" class="accordion-collapse collapse" aria-labelledby="resources-formalDiagnosis">
-                        <div class="accordion-body">
-                            This letter can be obtained from your chosen private healthcare provider, or from a GIC
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="resources-privateService">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#resources-collapseTwo" aria-expanded="false" aria-controls="resources-collapseTwo">
-                            Choosing a private healthcare provider
-                        </button>
-                    </h2>
-                    <div id="resources-collapseTwo" class="accordion-collapse collapse"
-                        aria-labelledby="resources-privateService">
-                        <div class="accordion-body">
-                            Check out <a target="_blank" rel="noopener" href="https://genderkit.org.uk/resources/gender-services/">this resource from Gender Construction Kit</a> for guidance on choosing a provider.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="resources-immigrationResource">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#resources-collapseImm" aria-expanded="false" aria-controls="resources-collapseImm">
-                            Learn more about continuing HRT when immigrating to the UK
-                        </button>
-                    </h2>
-                    <div id="resources-collapseImm" class="accordion-collapse collapse"
-                        aria-labelledby="resources-immigrationResource">
-                        <div class="accordion-body">
-                            Check out <a target="_blank" rel="noopener" href="https://medium.com/@zoyander/continuing-hrt-after-arriving-in-the-uk-2655abd87fa7#a7f3">this section on getting a letter</a> for continuing HRT in the UK.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="resources-youthResource">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#resources-collapseYouth" aria-expanded="false" aria-controls="resources-collapseYouth">
-                            Resources for gender-diverse youth
-                        </button>
-                    </h2>
-                    <div id="resources-collapseYouth" class="accordion-collapse collapse"
-                        aria-labelledby="resources-youthResource">
-                        <div class="accordion-body">
-                            We hope to have a specific guide for gender-diverse youth in the future. Check out <a target="_blank" rel="noopener" href="https://mermaidsuk.org.uk/young-people/resources-for-young-people/">the resources provided by mermaids</a>.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="resources-sharedCareResource">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#resources-collapseSharedCare" aria-expanded="false" aria-controls="resources-collapseSharedCare">
-                            What is a shared care agreement?
-                        </button>
-                    </h2>
-                    <div id="resources-collapseSharedCare" class="accordion-collapse collapse"
-                        aria-labelledby="resources-SharedCare">
-                        <div class="accordion-body">
-                            Check out our <a target="_blank" rel="noopener" href="/static/files/shared-care-faq-for-patients.pdf">document about what shared care is</a>.
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <nav class="nav-bar">
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/about">About</a></div>
         </div>
-    </main>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link-active" href="/resources">Resources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/sources">Sources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/blogs">Blogs</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/shop">Shop</a></div>
+        </div>
+    </nav>
 </div>
 
+<nav class="nav-bar-mobile" id="mobile">
+
+    <span class="mobile-link"><a class="nav-link" href="/about">About</a></span>
+
+    <span class="mobile-link"><a class="nav-link-active" href="/resources">Resources</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/sources">Sources</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/blogs">Blogs</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/shop">Shop</a></span>
+
+</nav>
+
+<div class="main-content">
+    <h1>Useful Resources</h1>
+    
+    <h2>Learn more about getting a formal diagnosis</h2>
+    <p>Check out <a target="_blank" rel="noopener" href="https://genderkit.org.uk/article/formal-diagnosis/">this resource from the Gender Construction Kit</a> to learn more about getting a formal diagnosis</p>
+
+    <span class="section-break"></span>
+
+    <h2>Choosing a private healthcare provider</h2>
+    <p>Check out <a target="_blank" rel="noopener" href="https://genderkit.org.uk/resources/gender-services/">this resource from Gender Construction Kit</a> for guidance on choosing a provider.</p>
+    
+    <span class="section-break"></span>
+
+    <h2>Learn more about continuing HRT when immigrating to the UK</h2>
+    <p>Check out <a target="_blank" rel="noopener" href="https://medium.com/@zoyander/continuing-hrt-after-arriving-in-the-uk-2655abd87fa7#a7f3">this section on getting a letter</a> for continuing HRT in the UK.</p>
+
+    <span class="section-break"></span>
+    
+    <h2>Resources for TNBI youth</h2>
+    <p>Check out <a target="_blank" rel="noopener" href="https://mermaidsuk.org.uk/young-people/resources-for-young-people/">the resources provided by mermaids</a>.</p>
+
+    <span class="section-break"></span>
+    
+    <h2>What is a shared care agreement?</h2>
+    <p>Check out our <a target="_blank" rel="noopener" href="/static/files/shared-care-faq-for-patients.pdf">document about what shared care is</a>.</p>
+</div>
+{% block footer %}
+{{ super() }}
+{% endblock %}
 {% endblock %}

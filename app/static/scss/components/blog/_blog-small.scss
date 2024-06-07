@@ -2,16 +2,6 @@
 @use '../../variables/global-vars';
 @use '../../base/mixins';
 
-
-
-@mixin left-aligned-body {
-    display: flex;
-    justify-content: flex-start;
-    gap: 8px;
-    align-self: stretch;
-}
-
-
 @media (max-width: 777px) {
     .blog-main-content {
         display: flex;
@@ -24,7 +14,7 @@
     }
 
     .blog-title {
-        @include left-aligned-body;
+        @include mixins.left-aligned-body;
         margin-bottom: 4px;
     }
 
@@ -37,7 +27,7 @@
     }
 
     .blog-description {
-        @include left-aligned-body;
+        @include mixins.left-aligned-body;
         margin-top: 0;
         margin-bottom: 10px;
     }
@@ -139,14 +129,6 @@
     }
 
     .blog-subheading-layout {
-        @include left-aligned-body;
-    }
-
-
-    .blog-section-break {
-        background: url('/static/images/linebreak.svg');
-        width: 95px;
-        height: 32px;
-        margin-top: 10px;
+        @include mixins.left-aligned-body;
     }
 }

@@ -10,41 +10,66 @@
 <meta name="og:title" content="Trans Informed - Sources">
 <meta name="og:description" content="Data sources used in the creation of the document on access to HRT and other trans related healthcare needs." >
 <meta name="keywords" content="trans,transgender,HRT,hormones,data sources,health,healthcare,sources,legislation,guidance">
+<link rel="stylesheet" href="/static/css/sources.css">
 {% endblock %}
 
 {% block body %}
-<a href="/"><img class="mx-auto d-block pt-3" src="/static/images/combinedlogo.png" alt="Beawitching Communities logo and link to home" width="330" height="130" ></a>
-<header class="d-flex justify-content-center py-3">
-    <ul class="d-flex justify-content-center nav nav-pills">
-        <li class="nav-item"><a href="/about" class="nav-link" >About</a></li>
-        <li class="nav-item"><a href="/resources" class="nav-link">Resources</a></li>
-        <li class="nav-item"><a href="/sources" class="nav-link active" aria-current="page">Sources</a></li>
-        <li class="nav-item"><a href="/blogs" class="nav-link">Blogs</a></li>
-    </ul>
-</header>
 
+<div class="header">
+    {% block header %}
+    {{ super() }}
+    {% endblock %}
 
-<div class="container">
-    <main>
-        <div class="py-5">
-            <h1 class="text-center">Data Sources</h1>
-            <hr>
-            <ul class="list-group">
-                <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="https://www.gmc-uk.org/ethical-guidance/ethical-hub/trans-healthcare">GMC Guidance on trans healthcare</a>
-                <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="https://www.transinformed.co.uk/static/files/service-specification-1719.pdf">NHS England - Gender Identity Services for Adults (Non-Surgical Interventions)</a>
-                <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="https://www.transinformed.co.uk/static/files/SSC-1826.pdf">NHS England - Guidance for GPs on working with private online medical service providers </a>
-                <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="https://www.transinformed.co.uk/static/files/SSC-1620.pdf">NHS England - Primary Care Responsibilities in Prescribing and Monitoring Hormone Therapy for Transgender and Non-Binary Adults </a>
-                <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="https://www.england.nhs.uk/rtt/">NHS England - Referral to treatment guidelines</a>
-                <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="https://www.transinformed.co.uk/static/files/rcp-cr181.pdf">Royal College of Psychiatrists - guidelines for treating adults with gender dysphoria</a>
-                <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="https://www.transinformed.co.uk/static/files/gmc-ce-letter.pdf">Letter from Susan Goldsmith - Chief Executive of the GMC</a>
-                <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="https://www.transinformed.co.uk/static/files/Endocrine-management-of-gender-dysphoria-in-adults.pdf">NHS Wales - Endocrine Management of Gender Dysphoria in Adults: Prescribing Guidance for Non-specialist Practitioners </a>
-                <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="https://www.transinformed.co.uk/static/files/cyp-gnrss-referral-process.pdf">Arden & GEM CYP-GNRSS referral process, minimum data set and referral criteria </a>
-                <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="https://www.transinformed.co.uk/static/files/gender-experience-summary-questionnaire.pdf">Gender experience summary (GES) questionnaire </a>
-                <a target="_blank" rel="noopener" class="list-group-item list-group-item" href="https://www.transinformed.co.uk/static/files/interim-service-spec-youth-12-March-2024.pdf">Youth interim service specification </a>
-            </ul>
+    <nav class="nav-bar">
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/about">About</a></div>
         </div>
-    </main>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/resources">Resources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link-active" href="/sources">Sources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/blogs">Blogs</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/shop">Shop</a></div>
+        </div>
+    </nav>
 </div>
-                       
 
+<nav class="nav-bar-mobile" id="mobile">
+
+    <span class="mobile-link"><a class="nav-link" href="/about">About</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/resources">Resources</a></span>
+
+    <span class="mobile-link"><a class="nav-link-active" href="/sources">Sources</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/blogs">Blogs</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/shop">Shop</a></span>
+
+</nav>
+
+<div class="main-content">
+    <h1>Data Sources</h1>
+            <ul>
+                <li><a target="_blank" rel="noopener" class="" href="https://www.gmc-uk.org/ethical-guidance/ethical-hub/trans-healthcare">GMC Guidance on trans healthcare</a></li>
+                <li><a target="_blank" rel="noopener" class="" href="https://www.transinformed.co.uk/static/files/service-specification-1719.pdf">NHS England - Gender Identity Services for Adults (Non-Surgical Interventions)</a></li>
+                <li><a target="_blank" rel="noopener" class="" href="https://www.transinformed.co.uk/static/files/SSC-1826.pdf">NHS England - Guidance for GPs on working with private online medical service providers </a></li>
+                <li><a target="_blank" rel="noopener" class="" href="https://www.transinformed.co.uk/static/files/SSC-1620.pdf">NHS England - Primary Care Responsibilities in Prescribing and Monitoring Hormone Therapy for Transgender and Non-Binary Adults </a></li>
+                <li><a target="_blank" rel="noopener" class="" href="https://www.england.nhs.uk/rtt/">NHS England - Referral to treatment guidelines</a></li>
+                <li><a target="_blank" rel="noopener" class="" href="https://www.transinformed.co.uk/static/files/rcp-cr181.pdf">Royal College of Psychiatrists - guidelines for treating adults with gender dysphoria</a></li>
+                <li><a target="_blank" rel="noopener" class="" href="https://www.transinformed.co.uk/static/files/gmc-ce-letter.pdf">Letter from Susan Goldsmith - Chief Executive of the GMC</a></li>
+                <li><a target="_blank" rel="noopener" class="" href="https://www.transinformed.co.uk/static/files/Endocrine-management-of-gender-dysphoria-in-adults.pdf">NHS Wales - Endocrine Management of Gender Dysphoria in Adults: Prescribing Guidance for Non-specialist Practitioners </a></li>
+                <li><a target="_blank" rel="noopener" class="" href="https://www.transinformed.co.uk/static/files/cyp-gnrss-referral-process.pdf">Arden & GEM CYP-GNRSS referral process, minimum data set and referral criteria </a></li>
+                <li><a target="_blank" rel="noopener" class="" href="https://www.transinformed.co.uk/static/files/gender-experience-summary-questionnaire.pdf">Gender experience summary (GES) questionnaire </a></li>
+                <li><a target="_blank" rel="noopener" class="" href="https://www.transinformed.co.uk/static/files/interim-service-spec-youth-12-March-2024.pdf">Youth interim service specification </a></li>
+            </ul>
+</div>
+{% block footer %}
+{{ super() }}
+{% endblock %}
 {% endblock %}

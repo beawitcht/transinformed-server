@@ -1,9 +1,9 @@
-// blog content page
+// about page
 
-@use 'components/blog/blog-large';
-@use 'components/blog/blog-small';
+@use 'components/about/about-large';
+@use 'components/about/about-small';
 
-.blog-section-break {
+.section-break {
     background: url('/static/images/linebreak.svg');
     width: 95px;
     height: 32px;
