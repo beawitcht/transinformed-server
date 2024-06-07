@@ -1,0 +1,17 @@
+@use '../../base/basevars';
+
+@media (min-width: 778px) {
+.main-content {
+    align-self: stretch;
+    flex: 1 1 0;
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: basevars.$background;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex
+}
+}

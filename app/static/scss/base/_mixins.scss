@@ -1,6 +1,6 @@
-@use 'base';
+@use 'basevars';
 
-$font: base.$font;
+$font: basevars.$font;
 
 @mixin text-properties($color: #000, $font-size: 20px, $font-style: normal, $font-weight: 400) {
     color: $color;
