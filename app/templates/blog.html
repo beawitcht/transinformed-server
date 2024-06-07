@@ -17,25 +17,9 @@
 {% block body %}
 
 <div class="header">
-    <a href="/">
-        <div class="header-logo-container">
-            <img class="bc-logo" src="/static/images/redesign/bclogo.png" />
-            <img class="ti-logo" src="/static/images/redesign/tilogo.svg" />
-        </div>
-    </a>
-
-    <button id="hamburger" class="hamburger-btn" src="/static/images/redesign/hamburger.svg"
-        aria-controls="navigation-menu" aria-expanded="false">
-        <svg fill="#6BCACC" class="hamburger" viewBox="0 0 100 100" width="35" height="35" xmlns="http://www.w3.org/2000/svg">
-            <rect class="line top" width="80" height="10" x="10" y="25" rx="5">
-            </rect>
-            <rect class="line middle" width="80" height="10" x="10" y="45" rx="5">
-            </rect>
-            <rect class="line bottom" width="80" height="10" x="10" y="65" rx="5">
-            </rect>
-          </svg>
-    </button>
-
+    {% block header %}
+    {{ super() }}
+    {% endblock %}
     <nav class="nav-bar">
         <div class="header-link-container">
             <div class="header-link"><a class="nav-link" href="/about">About</a></div>
@@ -88,5 +72,7 @@
     {% endif %}
     {% endblock %}
 </div>
+{% block footer %}
 {{ super() }}
+{% endblock %}
 {% endblock %}

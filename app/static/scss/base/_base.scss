@@ -73,3 +73,14 @@ body {
     font-weight: bold;
     text-underline-offset: 8px;
 }
+
+.back-to-top-btn {
+    display: none;
+    position: fixed;
+    bottom: 150px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    z-index: 9999;
+    opacity: 0.8;
+}
