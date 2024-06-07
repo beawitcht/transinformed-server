@@ -73,6 +73,20 @@
     <h1 class="blog-title">{{ blog.title }}</h1>
     {% block blog_body %}
     {% endblock %}
+    {% block blog_ad %}
+    {% set imageUse = range(1, 3) | random %}
+    {% if imageUse == 1 %}
+        <span class="blog-section-break"></span>
+        <a href="https://ko-fi.com/beawitching_cic/shop" target="_blank">
+        <img class="blog-image-container blog-image" alt="Support us, Ethically sourced, handmade snake shed jewellery and more! Click Here to go to the store." src="/static/images/product1.png">
+        </a>
+    {% else %}
+        <span class="blog-section-break"></span>
+        <a href="https://ko-fi.com/beawitching_cic/shop" target="_blank">
+        <img class="blog-image-container blog-image" alt="A picture of a mug with that reads 'I wanted healthcare but all I got is this lousy mug' the text 'Merch and more!' is displayed below. Click Here to go to the store." src="/static/images/product2.png">
+        </a>
+    {% endif %}
+    {% endblock %}
 </div>
 {{ super() }}
 {% endblock %}

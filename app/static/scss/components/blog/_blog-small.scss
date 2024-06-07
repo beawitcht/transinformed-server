@@ -50,6 +50,7 @@
     .blog-image {
         width: 248px;
         height: 176px;
+        padding-left: 14px;
     }
 
     .blog-header {
@@ -65,21 +66,20 @@
     }
 
     .blog-image-caption {
-        display: inline-flexbox;
         justify-content: center;
         align-items: center;
     }
 
     figcaption {
-        @include mixins.text-properties($font-size: 13px);
+        @include mixins.text-properties($font-size: 14px);
         align-items: center;
     }
 
     figure {
         margin: 0;
+        padding: 10px;
         align-self: center;
-        width: 248px;
-        height: 176px;
+        
     }
 
     .blog-paragraph {

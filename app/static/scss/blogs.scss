@@ -7,16 +7,6 @@
 $card-hover-transition: 180ms;
 $card-text-background: #FFF;
 
-@keyframes slideIn {
-    from {
-        width: 0;
-    }
-
-    to {
-        width: 100%;
-    }
-}
-
 .layout-card-container {
     flex: 1 1 0;
     height: 100%;

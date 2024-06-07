@@ -27,6 +27,6 @@ for blog in entries:
         with open(blog_file_path, 'w+') as f:
             # output to html file with inheritance of blog.html - allows for modifying HTML directly for formatting
             # when articles are updated, they will need to be manually deleted and re-created
-            f.write("{% extends 'blog.html' %}\n{{ super() }}\n{% block blog_body %}\n" + blog_content + "\n{% endblock %}")
+            f.write("{% extends 'blog.html' %}\n{{ super() }}\n{% block blog_body %}\n" + blog_content + "\n{% endblock %}\n{% block ad %}\n{{ super() }}\n{% endblock %}")
 
         print(f"{blog.title} added!")
