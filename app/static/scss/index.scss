@@ -1,0 +1,54 @@
+// index content page
+@use 'variables/global-vars';
+@use 'base/mixins';
+@use 'components/index/index-large';
+@use 'components/index/index-small';
+
+.index-section-break {
+    background: url('/static/images/linebreak.svg');
+    width: 95px;
+    height: 32px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dropdown-container {
+    margin-top: 4px;
+    margin-bottom: 16px;
+    display: flex;
+    width: 230px;
+    padding: 8px 16px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    border-color: #FFF;
+    background: #fff;
+}
+
+.dropdown-text {
+    @include mixins.text-properties($font-size: 16px, $color: #667085);
+}
+
+.dropdown-arrow {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.dropdown-label {
+    @include mixins.text-properties($font-size: 18px);
+}
+
+.badge-container {
+    display: inline-flex;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 32px;
+    background: #A7112C;
+}
+
+.badge-text {
+    @include mixins.text-properties($font-size: 14px, $color: #FFF);
+}

@@ -1,0 +1,139 @@
+@use '../../variables/global-vars';
+@use '../../base/mixins';
+
+.main-content {
+    display: flex;
+    padding: 10px 175px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+h1 {
+    @include mixins.text-properties($font-size: 42px, $font-weight: 700);
+    margin-bottom: 0;
+}
+
+h2 {
+    @include mixins.text-properties($font-size: 34px, $font-weight: 600);
+    margin-bottom: 0;
+}
+
+h3 {
+    @include mixins.text-properties($font-size: 30px, $font-weight: 600);
+    margin-bottom: 0;
+}
+
+h4 {
+    margin: 0;
+}
+
+.title-desc {
+    @include mixins.text-properties($font-size: 28px, $font-weight: 300);
+    margin-top: 4px;
+}
+
+.descriptive {
+    @include mixins.text-properties($font-size: 24px, $font-weight: 300);
+    margin-top: 4px;
+}
+
+.check-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.check-box {
+    border: 2px solid #000;
+    width: 70px;
+    height: 70px;
+    accent-color: #eb3b5b;
+}
+
+
+.check-label {
+    @include mixins.text-properties($font-size: 24px);
+}
+
+.btn-docx {
+    display: inline-flex;
+    width: 380px;
+    height: 70px;
+    padding: 24px;
+    margin-right: 0;
+    padding-right: -4px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 6px 0px 0px 6px;
+    border: 1px solid #000;
+    @include mixins.text-properties($font-size: 42px, $font-weight: 700);
+
+}
+
+.btn-docx:hover:enabled {
+    background: #EB3B5B;
+}
+
+.btn-pdf {
+    display: inline-flex;
+    @include mixins.text-properties($font-size: 42px, $font-weight: 700);
+    width: 380px;
+    height: 70px;
+    padding: 24px;
+    margin-left: -4px;
+    padding-left: -4px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 0px 6px 6px 0px;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-left: none;
+}
+
+.btn-pdf:hover:enabled {
+    background: #EB3B5B;
+}
+
+button:disabled {
+    opacity: 0.5;
+}
+
+.text-input {
+    display: flex;
+    width: 416px;
+    height: 64px;
+    padding: 0px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 6px;
+    border: 2px solid #000;
+    @include mixins.text-properties($font-size: 20px, $color: #595959);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.text-input-label {
+    @include mixins.text-properties()
+}
+
+.info-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.info-label[aria-expanded="true"] {
+    margin-left: 86px;
+    @include mixins.text-properties($font-size: 20px, $color: #595959);
+}
+
+.info-label[aria-expanded="false"] {
+    display: none;
+}
