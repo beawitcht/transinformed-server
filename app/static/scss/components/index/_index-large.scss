@@ -5,7 +5,7 @@
     display: flex;
     padding: 10px 175px;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
     flex: 1 0 0;
     align-self: stretch;
@@ -17,8 +17,9 @@ h1 {
 }
 
 h2 {
-    @include mixins.text-properties($font-size: 34px, $font-weight: 600);
+    @include mixins.text-properties($font-size: 36px, $font-weight: 600);
     margin-bottom: 0;
+    text-align: center;
 }
 
 h3 {
@@ -28,6 +29,11 @@ h3 {
 
 h4 {
     margin: 0;
+}
+
+p {
+    @include mixins.text-properties($font-size: 18px);
+    text-align: center;
 }
 
 .title-desc {
@@ -43,15 +49,18 @@ h4 {
 .check-container {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    width: 100%;
     gap: 8px;
 }
 
 .check-box {
-    border: 2px solid #000;
     width: 70px;
     height: 70px;
     accent-color: #eb3b5b;
+    flex-shrink: 0;
 }
+
 
 
 .check-label {

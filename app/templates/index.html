@@ -58,113 +58,110 @@
 
 </nav>
 
-<div class="main-content">
+
+
+
+<form class="main-content needs-validation" id="generationForm" action="/" method="post">
 
     <h1>Create your trans healthcare guide</h1>
     <p class="title-desc">A personalised supporting document to accessing HRT and other transition related services
         through your GP.</p>
 
-
-
-
     <h2>Template info</h2>
     <p class="descriptive">Data to be generated</p>
-    <form class="needs-validation" id="generationForm" action="/" method="post">
-
-
-
-        {{ form.countries.label(for='form.countries.name', name='country', class='dropdown-label') }}
-        <span class="badge-container badge-text">Required</span>
-        {% if form.countries.errors|length > 0 %} {{ form.countries(class='dropdown-container dropdown-text is-invalid',
-        id='countries')}}
-        {% else %} {{ form.countries(class='dropdown-container dropdown-text', id='countries')}}
-        {% endif %}
-        <div class="invalid-feedback ">
-            {% for error in form.countries.errors %}
-            {{error}}
-            {% endfor %}
-        </div>
-
-
-        <div class="col-md-12 required border-start border-4 rounded">
-            <div class="col-md-3">
-                {{ form.services.label(for='form.services.name', name='service', class='dropdown-label') }}
-                <span class="badge-container badge-text">Required</span>
-                {% if form.services.errors|length > 0 %} {{ form.services(class='dropdown-container dropdown-text
-                is-invalid',
-                id='services')}}
-                {% else %} {{ form.services(class='dropdown-container dropdown-text', id='services')}}
-                {% endif %}
-                <div class="invalid-feedback ">
-                    {% for error in form.services.errors %}
-                    {{error}}
-                    {% endfor %}
-                </div>
+    <div class="dropdowns">
+        <div class="dropdown-container">
+            {{ form.countries.label(for='form.countries.name', name='country', class='dropdown-label') }}
+            <span class="badge-container badge-text">Required</span>
+            {% if form.countries.errors|length > 0 %} {{ form.countries(class='dropdown-text
+            is-invalid',
+            id='countries')}}
+            {% else %} {{ form.countries(class='dropdown-text', id='countries')}}
+            {% endif %}
+            <div class="invalid-feedback ">
+                {% for error in form.countries.errors %}
+                {{error}}
+                {% endfor %}
             </div>
         </div>
 
-        <div id="docStatusSection" class="col-md-6 border-start border-4 rounded">
-            <h3>Documents held</h3>
-            <div class="check-container">
-                {{form.formal_diagnosis(class='check-box', type='checkbox', role='checkbox',
-                id='diagnosisCheck')}}
-                {{form.formal_diagnosis.label(class='check-label', for='diagnosisCheck')}}
-
-            </div>
-            <div class="check-container">
-                {{form.hrt_recommendation(class='check-box', type='checkbox', role='checkbox',
-                id='hrtCheck')}}
-                {{form.hrt_recommendation.label(class='check-label', for='hrtCheck')}}
-            </div>
-            <div class="check-container">
-                {{form.no_doc(class='check-box', type='checkbox', role='checkbox', id='noDocCheck')}}
-                {{form.no_doc.label(class='check-label', for='noDocCheck')}}
+        <div class="dropdown-container">
+            {{ form.services.label(for='form.services.name', name='service', class='dropdown-label') }}
+            <span class="badge-container badge-text">Required</span>
+            {% if form.services.errors|length > 0 %} {{ form.services(class='dropdown-text
+            is-invalid',
+            id='services')}}
+            {% else %} {{ form.services(class='dropdown-text', id='services')}}
+            {% endif %}
+            <div class="invalid-feedback ">
+                {% for error in form.services.errors %}
+                {{error}}
+                {% endfor %}
             </div>
         </div>
-        <div class="col-md-6 border-start border-4 rounded">
-            <h3>My current status</h3>
+    </div>
+    <div id="docStatusSection" class="section-container">
+        <h3>Documents held</h3>
+        <div class="check-container">
+            {{form.formal_diagnosis(class='check-box', type='checkbox', role='checkbox',
+            id='diagnosisCheck')}}
+            {{form.formal_diagnosis.label(class='check-label', for='diagnosisCheck')}}
 
-            <div class="check-container">
-                {{form.under_16(class='check-box', type='checkbox', role='checkbox',
-                id='under16Check')}}
-                {{form.under_16.label(class='check-label', for='under16Check')}}
-                <label class="more-info"><button id="under16LabelBtn" class="info-btn" type="button"
-                        aria-controls="under16InfoLabel" aria-expanded="false"><svg width="44" height="44"
-                            viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
-                                d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
-                                fill="#EB3B5B" />
-                        </svg></button>
-                </label>
-            </div>
-            <div class="info-label" id="under16InfoLabel" aria-expanded="false">
-                <h4 class="info-heading">Why are you asking my age?</h4>
-                Healthcare for trans youth is currently heavily restricted in the UK, selecting this option will adapt
-                the options and document content to what is currently available to those under 16.
-            </div>
-            <div class="check-container">
-                {{form.no_fixed_address(class='check-box', type='checkbox', role='checkbox',
-                id='fixedAddressCheck')}}
-                {{form.no_fixed_address.label(class='check-label', for='fixedAddressCheck')}}
-                <label class="more-info"><button id="fixedAddressLabelBtn" class="info-btn" type="button"
-                        aria-controls="fixedAddressInfoLabel" aria-expanded="false"><svg width="44" height="44"
-                            viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
-                                d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
-                                fill="#EB3B5B" />
-                        </svg></button>
-                </label>
-            </div>
-            <div class="info-label" id="fixedAddressInfoLabel" aria-expanded="false">
-                <h4 class="info-heading">Why are you asking about my address?</h4>
-                We ask you if you have a fixed address to add a section to the document clarifying
-                that you are entitled to access healthcare from a GP without any proof of address.
-            </div>
-            <div class="check-container">
-                {{form.no_id_proof(class='check-box', type='checkbox', role='checkbox',
-                id='noIdProofCheck')}}
-                {{form.no_id_proof.label(class='check-label', for='noIdProofCheck')}}
-                <label class="more-info"><button id="noIdProofLabelBtn" class="info-btn" type="button"
+        </div>
+        <div class="check-container">
+            {{form.hrt_recommendation(class='check-box', type='checkbox', role='checkbox',
+            id='hrtCheck')}}
+            {{form.hrt_recommendation.label(class='check-label', for='hrtCheck')}}
+        </div>
+        <div class="check-container">
+            {{form.no_doc(class='check-box', type='checkbox', role='checkbox', id='noDocCheck')}}
+            {{form.no_doc.label(class='check-label', for='noDocCheck')}}
+        </div>
+    </div>
+    <div class="section-container">
+        <h3>My current status</h3>
+
+        <div class="check-container">
+            {{form.under_16(class='check-box', type='checkbox', role='checkbox',
+            id='under16Check')}}
+            {{form.under_16.label(class='check-label', for='under16Check')}}
+            <label class="more-info"><button id="under16LabelBtn" class="info-btn" type="button"
+                    aria-controls="under16InfoLabel" aria-expanded="false"><svg width="44" height="44"
+                        viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
+                            fill="#EB3B5B" />
+                    </svg></button>
+            </label>
+        </div>
+        <div class="info-label" id="under16InfoLabel" aria-expanded="false">
+            <h4 class="info-heading">Why are you asking my age?</h4>
+            Healthcare for trans youth is currently heavily restricted in the UK, selecting this option will adapt
+            the options and document content to what is currently available to those under 16.
+        </div>
+        <div class="check-container">
+            {{form.no_fixed_address(class='check-box', type='checkbox', role='checkbox',
+            id='fixedAddressCheck')}}
+            {{form.no_fixed_address.label(class='check-label', for='fixedAddressCheck')}}
+            <label class="more-info"><button id="fixedAddressLabelBtn" class="info-btn" type="button"
+                    aria-controls="fixedAddressInfoLabel" aria-expanded="false"><svg width="44" height="44"
+                        viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
+                            fill="#EB3B5B" />
+                    </svg></button>
+            </label>
+        </div>
+        <div class="info-label" id="fixedAddressInfoLabel" aria-expanded="false">
+            <h4 class="info-heading">Why are you asking about my address?</h4>
+            We ask you if you have a fixed address to add a section to the document clarifying
+            that you are entitled to access healthcare from a GP without any proof of address.
+        </div>
+        <div class="check-container">
+            {{form.no_id_proof(class='check-box', type='checkbox', role='checkbox',
+            id='noIdProofCheck')}}
+            {{form.no_id_proof.label(class='check-label', for='noIdProofCheck')}}
+            <label class="more-info"><button id="noIdProofLabelBtn" class="info-btn" type="button"
                     aria-controls="noIdProofInfoLabel" aria-expanded="false"><svg width="44" height="44"
                         viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
@@ -178,161 +175,160 @@
             We ask you if you have proof of identification to add a section to the document clarifying
             that you are entitled to access healthcare from a GP without any proof of identification.
         </div>
+    </div>
+
+    <div id="medStatusSection" class="section-container">
+
+        <h3>Medication Status</h3>
+
+        <div class="check-container">
+            {{form.self_med(class='check-box med-status-check', type='checkbox', role='checkbox',
+            id="selfMedCheck")}}
+            {{form.self_med.label(class='check-label', for="selfMedCheck")}}
         </div>
 
-        <div id="medStatusSection" class="col-md-6 border-start border-4 rounded">
-
-            <h3>Medication Status</h3>
-
-            <div class="check-container">
-                {{form.self_med(class='check-box med-status-check', type='checkbox', role='checkbox',
-                id="selfMedCheck")}}
-                {{form.self_med.label(class='check-label', for="selfMedCheck")}}
-            </div>
-
-            <div class="check-container">
-                {{form.self_med_likely(class='check-box med-status-check', type='checkbox',
-                role='checkbox', id="likelyMedCheck")}}
-                {{form.self_med_likely.label(class='check-label', for="likelyMedCheck")}}
-            </div>
-
-            <div class="check-container">
-                {{form.no_self_med(class='check-box med-status-check', type='checkbox',
-                role='checkbox', id="noMedCheck")}}
-                {{form.no_self_med.label(class='check-label', for="noMedCheck")}}
-            </div>
-            <div class="check-container">
-                {{form.private_prescription(class='check-box med-status-check', type='checkbox',
-                role='checkbox', id="privateMedCheck")}}
-                {{form.private_prescription.label(class='check-label', for="privateMedCheck")}}
-            </div>
-            <div class="check-container">
-                {{form.foreign_prescription(class='check-box med-status-check', type='checkbox',
-                role='checkbox', id="foreignMedCheck")}}
-                {{form.foreign_prescription.label(class='check-label', for="foreignMedCheck")}}
-            </div>
+        <div class="check-container">
+            {{form.self_med_likely(class='check-box med-status-check', type='checkbox',
+            role='checkbox', id="likelyMedCheck")}}
+            {{form.self_med_likely.label(class='check-label', for="likelyMedCheck")}}
         </div>
 
-        <div id="needsGPStatusSection" class="col-md-6 border-start border-4 rounded">
+        <div class="check-container">
+            {{form.no_self_med(class='check-box med-status-check', type='checkbox',
+            role='checkbox', id="noMedCheck")}}
+            {{form.no_self_med.label(class='check-label', for="noMedCheck")}}
+        </div>
+        <div class="check-container">
+            {{form.private_prescription(class='check-box med-status-check', type='checkbox',
+            role='checkbox', id="privateMedCheck")}}
+            {{form.private_prescription.label(class='check-label', for="privateMedCheck")}}
+        </div>
+        <div class="check-container">
+            {{form.foreign_prescription(class='check-box med-status-check', type='checkbox',
+            role='checkbox', id="foreignMedCheck")}}
+            {{form.foreign_prescription.label(class='check-label', for="foreignMedCheck")}}
+        </div>
+    </div>
 
-            <h3>What I need from my GP</h3>
+    <div id="needsGPStatusSection" class="section-container">
+
+        <h3>What I need from my GP</h3>
 
 
-            <div class="check-container">
-                {{ form.shared_care(class='check-box', type='checkbox', role='checkbox',
-                id="sharedCareCheck") }}
-                {{ form.shared_care.label(class='check-label', for="sharedCareCheck") }}
-                <label class="more-info"><button id="sharedCareLabelBtn" class="info-btn" type="button"
-                        aria-controls="sharedCareInfoLabel" aria-expanded="false"><svg width="44" height="44"
-                            viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
-                                d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
-                                fill="#EB3B5B" />
-                        </svg></button>
-                </label>
-            </div>
-            <div class="info-label" id="sharedCareInfoLabel" aria-expanded="false">
-                <h4 class="info-heading">What is a shared care agreement?</h4>
-                Check out <a target="_blank" rel="noopener" href="/static/files/shared-care-faq-for-patients.pdf">our
-                    faq sheet</a> for info on shared care.
-            </div>
-
-            <div class="" hidden id="privateSelector">
-                <div class="col-md-6">
-                    {{ form.chosen_private_care.label(for='form.chosen_private_care.name', name='gic',
-                    class='dropdown-label') }}
-                    {{ form.chosen_private_care(class='dropdown-container dropdown-text', id='privateProviderList') }}
-                    <div id="notUK" class="invalid-feedback"></div>
-                    <div id="preferred" class="valid-feedback"></div>
-                </div>
-
-            </div>
-
-            <div class="check-container">
-                {{form.bridging_desired(class='check-box', type='checkbox', role='checkbox',
-                id="bridgingDesired", disabled="")}}
-                {{form.bridging_desired.label(class='check-label', for="bridgingDesired",
-                id="bridgingDesiredLabel")}}
-                <label class="more-info"><button id="bridgingDesiredLabelBtn" class="info-btn" type="button"
-                        aria-controls="bridgingDesiredInfoLabel" aria-expanded="false"><svg width="44" height="44"
-                            viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
-                                d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
-                                fill="#EB3B5B" />
-                        </svg></button>
-                </label>
-            </div>
-            <div class="info-label" id="bridgingDesiredInfoLabel" aria-expanded="false">
-                <h4 class="info-heading">Why is the bridging prescription option greyed out?</h4>
-                If you need a bridging prescription, the GMC and NHS require that transgender people are
-                self-prescribing, or likely to self prescribe hormones.
-            </div>
-            <div class="check-container">
-                {{form.blood_testing(class='check-box', type='checkbox', role='checkbox',
-                id="bloodTests")}}
-                {{form.blood_testing.label(class='check-label', for="bloodTests")}}
-            </div>
-
-            <div class="check-container">
-                {{form.nhs_record_gender(class='check-box', type='checkbox', role='checkbox',
-                id="nhsRecordGenderCheck")}}
-                {{form.nhs_record_gender.label(class='check-label', for="nhsRecordGenderCheck")}}
-            </div>
-
-            <div class="check-container">
-                {{form.nhs_record_name(class='check-box', type='checkbox', role='checkbox',
-                id="nhsRecordNameCheck")}}
-                {{form.nhs_record_name.label(class='check-label', for="nhsRecordNameCheck")}}
-            </div>
-
-            <div class="check-container">
-                {{form.immigration_care(class='check-box', type='checkbox', role='checkbox',
-                id="immigrationCheck")}}
-                {{form.immigration_care.label(class='check-label', for="immigrationCheck")}}
-            </div>
-
-            <div hidden id="immigrationOption">
-                <div class="check-container">
-                    {{ form.immigration_letter(class='check-box', type='checkbox', role='checkbox',
-                    id="immigrationLetterCheck") }}
-                    {{ form.immigration_letter.label(class='check-label', for="immigrationLetterCheck")
-                    }}
-                    <label class="more-info"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
-                                d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
-                                fill="#EB3B5B" />
-                        </svg>
-                    </label>
-                </div>
-            </div>
+        <div class="check-container">
+            {{ form.shared_care(class='check-box', type='checkbox', role='checkbox',
+            id="sharedCareCheck") }}
+            {{ form.shared_care.label(class='check-label', for="sharedCareCheck") }}
+            <label class="more-info"><button id="sharedCareLabelBtn" class="info-btn" type="button"
+                    aria-controls="sharedCareInfoLabel" aria-expanded="false"><svg width="44" height="44"
+                        viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
+                            fill="#EB3B5B" />
+                    </svg></button>
+            </label>
+        </div>
+        <div class="info-label" id="sharedCareInfoLabel" aria-expanded="false">
+            <h4 class="info-heading">What is a shared care agreement?</h4>
+            Check out <a target="_blank" rel="noopener" href="/static/files/shared-care-faq-for-patients.pdf">our
+                faq sheet</a> for info on shared care.
         </div>
 
-        <div class="col-md-6 border-start border-4 rounded">
+        <div class="" hidden id="privateSelector">
+            <div class="col-md-6">
+                {{ form.chosen_private_care.label(for='form.chosen_private_care.name', name='gic',
+                class='dropdown-label') }}
+                {{ form.chosen_private_care(class='dropdown-container dropdown-text', id='privateProviderList') }}
+                <div id="notUK" class="invalid-feedback"></div>
+                <div id="preferred" class="valid-feedback"></div>
+            </div>
 
-            <h3>Service referrals and letters</h3>
+        </div>
 
+        <div class="check-container">
+            {{form.bridging_desired(class='check-box', type='checkbox', role='checkbox',
+            id="bridgingDesired", disabled="")}}
+            {{form.bridging_desired.label(class='check-label', for="bridgingDesired",
+            id="bridgingDesiredLabel")}}
+            <label class="more-info"><button id="bridgingDesiredLabelBtn" class="info-btn" type="button"
+                    aria-controls="bridgingDesiredInfoLabel" aria-expanded="false"><svg width="44" height="44"
+                        viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
+                            fill="#EB3B5B" />
+                    </svg></button>
+            </label>
+        </div>
+        <div class="info-label" id="bridgingDesiredInfoLabel" aria-expanded="false">
+            <h4 class="info-heading">Why is the bridging prescription option greyed out?</h4>
+            If you need a bridging prescription, the GMC and NHS require that transgender people are
+            self-prescribing, or likely to self prescribe hormones.
+        </div>
+        <div class="check-container">
+            {{form.blood_testing(class='check-box', type='checkbox', role='checkbox',
+            id="bloodTests")}}
+            {{form.blood_testing.label(class='check-label', for="bloodTests")}}
+        </div>
 
+        <div class="check-container">
+            {{form.nhs_record_gender(class='check-box', type='checkbox', role='checkbox',
+            id="nhsRecordGenderCheck")}}
+            {{form.nhs_record_gender.label(class='check-label', for="nhsRecordGenderCheck")}}
+        </div>
+
+        <div class="check-container">
+            {{form.nhs_record_name(class='check-box', type='checkbox', role='checkbox',
+            id="nhsRecordNameCheck")}}
+            {{form.nhs_record_name.label(class='check-label', for="nhsRecordNameCheck")}}
+        </div>
+
+        <div class="check-container">
+            {{form.immigration_care(class='check-box', type='checkbox', role='checkbox',
+            id="immigrationCheck")}}
+            {{form.immigration_care.label(class='check-label', for="immigrationCheck")}}
+        </div>
+
+        <div hidden id="immigrationOption">
             <div class="check-container">
-                {{ form.gic_referral(class='check-box', type='checkbox', role='checkbox',
-                id="referralCheck") }}
-                {{ form.gic_referral.label(class='check-label', for="referralCheck") }}
-                <label class="more-info"><button id="gicLabelBtn" class="info-btn" type="button"
-                        aria-controls="gicInfoLabel" aria-expanded="false"><svg width="44" height="44"
-                            viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
-                                d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
-                                fill="#EB3B5B" />
-                        </svg></button>
+                {{ form.immigration_letter(class='check-box', type='checkbox', role='checkbox',
+                id="immigrationLetterCheck") }}
+                {{ form.immigration_letter.label(class='check-label', for="immigrationLetterCheck")
+                }}
+                <label class="more-info"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
+                            fill="#EB3B5B" />
+                    </svg>
                 </label>
             </div>
-            <div class="info-label" id="gicInfoLabel" aria-expanded="false">
-                <h4 class="info-heading">Which Gender Identity Clinic is right for me?</h4>
-                All GICs have requirements on who can be referred to them (based on age and location, and if they're
-                accepting referrals). Check out <a target="_blank" rel="noopener"
-                    href="https://genderkit.org.uk/resources/wait-times/"> this resource from Gender Construction Kit
-                </a> to make sure the GIC in question is the right choice for you.
-            </div>
+        </div>
+    </div>
+
+    <div class="section-container">
+
+        <h3>Service referrals and letters</h3>
+
+
+        <div class="check-container">
+            {{ form.gic_referral(class='check-box', type='checkbox', role='checkbox',
+            id="referralCheck") }}
+            {{ form.gic_referral.label(class='check-label', for="referralCheck") }}
+            <label class="more-info"><button id="gicLabelBtn" class="info-btn" type="button"
+                    aria-controls="gicInfoLabel" aria-expanded="false"><svg width="44" height="44" viewBox="0 0 44 44"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
+                            fill="#EB3B5B" />
+                    </svg></button>
+            </label>
+        </div>
+        <div class="info-label" id="gicInfoLabel" aria-expanded="false">
+            <h4 class="info-heading">Which Gender Identity Clinic is right for me?</h4>
+            All GICs have requirements on who can be referred to them (based on age and location, and if they're
+            accepting referrals). Check out <a target="_blank" rel="noopener"
+                href="https://genderkit.org.uk/resources/wait-times/"> this resource from Gender Construction Kit
+            </a> to make sure the GIC in question is the right choice for you.
         </div>
 
         <div hidden id="gicSelector">
@@ -361,73 +357,70 @@
             id="grcCheck") }}
             {{ form.grc_letter.label(class='check-label', for="grcCheck") }}
         </div>
-
-</div>
-
-<hr class="my-4">
-<h2>About you</h2>
-
-<p class="mb-3 text-muted">All details are optional</p>
-
-<div class="row gy-3">
-    <div class="col-sm-6">
-        {{ form.name.label(class='text-input-label', for="firstName") }}
-        {{form.name(class='text-input', type='text', id="firstName", placeholder="Name")}}
     </div>
 
-    <div class="col-sm-6">
-        {{form.email.label(class='text-input-label', for="email")}}
-        {% if form.email.errors|length > 0 %}
-        {{form.email(class='text-input is-invalid', type='email', id="email",
-        placeholder="you@example.com")}}<span class="text-muted"></span>
-        {% else %}
-        {{form.email(class='text-input', type='email', id="email",
-        placeholder="you@example.com")}}<span class="text-muted"></span>
-        {% endif %}
-        <div class="invalid-feedback">
-            {% for error in form.email.errors %}
-            {{error}}
-            {% endfor %}
+    <h2>About you</h2>
+
+    <p class="mb-3 text-muted">All details are optional</p>
+
+    <div class="row gy-3">
+        <div class="col-sm-6">
+            {{ form.name.label(class='text-input-label', for="firstName") }}
+            {{form.name(class='text-input', type='text', id="firstName", placeholder="Name")}}
         </div>
+
+        <div class="col-sm-6">
+            {{form.email.label(class='text-input-label', for="email")}}
+            {% if form.email.errors|length > 0 %}
+            {{form.email(class='text-input is-invalid', type='email', id="email",
+            placeholder="you@example.com")}}<span class="text-muted"></span>
+            {% else %}
+            {{form.email(class='text-input', type='email', id="email",
+            placeholder="you@example.com")}}<span class="text-muted"></span>
+            {% endif %}
+            <div class="invalid-feedback">
+                {% for error in form.email.errors %}
+                {{error}}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            {{form.phone.label(class='text-input-label', for="phoneNumber")}}
+            {{form.phone(class='text-input', type='text', id="phoneNumber",
+            placeholder="+4412345678910")}}<span class="text-muted"></span>
+        </div>
+
+        <div class="col-md-2">
+            {{form.pronouns.label(class='text-input-label', for="pronouns")}}
+            {{form.pronouns(class='text-input', type='text', id="pronouns", placeholder="any/any") }}
+            <span class="text-muted"></span>
+        </div>
+
+        <div class="captcha">
+            {{ form.captcha }}
+        </div>
+
+        {% if form.captcha.errors|length > 0 %}
+        <span class="captcha-error">Captcha incorrect!</span>
+        {% endif %}
+
     </div>
 
-    <div class="col-md-2">
-        {{form.phone.label(class='text-input-label', for="phoneNumber")}}
-        {{form.phone(class='text-input', type='text', id="phoneNumber",
-        placeholder="+4412345678910")}}<span class="text-muted"></span>
-    </div>
+    <div id="alertPlaceholder"></div>
+    <div class="btn-group">
+        <button class="btn-docx" id="docx" name="docx" type="submit" value="docx" disabled>Generate Docx</button>
+        {% if not pdf_available %}
+        <button class="btn-pdf" id="pdf" name="pdf" type="submit" value="pdf" disabled>PDF
+            Unavailable</button>
+        {% else %}
+        <button class="btn-pdf" id="pdf" name="pdf" type="submit" value="pdf" disabled>Generate PDF</button>
+        {% endif %}
 
-    <div class="col-md-2">
-        {{form.pronouns.label(class='text-input-label', for="pronouns")}}
-        {{form.pronouns(class='text-input', type='text', id="pronouns", placeholder="any/any") }}
-        <span class="text-muted"></span>
-    </div>
-
-    <hr class="my-4">
-
-    <div class="d-flex justify-content-center">
-        {{ form.captcha }}
-    </div>
-
-    {% if form.captcha.errors|length > 0 %}
-    <span class="error text-danger text-center">Captcha incorrect!</span>
-    {% endif %}
+</form>
 
 </div>
 
-<div id="alertPlaceholder"></div>
-<div class="btn-group">
-    <button class="btn-docx" id="docx" name="docx" type="submit" value="docx" disabled>Generate Docx</button>
-    {% if not pdf_available %}
-    <button class="btn-pdf" id="pdf" name="pdf" type="submit" value="pdf" disabled>PDF
-        Unavailable</button>
-    {% else %}
-    <button class="btn-pdf" id="pdf" name="pdf" type="submit" value="pdf" disabled>Generate PDF</button>
-    {% endif %}
-
-    </form>
-
-</div>
 {% block footer %}
 {{ super() }}
 {% endblock %}
