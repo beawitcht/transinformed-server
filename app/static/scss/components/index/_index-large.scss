@@ -80,6 +80,8 @@ p {
     border-radius: 6px 0px 0px 6px;
     border: 1px solid #000;
     @include mixins.text-properties($font-size: 42px, $font-weight: 700);
+    background: white;
+    z-index: 2;
 
 }
 
@@ -103,6 +105,7 @@ p {
     border-right: 1px solid #000;
     border-bottom: 1px solid #000;
     border-left: none;
+    background: white;
 }
 
 .btn-pdf:hover:enabled {
@@ -123,7 +126,7 @@ button:disabled {
     gap: 8px;
     border-radius: 6px;
     border: 2px solid #000;
-    @include mixins.text-properties($font-size: 20px, $color: #595959);
+    @include mixins.text-properties($color: #595959);
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -140,9 +143,25 @@ button:disabled {
 
 .info-label[aria-expanded="true"] {
     margin-left: 86px;
-    @include mixins.text-properties($font-size: 20px, $color: #595959);
+    @include mixins.text-properties($color: #595959);
 }
 
 .info-label[aria-expanded="false"] {
     display: none;
+}
+
+.valid-feedback{
+    margin-top: -12px;
+    @include mixins.text-properties($color: #2C5E2C);
+    width: 460px;
+}
+
+.invalid-feedback{
+    margin-top: -12px;
+    @include mixins.text-properties($color: #a7112c);
+    width: 460px;
+}
+
+.captcha-error{
+    @include mixins.text-properties($color: #a7112c);
 }

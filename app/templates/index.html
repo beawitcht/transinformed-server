@@ -15,6 +15,7 @@
 <meta name="keywords"
     content="trans,transgender,HRT,hormones,supporting document,document generator,health,healthcare,guide,template">
 <link rel="stylesheet" href="/static/css/index.css">
+<script defer src="/static/js/jquery-3.7.1.min.js"></script>
 <script defer src="/static/js/transinformed.min.js"></script>
 <script defer src="/static/js/new.js"></script>
 {% endblock %}
@@ -215,7 +216,7 @@
         <h3>What I need from my GP</h3>
 
 
-        <div class="check-container">
+        <div class="check-container" id="sharedCareCheckContainer">
             {{ form.shared_care(class='check-box', type='checkbox', role='checkbox',
             id="sharedCareCheck") }}
             {{ form.shared_care.label(class='check-label', for="sharedCareCheck") }}
@@ -234,18 +235,18 @@
                 faq sheet</a> for info on shared care.
         </div>
 
-        <div class="" hidden id="privateSelector">
-            <div class="col-md-6">
-                {{ form.chosen_private_care.label(for='form.chosen_private_care.name', name='gic',
-                class='dropdown-label') }}
-                {{ form.chosen_private_care(class='dropdown-container dropdown-text', id='privateProviderList') }}
-                <div id="notUK" class="invalid-feedback"></div>
-                <div id="preferred" class="valid-feedback"></div>
-            </div>
+        <div class="dropdown-container" hidden id="privateSelector">
+
+            {{ form.chosen_private_care.label(for='privateProviderList', name='gic',
+            class='dropdown-label') }}
+            {{ form.chosen_private_care(class='inline-dropdown dropdown-text', id='privateProviderList') }}
+            <div id="notUK" class="invalid-feedback"></div>
+            <div id="preferred" class="valid-feedback"></div>
+
 
         </div>
 
-        <div class="check-container">
+        <div class="check-container" id="bridgingDesiredContainer">
             {{form.bridging_desired(class='check-box', type='checkbox', role='checkbox',
             id="bridgingDesired", disabled="")}}
             {{form.bridging_desired.label(class='check-label', for="bridgingDesired",
@@ -264,7 +265,7 @@
             If you need a bridging prescription, the GMC and NHS require that transgender people are
             self-prescribing, or likely to self prescribe hormones.
         </div>
-        <div class="check-container">
+        <div class="check-container" id="bloodTestsContainer">
             {{form.blood_testing(class='check-box', type='checkbox', role='checkbox',
             id="bloodTests")}}
             {{form.blood_testing.label(class='check-label', for="bloodTests")}}
@@ -288,20 +289,24 @@
             {{form.immigration_care.label(class='check-label', for="immigrationCheck")}}
         </div>
 
-        <div hidden id="immigrationOption">
-            <div class="check-container">
-                {{ form.immigration_letter(class='check-box', type='checkbox', role='checkbox',
-                id="immigrationLetterCheck") }}
-                {{ form.immigration_letter.label(class='check-label', for="immigrationLetterCheck")
-                }}
-                <label class="more-info"><svg width="44" height="44" viewBox="0 0 44 44" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
+        <div hidden class="check-container" id="immigrationOption">
+
+            {{ form.immigration_letter(class='check-box', type='checkbox', role='checkbox',
+            id="immigrationLetterCheck") }}
+            {{ form.immigration_letter.label(class='check-label', for="immigrationLetterCheck")
+            }}
+            <label class="more-info"><button id="immLetterLabelBtn" class="info-btn" type="button"
+                    aria-controls="immLetterInfoLabel" aria-expanded="false"><svg width="44" height="44" viewBox="0 0 44 44"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
                             d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
                             fill="#EB3B5B" />
-                    </svg>
-                </label>
-            </div>
+                    </svg></button>
+            </label>
+        </div>
+        <div class="info-label" id="immLetterInfoLabel" aria-expanded="false">
+            <h4 class="info-heading">How can I continue with HRT when migrating to the UK?</h4>
+            If possible you should obtain a letter from your previous HRT provider, if you need help deciding the contents of this letter, check out <a target="_blank" rel="noopener" href="https://medium.com/@zoyander/continuing-hrt-after-arriving-in-the-uk-2655abd87fa7#a7f3">this letter template.</a>
         </div>
     </div>
 
@@ -331,13 +336,13 @@
             </a> to make sure the GIC in question is the right choice for you.
         </div>
 
-        <div hidden id="gicSelector">
-            <div class="col-md-6">
-                {{ form.chosen_gic.label(for='form.chosen_gic.name', name='gic', class='dropdown-label') }}
-                {{ form.chosen_gic(class='dropdown-container dropdown-text', id='gics', option_attr={"chosen_gic-0"
-                : {"id" :
-                "countryNeeded"}, "chosen_gic-1" : {"id" : "default"} }) }}
-            </div>
+        <div hidden class="dropdown-container" id="gicSelector">
+
+            {{ form.chosen_gic.label(for='gics', name='gic', class='dropdown-label') }}
+            {{ form.chosen_gic(class='inline-dropdown dropdown-text', id='gics', option_attr={"chosen_gic-0"
+            : {"id" :
+            "countryNeeded"}, "chosen_gic-1" : {"id" : "default"} }) }}
+
         </div>
 
         <div class="check-container">
@@ -352,7 +357,7 @@
             {{ form.passport_letter.label(class='check-label', for="passportCheck") }}
         </div>
 
-        <div class="check-container">
+        <div class="check-container" id="grcCheckContainer">
             {{ form.grc_letter(class='check-box', type='checkbox', role='checkbox',
             id="grcCheck") }}
             {{ form.grc_letter.label(class='check-label', for="grcCheck") }}
@@ -385,13 +390,13 @@
             </div>
         </div>
 
-        <div class="col-md-2">
+        <div class="">
             {{form.phone.label(class='text-input-label', for="phoneNumber")}}
             {{form.phone(class='text-input', type='text', id="phoneNumber",
             placeholder="+4412345678910")}}<span class="text-muted"></span>
         </div>
 
-        <div class="col-md-2">
+        <div class="">
             {{form.pronouns.label(class='text-input-label', for="pronouns")}}
             {{form.pronouns(class='text-input', type='text', id="pronouns", placeholder="any/any") }}
             <span class="text-muted"></span>
@@ -399,12 +404,11 @@
 
         <div class="captcha">
             {{ form.captcha }}
+
+            {% if form.captcha.errors|length > 0 %}
+            <span class="captcha-error">Captcha incorrect!</span>
+            {% endif %}
         </div>
-
-        {% if form.captcha.errors|length > 0 %}
-        <span class="captcha-error">Captcha incorrect!</span>
-        {% endif %}
-
     </div>
 
     <div id="alertPlaceholder"></div>
