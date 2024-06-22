@@ -235,7 +235,7 @@
                 faq sheet</a> for info on shared care.
         </div>
 
-        <div class="dropdown-container" hidden id="privateSelector">
+        <div class="dropdown-container inline-container" hidden id="privateSelector">
 
             {{ form.chosen_private_care.label(for='privateProviderList', name='gic',
             class='dropdown-label') }}
@@ -336,7 +336,7 @@
             </a> to make sure the GIC in question is the right choice for you.
         </div>
 
-        <div hidden class="dropdown-container" id="gicSelector">
+        <div hidden class="dropdown-container inline-container" id="gicSelector">
 
             {{ form.chosen_gic.label(for='gics', name='gic', class='dropdown-label') }}
             {{ form.chosen_gic(class='inline-dropdown dropdown-text', id='gics', option_attr={"chosen_gic-0"

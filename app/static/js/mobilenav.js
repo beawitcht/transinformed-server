@@ -7,15 +7,19 @@ backToTop = document.getElementById("backToTop");
 button.addEventListener("click", () => {
   const currentState = button.getAttribute("data-state");
   if (!currentState || currentState === "closed") {
-    button.setAttribute("data-state", "opened");
-    button.setAttribute("aria-expanded", "true");
-
-    navMenu.setAttribute("aria-expanded", "true");
+    navMenu.setAttribute("class", "nav-bar-mobile-expanding");
+    setTimeout(() => {
+      navMenu.setAttribute("aria-expanded", "true");
+      navMenu.setAttribute("class", "nav-bar-mobile");
+      button.setAttribute("data-state", "opened");
+      button.setAttribute("aria-expanded", "true");
+    }, 1); // 1ms delay to switch to transition animation
+    
+    
   } else {
+    navMenu.setAttribute("aria-expanded", "false");
     button.setAttribute("data-state", "closed");
     button.setAttribute("aria-expanded", "false");
-
-    navMenu.setAttribute("aria-expanded", "false");
   }
 });
 
