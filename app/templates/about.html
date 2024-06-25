@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block body %}
-
+<a href="#main" class="skip-to-main">Skip to main content</a>
 <div class="header">
     {% block header %}
     {{ super() }}
@@ -34,7 +34,7 @@
             <div class="header-link"><a class="nav-link" href="/blogs">Blogs</a></div>
         </div>
         <div class="header-link-container">
-            <div class="header-link"><a class="nav-link" href="/shop">Shop</a></div>
+            <div class="header-link"><a class="nav-link" target="_blank" rel="noopener" href="https://ko-fi.com/beawitching_cic/shop">Shop</a></div>
         </div>
     </nav>
 </div>
@@ -49,11 +49,11 @@
 
     <span class="mobile-link"><a class="nav-link" href="/blogs">Blogs</a></span>
 
-    <span class="mobile-link"><a class="nav-link" href="/shop">Shop</a></span>
+    <span class="mobile-link"><a class="nav-link" target="_blank" rel="noopener" href="https://ko-fi.com/beawitching_cic/shop">Shop</a></span>
 
 </nav>
 
-<div class="main-content">
+<div class="main-content" id="main">
     <h1>About</h1>
     
     <h2>Who runs this service?</h2>
