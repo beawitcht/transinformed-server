@@ -10,19 +10,20 @@ def prepare_blogs(url):
         # add url title with hyphens
         item.url_title = item.title.replace(" ", "-")
         item.url_title = urllib.parse.quote_plus(item.url_title)
-        
+
         # format summary
-        if len(item.summary) > 150:
-            item.summary = item.summary[:150] + "..."
+        max_length = 60
+        if len(item.summary) > max_length:
+            item.summary = item.summary[:max_length] + "..."
         item.summary = re.sub("<[^>]*>", "",item.summary)
         item.summary = item.summary.replace(u"\u00A0", " ")
 
-        # # format tags 
+        # format tags
         if hasattr(item, 'tags'):
             for term in item.tags:
                 tags += term['term'] + ','
             item.tags = tags[:-1]
-        
+
 
         # format content
         # remove tracking pixels from RSS
@@ -32,4 +33,11 @@ def prepare_blogs(url):
             item.content[0].value = item.content[0].value.replace(match.group(), '')
             match = tracking_pixel.search(item.content[0].value)
 
+        # get first image for use as card image
+        first_img = re.compile(r'<img([\w\W]+?)/>')
+        img_match = first_img.search(item.content[0].value)
+        if img_match:
+            card_img = img_match.group()
+            #append class
+            item.card_img = card_img.replace('<img', '<img class="card-image"', 1)
     return entries

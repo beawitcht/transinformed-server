@@ -10,117 +10,87 @@
 <meta name="og:title" content="Trans Informed - About">
 <meta name="og:description" content="Information about the Trans Informed document generation service." >
 <meta name="keywords" content="trans,transgender,HRT,hormones,about,health,healthcare,contact,support">
+<link rel="stylesheet" href="/static/css/about.css">
 {% endblock %}
 
 {% block body %}
-<a href="/"><img class="mx-auto d-block pt-3" src="/static/images/combinedlogo.png" alt="Beawitching Communities logo and link to home" width="330" height="130" ></a>
-<header class="d-flex justify-content-center py-3">
-    <ul class="d-flex justify-content-center nav nav-pills">
-        <li class="nav-item"><a href="/about" class="nav-link active" aria-current="page">About</a></li>
-        <li class="nav-item"><a href="/resources" class="nav-link">Resources</a></li>
-        <li class="nav-item"><a href="/sources" class="nav-link" >Sources</a></li>
-        <li class="nav-item"><a href="/blogs" class="nav-link">Blogs</a></li>
-    </ul>
-</header>
+<a href="#main" class="skip-to-main">Skip to main content</a>
+<div class="header">
+    {% block header %}
+    {{ super() }}
+    {% endblock %}
 
-<div class="container">
-    <main>
-        <div class="py-5">
-            <h1 class="text-center">About</h1>
-            <hr>
-            <div class="accordion" id="accordionAbout">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="about-whoWeAre">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#about-collapseWhoWeAre" aria-expanded="false" aria-controls="about-collapseWhoWeAre">
-                            Who runs this service and how can I get in contact?
-                        </button>
-                    </h2>
-                    <div id="about-collapseWhoWeAre" class="accordion-collapse collapse" aria-labelledby="about-whoWeAre">
-                        <div class="accordion-body">
-                            This service is run by Beawitching Communities CIC.<br> Registered in England and Wales Company No. 14740989.<br>
-                            Our registered office address is 124 City Road, London, England, EC1V 2NX. <br>Please do not send correspondence to this address as it will be rejected.<br>
-                            <br>The best way to reach us is via <a href="https://twitter.com/beawitching_cic">twitter</a> or email at: <a href="mailto:contact@beawitching.co.uk">contact@beawitching.co.uk</a>
-                            <br> <a href="/static/beawitcht_public.asc">This is our PGP public key </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="about-whoFor">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#about-collapseOne" aria-expanded="false" aria-controls="about-collapseOne">
-                            Who is this service for?
-                        </button>
-                    </h2>
-                    <div id="about-collapseOne" class="accordion-collapse collapse" aria-labelledby="about-whoFor">
-                        <div class="accordion-body">
-                            This service is for anyone living in the UK who is seeking gender affirming care from their
-                            GP, with a focus on gaining access to HRT. Currently the service is tailored to adults and we hope to create a similar resource for gender-diverse youth in the future.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="about-serviceProvide">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#about-collapseTwo" aria-expanded="false" aria-controls="about-collapseTwo">
-                            What this service provides
-                        </button>
-                    </h2>
-                    <div id="about-collapseTwo" class="accordion-collapse collapse"
-                        aria-labelledby="about-serviceProvide">
-                        <div class="accordion-body">
-                            This service allows you to generate a document to act as an aid when talking to your GP about accessing gender affirming related care.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="about-serviceNotProvide">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#about-collapseThree" aria-expanded="false"
-                            aria-controls="about-collapseThree">
-                            What this service doesn't provide
-                        </button>
-                    </h2>
-                    <div id="about-collapseThree" class="accordion-collapse collapse"
-                        aria-labelledby="about-serviceNotProvide">
-                        <div class="accordion-body">
-                            This service can <strong>NOT</strong> guarantee that your GP will be
-                            co-operative in providing gender affirming care. This service also doesn't provide medical advice or encourage users to persue a particular pathway of care.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="about-availablity">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#about-collapseFour" aria-expanded="false"
-                            aria-controls="about-collapseFour">
-                            What countries is this service available in?
-                        </button>
-                    </h2>
-                    <div id="about-collapseFour" class="accordion-collapse collapse"
-                        aria-labelledby="about-availablity">
-                        <div class="accordion-body">
-                            This service is available to all countries in the UK, however this service was created by an England based trans person, if you find any innacuracies for other countries, please reach out to us.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="pdf-unavailable">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#about-collapseSix" aria-expanded="false"
-                            aria-controls="about-collapseSix">
-                            Why are PDF downloads unavailable?
-                        </button>
-                    </h2>
-                    <div id="about-collapseSix" class="accordion-collapse collapse"
-                        aria-labelledby="pdf-unavailable">
-                        <div class="accordion-body">
-                            PDF generation is done through a third party API, we can't always afford to pay for PDF availability. If you would like to contribute please reach out to us via <a href="https://twitter.com/beawitching_cic">twitter</a> or email at: <a href="mailto:contact@beawitching.co.uk">contact@beawitching.co.uk</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <nav class="nav-bar">
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link-active" href="/about">About</a></div>
         </div>
-    </main>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/resources">Resources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/sources">Sources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/blogs">Blogs</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" target="_blank" rel="noopener" href="https://ko-fi.com/beawitching_cic/shop">Shop</a></div>
+        </div>
+    </nav>
 </div>
+
+<nav class="nav-bar-mobile" id="mobile">
+
+    <span class="mobile-link"><a class="nav-link-active" href="/about" aria-current="page">About</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/resources">Resources</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/sources">Sources</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/blogs">Blogs</a></span>
+
+    <span class="mobile-link"><a class="nav-link" target="_blank" rel="noopener" href="https://ko-fi.com/beawitching_cic/shop">Shop</a></span>
+
+</nav>
+
+<div class="main-content" id="main">
+    <h1>About</h1>
+    
+    <h2>Who runs this service?</h2>
+    <p>This service is run by Beawitching Communities CIC.
+        Registered in England and Wales Company No. 14740989.
+        Our registered office address is 124 City Road, London, England, EC1V 2NX.
+        Please do not send correspondence to this address as it will be rejected.
+        
+        The best way to reach us is via <a href="https://twitter.com/beawitching_cic">twitter</a> or email at: <a href="mailto:contact@beawitching.co.uk">contact@beawitching.co.uk</a>
+        <br><a href="/static/beawitcht_public.asc">This is our PGP public key </a></p>
+
+    <span class="section-break"></span>
+
+    <h2>Who is this service for?</h2>
+    <p>This service is for anyone living in the UK who is seeking gender affirming care from their GP.</p>
+    
+    <span class="section-break"></span>
+
+    <h2>Learn more about continuing HRT when immigrating to the UK</h2>
+    <p>Check out <a target="_blank" rel="noopener" href="https://medium.com/@zoyander/continuing-hrt-after-arriving-in-the-uk-2655abd87fa7#a7f3">this section on getting a letter</a> for continuing HRT in the UK.</p>
+
+    <span class="section-break"></span>
+    
+    <h2>What this service does not provide</h2>
+    <p>This service can <strong>NOT</strong> guarantee that your GP will be co-operative in providing gender affirming care. This service also doesn't provide medical advice or encourage users to pursue a particular pathway of care. Research outside of our service is strongly recommended.</p>
+
+    <span class="section-break"></span>
+    
+    <h2>What countries is this service available in?</h2>
+    <p>This service is available to all countries in the UK, however this service was created by an England based trans person. If you find any inaccuracies, please reach out to us.</p>
+
+    <span class="section-break"></span>
+
+    <h2>What are PDF downloads unavailable?</h2>
+    <p>PDF generation is done through a third party API, we can't always afford to pay for PDF availability. If you would like to contribute please reach out to us via <a href="https://twitter.com/beawitching_cic">twitter</a> or email at: <a href="mailto:contact@beawitching.co.uk">contact@beawitching.co.uk</a>.</p>
+</div>
+{% block footer %}
+{{ super() }}
+{% endblock %}
 {% endblock %}

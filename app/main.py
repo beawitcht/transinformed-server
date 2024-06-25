@@ -65,11 +65,6 @@ def handle_error(error):
     return make_response(render_template("error.html", name=error.name ,code=error.code, description=error.description), error.code)
 
 # add header rows on blog posts before each heading and style images
-@app.template_filter('stylish')
-def stylish(text):
-    text = text.replace("<h3>", "\n<hr>\n<h3>")
-    text = text.replace("<img", "<img class=\"img-fluid rounded mx-auto d-block\"")
-    return text
 
 if __name__ == '__main__':
     app.run()

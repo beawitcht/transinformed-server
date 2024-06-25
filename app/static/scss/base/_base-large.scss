@@ -1,0 +1,82 @@
+// Large screen header/navigation
+@use '../variables/global-vars';
+
+@media (min-width: 778px) {
+    .nav-bar-mobile {
+        display: none;
+    }
+
+    .hamburger-btn {
+        display: none;
+    }
+
+    #hamburger {
+        display: none;
+    }
+
+    .mobile-link-container {
+        display: none;
+    }
+
+    .mobile-link {
+        display: none;
+
+    }
+
+    .header {
+        align-self: stretch;
+        height: 256px;
+        background: #0D2846;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        display: flex;
+    }
+
+    .header-link-container {
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        display: flex;
+        padding-bottom: 10px;
+    }
+
+    .header-link {
+        text-align: center;
+        color: white;
+        font-size: 30px;
+        font-family: global-vars.$font;
+        font-weight: 300;
+        line-height: 36.55px;
+        word-wrap: break-word
+    }
+
+    .header-logo-container {
+        width: 498px;
+        height: 142.98px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        display: inline-flex
+    }
+
+    .nav-bar {
+        padding-left: 10px;
+        padding-right: 10px;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        display: inline-flex
+    }
+
+    .bc-logo {
+        width: 362px;
+        height: 122px
+    }
+
+    .ti-logo {
+        width: 128px;
+        height: 128px
+    }
+}

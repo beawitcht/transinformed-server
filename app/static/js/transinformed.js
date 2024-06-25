@@ -49,29 +49,34 @@ function checkDocStatus() {
 function checkAgeStatus() {
     // conditions for age options
     if (under16Check.checked) {
-        sharedCareCheck.parentNode.hidden = true;
+        $('#sharedCareCheckContainer').hide();
         sharedCareCheck.checked = false;
         privateSelector.hidden = true;
         privateProviderList.value = "I haven't chosen a provider yet";
-        bridgingDesired.parentNode.hidden = true;
+        $('#bridgingDesiredContainer').hide();
         bridgingDesired.checked = false;
-        bloodTests.parentNode.hidden = true;
+        $('#bloodTestsContainer').hide();
         bloodTests.checked = false;
-        grcCheck.parentNode.hidden = true;
+        $('#grcCheckContainer').hide();
         grcCheck.checked = false;
-        medStatusSection.hidden = true;
+        $('#medStatusSection').hide();
         // unchecks all medStatusSection checkboxes
         $('#medStatusSection').find('input:checked[type=checkbox]').prop('checked', false);
-        services.value = "Youth (≤16)";
+        // check conditions again
+        checkMedStatus();
         $("#services option[value='Adult (17+)']").hide();
+        if (services.value === "Adult (17+)") {
+            services.value = "Choose...";
+        }
         serviceFilters();
     }
     else {
-        sharedCareCheck.parentNode.hidden = false;
-        bridgingDesired.parentNode.hidden = false;
-        bloodTests.parentNode.hidden = false;
-        grcCheck.parentNode.hidden = false;
-        medStatusSection.hidden = false;
+        $('#sharedCareCheckContainer').show();
+        $('#bridgingDesiredContainer').show();
+        $('#bloodTestsContainer').show();
+        $('#grcCheckContainer').show();
+        $('#medStatusSection').show();
+        checkMedStatus();
 
         $("#services option[value='Adult (17+)']").show();
         serviceFilters();
@@ -129,27 +134,26 @@ function checkMedStatus() {
 function serviceFilters() {
     // selected country dependent on youth services for valid options
     countryServiceFilters();
-
     //  change youth options to available services
     if (services.value == "Youth (≤16)") {
-        grcCheck.parentNode.hidden = true;
-        bridgingDesired.parentNode.hidden = true;
+        $('#grcCheckContainer').hide();
+        $('#bridgingDesiredContainer').hide();
         bridgingDesired.checked = false;
         grcCheck.checked = false;
-        bloodTests.parentNode.hidden = true;
+        $('#bloodTestsContainer').hide();
         bloodTests.checked = false;
-        medStatusSection.hidden = true;
+        $('#medStatusSection').hide();
         // unchecks all medStatusSection checkboxes
         $('#medStatusSection').find('input:checked[type=checkbox]').prop('checked', false);
         $("#privateProviderList option[value='GenderGP']").hide();
         $("#privateProviderList option[value='Other (Non-UK Based)']").hide();
 
     }
-    else {
-        grcCheck.parentNode.hidden = false;
-        bridgingDesired.parentNode.hidden = false;
-        medStatusSection.hidden = false;
-        bloodTests.parentNode.hidden = false;
+    else if (!under16Check.checked) {
+        $('#grcCheckContainer').show();
+        $('#bridgingDesiredContainer').show();
+        $('#medStatusSection').show();
+        $('#bloodTestsContainer').show();
         $("#privateProviderList option[value='GenderGP']").show();
         $("#privateProviderList option[value='Other (Non-UK Based)']").show();
     }
@@ -230,7 +234,11 @@ function revealContentSharedCare() {
 }
 
 function revealContentImmigration() {
-    immigrationCheck.checked ? immigrationOption.hidden = false : (immigrationOption.hidden = true, immigrationLetterCheck.checked = false);
+    immigrationCheck.checked ? $('#immigrationOption').show() : ($('#immigrationOption').hide(), immigrationLetterCheck.checked = false);
+    if (document.getElementById("immLetterLabelBtn").getAttribute("data-state") === "opened" && !immigrationCheck.checked) {
+        $('#immLetterLabelBtn').trigger("click");
+    }
+
 }
 
 function privateProviderConditions() {
@@ -240,6 +248,8 @@ function privateProviderConditions() {
         privateProviderList.classList.remove("is-valid");
         privateProviderList.classList.add("is-invalid");
         privateProviderWarningMessage.innerText = "This provider is not based in the UK, which deters some GPs from agreeing to shared care.";
+        privateProviderPreferredMessage.innerText = "";
+
     }
     else if (privateProviderList.value.includes("Other") || privateProviderList.value.includes("haven't chosen")) {
         privateProviderList.classList.remove("is-invalid");
@@ -251,6 +261,7 @@ function privateProviderConditions() {
         privateProviderList.classList.remove("is-invalid");
         privateProviderList.classList.add("is-valid");
         privateProviderPreferredMessage.innerText = "This provider offers GMC registered and UK based specialists.";
+        privateProviderWarningMessage.innerText = "";
     }
 }
 
@@ -295,10 +306,46 @@ function submitActions() {
     const alertPlaceholder = document.getElementById('alertPlaceholder')
     const wrapper = document.createElement('div')
     wrapper.innerHTML = [
-        `<div class="alert alert-success alert-dismissible" role="alert">`,
+        `<div class="alert-success" role="alert">`,
         `   <div>Thank you for using our document generator, if you found this service useful please <a href="https://opencollective.com/beawitching/donate/" class="alert-link" target="_blank" >consider donating</a> so that we can maintain this service.</div>`,
-        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '   <button type="button" id="close-alert-thanks" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
         '</div>'
     ].join('')
     alertPlaceholder.append(wrapper)
+
+    document.getElementById("close-alert-thanks").addEventListener("click", () => {
+        alertPlaceholder.innerHTML = "";
+    });
 }
+
+// info button logic
+infoButtons(document.getElementById("gicLabelBtn"), document.getElementById("gicInfoLabel"));
+infoButtons(document.getElementById("sharedCareLabelBtn"), document.getElementById("sharedCareInfoLabel"));
+infoButtons(document.getElementById("bridgingDesiredLabelBtn"), document.getElementById("bridgingDesiredInfoLabel"));
+infoButtons(document.getElementById("under16LabelBtn"), document.getElementById("under16InfoLabel"));
+infoButtons(document.getElementById("fixedAddressLabelBtn"), document.getElementById("fixedAddressInfoLabel"));
+infoButtons(document.getElementById("noIdProofLabelBtn"), document.getElementById("noIdProofInfoLabel"));
+infoButtons(document.getElementById("immLetterLabelBtn"), document.getElementById("immLetterInfoLabel"));
+
+// expand additional info on clicking ?
+function infoButtons(btn, btnLabel){
+    btn.addEventListener("click", () => {
+        const currentState = btn.getAttribute("data-state");
+        if (!currentState || currentState === "closed") {
+            btn.setAttribute("data-state", "opened");
+            btn.setAttribute("aria-expanded", "true");
+    
+            btnLabel.setAttribute("aria-expanded", "true");
+        } else {
+            btn.setAttribute("data-state", "closed");
+            btn.setAttribute("aria-expanded", "false");
+    
+            btnLabel.setAttribute("aria-expanded", "false");
+        }
+    });
+};
+
+
+
+
+

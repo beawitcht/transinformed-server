@@ -5,52 +5,77 @@
     {% block head %}
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://www.transinformed.co.uk/static/images/twitterimage.png">
-    <meta property="og:image:alt" content="Looking to discuss your gender related healthcare needs with a GP? Create a document tailored to your needs in just a few clicks.">
+    <meta property="og:image:alt"
+        content="Looking to discuss your gender related healthcare needs with a GP? Create a document tailored to your needs in just a few clicks.">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@beawitcht">
     <meta name="twitter:image" content="https://www.transinformed.co.uk/static/images/twitterimage.png">
-    <meta property="twitter:image:alt" content="Looking to discuss your gender related healthcare needs with a GP? Create a document tailored to your needs in just a few clicks.">
-    <link rel="stylesheet" href="/static/css/bootstrapcritmin.css">
+    <meta property="twitter:image:alt"
+        content="Looking to discuss your gender related healthcare needs with a GP? Create a document tailored to your needs in just a few clicks.">
     <link rel="icon" href="/static/images/logo.svg">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="stylesheet" href="/static/css/transinformed.css">
-    <link rel="stylesheet" id="asyncLoad" href="/static/css/bootstrapaddmin.css" media="print">
-    <script defer src="/static/js/bootstrap.bundle.min.js"></script>
-    <script defer src="/static/js/defercss.js"></script>
+    <script defer src="/static/js/mobilenav.min.js"></script>
+    <link rel="stylesheet" href="/static/css/base.css">
     {% endblock %}
 </head>
-<body>
-    {% block body %}
-    {% endblock %}
-</body>
-<div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-            <span class="mb-3 mb-md-0 text-muted">©️ Knowledge belongs to all without limits</span>
-        </div>
+{% block body %}
+{% block header %}
+<a href="/" rel="home">
+    <div class="header-logo-container">
+        <img class="bc-logo" src="/static/images/bclogo.png"  alt="BC Logo home"/>
+        <img class="ti-logo" src="/static/images/tilogo.svg" alt="TI Logo home" />
+    </div>
+</a>
 
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="https://twitter.com/beawitching_cic" target="_blank">
-                    <image src="/static/images/twitter.png" class="img-fluid" width="24" height="24" alt="Link to Twitter" role="link">
-                    </image>
-                </a></li>
-            <li class="ms-3"><a class="text-muted" href="https://www.facebook.com/beawitching/" target="_blank">
-                <image src="/static/images/facebook.svg" class="img-fluid" width="24"
-                    height="24" alt="Link to facebook" role="link">
-                </image>
-            </a></li>
-            <li class="ms-3"><a class="text-muted" href="https://github.com/beawitcht/transinformed-server" target="_blank">
-                    <image src="/static/images/github.png" class="img-fluid" width="24" height="24" alt="Link to the trans informed GitHub repo" role="link">
-                    </image>
-                </a></li>
-            <li class="ms-3"><a class="text-muted" href="https://opencollective.com/beawitching" target="_blank">
-                    <image src="/static/images/opencollective.svg" class="img-fluid" width="24"
-                        height="24" alt="Link to open collective page" role="link">
-                    </image>
-                </a></li>
-        </ul>
-    </footer>
-</div>
+<button id="hamburger" class="hamburger-btn" aria-controls="mobile" aria-expanded="false" aria-label="Hamburger navigation menu button">
+    <svg fill="#EB3B5B" class="hamburger" viewBox="0 0 100 100" width="35" height="35" xmlns="http://www.w3.org/2000/svg">
+        <rect class="line top" width="80" height="10" x="10" y="25" rx="5">
+        </rect>
+        <rect class="line middle" width="80" height="10" x="10" y="45" rx="5">
+        </rect>
+        <rect class="line bottom" width="80" height="10" x="10" y="65" rx="5">
+        </rect>
+      </svg>
+</button>
+{% endblock %}
+
+{% block footer %}
+<button id="backToTop" class="back-to-top-btn" aria-label="Go to the top of the page">
+    <svg fill="#EB3B5B" xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70">
+        <path d="M52.7859 40.5045C53.3881 41.1019 53.7273 41.9148 53.7273 42.7632C53.7273 43.6116 53.3881 44.4252 52.7859 45.0226C52.1856 45.6182 51.3727 45.9498 50.5272 45.945C49.6811 45.9498 48.8683 45.6182 48.2679 45.0226L35 31.818L21.7315 45.0226C20.9245 45.8296 19.748 46.1445 18.6457 45.8491C17.5432 45.5537 16.6823 44.6928 16.3869 43.5904C16.0915 42.4879 16.4065 41.3115 17.2135 40.5045L32.7405 24.9775C33.3379 24.3747 34.1515 24.0361 34.9999 24.0361C35.8483 24.0361 36.6612 24.3747 37.2586 24.9775L52.7859 40.5045ZM70 35C70 44.2826 66.3126 53.1841 59.7487 59.7487C53.1849 66.3126 44.2823 70 35 70C25.7177 70 16.8144 66.3126 10.2513 59.7487C3.68745 53.1849 0 44.2823 0 35C0 25.7177 3.68745 16.8144 10.2513 10.2513C16.8151 3.68821 25.7177 0 35 0C44.2823 0 53.1841 3.68745 59.7487 10.2513C66.3126 16.8151 70 25.7177 70 35ZM63.6364 35C63.6364 27.4049 60.6198 20.1211 55.249 14.7515C49.8788 9.38126 42.5951 6.36406 35.0005 6.36406C27.4053 6.36406 20.1215 9.38126 14.7519 14.7515C9.38232 20.1217 6.36452 27.4053 6.36452 35C6.36452 42.5945 9.38172 49.8783 14.7519 55.2485C20.1221 60.6193 27.4058 63.6359 35.0005 63.6359C42.595 63.6359 49.8788 60.6193 55.249 55.2485C60.6198 49.8783 63.6364 42.5947 63.6364 35Z"/>
+        </svg>
+</button>
+
+<footer class="footer">
+    <div class="copyright">
+        <span>©️ Knowledge belongs to all without limits</span>
+    </div>
+    <div class="footer-links">
+        <a class="text-muted" href="https://twitter.com/beawitching_cic" target="_blank">
+            <image src="/static/images/twitter.png" class="img-fluid" width="35" height="35" alt="Link to Twitter"
+                role="link">
+            </image>
+        </a>
+        <a class="text-muted" href="https://www.facebook.com/beawitching/" target="_blank">
+            <image src="/static/images/facebook.svg" class="img-fluid" width="35" height="35" alt="Link to facebook"
+                role="link">
+            </image>
+        </a>
+        <a class="text-muted" href="https://github.com/beawitcht/transinformed-server" target="_blank">
+            <image src="/static/images/github.svg" class="img-fluid" width="35" height="35"
+                alt="Link to the trans informed GitHub repo" role="link">
+            </image>
+        </a>
+        <a class="text-muted" href="https://opencollective.com/beawitching" target="_blank">
+            <image src="/static/images/opencollective.svg" class="img-fluid" width="35" height="35"
+                alt="Link to open collective page" role="link">
+            </image>
+        </a>
+    </div>
+</footer>
+{% endblock %}
+{% endblock %}
+
 </html>

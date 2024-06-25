@@ -1,0 +1,31 @@
+// large screen sources
+@use '../../variables/global-vars';
+@use '../../base/mixins';
+
+@media (max-width: 777px) {
+    .main-content {
+        display: flex;
+        padding: 10px 32px;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        flex: 1 0 0;
+        align-self: stretch;
+    }
+
+    h1 {
+        @include mixins.text-properties($font-size: 32px, $font-weight: 700);
+    }
+
+    ul {
+        /* 24.367px */
+        @include mixins.text-properties;
+        border: 4px;
+    }
+
+    li {
+        margin-bottom: 24px;
+        text-align: center;
+        list-style-type: none;
+    }
+}

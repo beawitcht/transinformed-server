@@ -4,335 +4,422 @@
 {{ super() }}
 <title>Trans Informed</title>
 <link rel="canonical" href="https://www.transinformed.co.uk" />
-<meta name="description" content="Create a personalised supporting document to accessing HRT and other transition related services through your GP.">
+<meta name="description"
+    content="Create a personalised supporting document to accessing HRT and other transition related services through your GP.">
 <meta name="twitter:title" content="Trans Informed">
-<meta name="twitter:description" content="Create a personalised supporting document to accessing HRT and other transition related services through your GP." >
+<meta name="twitter:description"
+    content="Create a personalised supporting document to accessing HRT and other transition related services through your GP.">
 <meta name="og:title" content="Trans Informed">
-<meta name="og:description" content="Create a personalised supporting document to accessing HRT and other transition related services through your GP." >
-<meta name="keywords" content="trans,transgender,HRT,hormones,supporting document,document generator,health,healthcare,guide,template">
+<meta name="og:description"
+    content="Create a personalised supporting document to accessing HRT and other transition related services through your GP.">
+<meta name="keywords"
+    content="trans,transgender,HRT,hormones,supporting document,document generator,health,healthcare,guide,template">
+<link rel="stylesheet" href="/static/css/index.css">
+<script defer src="/static/js/jquery-3.7.1.min.js"></script>
+<script defer src="/static/js/transinformed.min.js"></script>
 {% endblock %}
 
 {% block body %}
-<a href="/"><img class="mx-auto d-block pt-3" src="/static/images/combinedlogo.png" alt="Beawitching Communities logo and link to home" width="330" height="130" ></a>
-<header class="d-flex justify-content-center py-3">
-    <ul class="d-flex justify-content-center nav nav-pills">
-        <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="/resources" class="nav-link">Resources</a></li>
-        <li class="nav-item"><a href="/sources" class="nav-link" >Sources</a></li>
-        <li class="nav-item"><a href="/blogs" class="nav-link">Blogs</a></li>
-    </ul>
-    <script defer src="/static/js/jquery-3.7.1.min.js"></script>
-    <script defer src="/static/js/transinformed.min.js"></script>
-</header>
-
-
-<div class="container">
-    <main>
-        <div class="py-5 text-center">
-            <h1>Create your trans healthcare guide</h1>
-            <p class="lead">A personalised supporting document to accessing HRT and other transition related services through your GP.</p>
+<a href="#generationForm" class="skip-to-main">Skip to main content</a>
+<div class="header">
+    {% block header %}
+    {{ super() }}
+    {% endblock %}
+    <nav class="nav-bar">
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/about">About</a></div>
         </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/resources">Resources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/sources">Sources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/blogs">Blogs</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" target="_blank" rel="noopener" href="https://ko-fi.com/beawitching_cic/shop">Shop</a></div>
+        </div>
+    </nav>
+</div>
 
-        <div class="row g-5 ">
-            <div class="py-5">
-                <h2>Template info</h2>
-                <p class="mb-3 text-muted">Data to be generated</p>
-                <form class="needs-validation" id="generationForm" action="/" method="post">
-                    <div class="row g-3">
-                        <div class="col-md-12 required border-start border-4 rounded">
-                            <div class="col-md-3">
-                                {{ form.countries.label(for='form.countries.name', name='country', class='form-label') }} <span
-                                class="badge rounded-pill text-bg-danger">Required</span>
-                                {% if form.countries.errors|length > 0 %} {{ form.countries(class='form-select is-invalid', id='countries')}}
-                                {% else %} {{ form.countries(class='form-select', id='countries')}}
-                                {% endif %}
-                                <div class="invalid-feedback ">
-                                    {% for error in form.countries.errors %}
-                                    {{error}}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 required border-start border-4 rounded">
-                            <div class="col-md-3">
-                                {{ form.services.label(for='form.services.name', name='service', class='form-label') }} <span
-                                class="badge rounded-pill text-bg-danger">Required</span>
-                                {% if form.services.errors|length > 0 %} {{ form.services(class='form-select is-invalid', id='services')}}
-                                {% else %} {{ form.services(class='form-select', id='services')}}
-                                {% endif %}
-                                <div class="invalid-feedback ">
-                                    {% for error in form.services.errors %}
-                                    {{error}}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
+<nav class="nav-bar-mobile" id="mobile">
 
-                        <div id="docStatusSection" class="col-md-6 border-start border-4 rounded">
-                                    <h3>Documents held</h3>
-                            <div class="form-check">
-                                {{form.formal_diagnosis(class='form-check-input', type='checkbox', role='checkbox', id='diagnosisCheck')}}
-                                {{form.formal_diagnosis.label(class='form-check-label', for='diagnosisCheck')}}
-                            </div>
-                            <div class="form-check">
-                                {{form.hrt_recommendation(class='form-check-input', type='checkbox', role='checkbox', id='hrtCheck')}}
-                                {{form.hrt_recommendation.label(class='form-check-label', for='hrtCheck')}}
-                            </div>
-                            <div class="form-check">
-                                {{form.no_doc(class='form-check-input', type='checkbox', role='checkbox', id='noDocCheck')}}
-                                {{form.no_doc.label(class='form-check-label', for='noDocCheck')}}
-                            </div>
-                        </div>
-                        <div class="col-md-6 border-start border-4 rounded">
-                            <details class="mb-3">
-                                <summary>
-                                    <h3>My current status</h3>
-                                </summary>
-                                <div class="card">
-                                    <div class="card-body">
-                                        This section covers areas of healthcare relating to your current circumstances, choose the
-                                        relevant option to add to your document.
-                                        <hr>
-                                        <h4>Why are you asking about my address and ID?</h4>
-                                        We ask you if you have a fixed address or identification to add a section to the document clarifying that you are entitled to access healthcare from a GP without any proof of address or identification
-                                        <hr>
-                                        <h4>Why are you asking my age?</h4>
-                                        The NHS won't normally prescribe to those under 16, and current NHS protocols do not allow for prescription of puberty blockers, these are still available privately.
-                                    </div>
-                                </div>
-                            </details>
-                            <div class="form-check">
-                                {{form.under_16(class='form-check-input', type='checkbox', role='checkbox', id='under16Check')}}
-                                {{form.under_16.label(class='form-check-label', for='under16Check')}}
-                            </div>
-                            <div class="form-check">
-                                {{form.no_fixed_address(class='form-check-input', type='checkbox', role='checkbox', id='fixedAddressCheck')}}
-                                {{form.no_fixed_address.label(class='form-check-label', for='fixedAddressCheck')}}
-                            </div>
-                            <div class="form-check">
-                                {{form.no_id_proof(class='form-check-input', type='checkbox', role='checkbox', id='noIdProofCheck')}}
-                                {{form.no_id_proof.label(class='form-check-label', for='noIdProofCheck')}}
-                            </div>
-                        </div>
-                        
-                        <div id="medStatusSection" class="col-md-6 border-start border-4 rounded">
-                            <details class="mb-3">
-                                <summary>
-                                    <h3>Medication Status</h3>
-                                </summary>
-                                <div class="card">
-                                    <div class="card-body">
-                                        This section contains options regarding what your current medication status is, in regards to HRT.
-                                    </div>
-                                </div>
-                            </details>
-                            <div class="form-check">
-                                {{form.self_med(class='form-check-input med-status-check', type='checkbox', role='checkbox', id="selfMedCheck")}}
-                                {{form.self_med.label(class='form-check-label', for="selfMedCheck")}}
-                            </div>
+    <span class="mobile-link"><a class="nav-link" href="/about">About</a></span>
 
-                            <div class="form-check">
-                                {{form.self_med_likely(class='form-check-input med-status-check', type='checkbox', role='checkbox', id="likelyMedCheck")}}
-                                {{form.self_med_likely.label(class='form-check-label', for="likelyMedCheck")}}
-                            </div>
+    <span class="mobile-link"><a class="nav-link" href="/resources">Resources</a></span>
 
-                            <div class="form-check">
-                                {{form.no_self_med(class='form-check-input med-status-check', type='checkbox', role='checkbox', id="noMedCheck")}}
-                                {{form.no_self_med.label(class='form-check-label', for="noMedCheck")}}
-                            </div>
-                            <div class="form-check">
-                                {{form.private_prescription(class='form-check-input med-status-check', type='checkbox', role='checkbox', id="privateMedCheck")}}
-                                {{form.private_prescription.label(class='form-check-label', for="privateMedCheck")}}
-                            </div>
-                            <div class="form-check">
-                                {{form.foreign_prescription(class='form-check-input med-status-check', type='checkbox', role='checkbox', id="foreignMedCheck")}}
-                                {{form.foreign_prescription.label(class='form-check-label', for="foreignMedCheck")}}
-                            </div>
-                        </div>
+    <span class="mobile-link"><a class="nav-link" href="/sources">Sources</a></span>
 
-                        <div id="needsGPStatusSection" class="col-md-6 border-start border-4 rounded">
-                            <details class="mb-3">
-                                <summary>
-                                    <h3>What I need from my GP</h3>
-                                </summary>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>What is a shared care agreement?</h4>
-                                        Check out <a target="_blank" rel="noopener" href="/static/files/shared-care-faq-for-patients.pdf">our faq sheet</a> for info on shared care.
-                                        <hr>
-                                        <h4>Which private provider is right for me?</h4>
-                                        When choosing a private provider, GPs are much more likely to work with a specialist who is based in the UK, and registered with the GMC. Check out <a target="_blank" rel="noopener" href="https://genderkit.org.uk/resources/choosing-gender-service/"> this resource from Gender Construction Kit </a> to help decide on the service that is right for you.
-                                        <hr>
-                                        <h4>Why is the bridging prescription greyed out?</h4>
-                                        If you need a bridging prescription, the GMC and NHS require that transgender people are
-                                        self-prescribing, or likely to self prescribe hormones.
-                                        <hr>
-                                        <h4>How can I continue with HRT when migrating to the UK?</h4>
-                                        It is highly recommended that you obtain a letter from your previous HRT provider, if you need help deciding the contents of this letter, check out <a target="_blank" rel="noopener" href="https://medium.com/@zoyander/continuing-hrt-after-arriving-in-the-uk-2655abd87fa7#a7f3">this letter template.</a>
-                                    </div>
-                                </div>
-                            </details>
-                            
-                            <div class="form-check">
-                                {{ form.shared_care(class='form-check-input', type='checkbox', role='checkbox', id="sharedCareCheck") }}
-                                {{ form.shared_care.label(class='form-check-label', for="sharedCareCheck") }}
-                            </div>
-                            
-                            <div class="" hidden id="privateSelector">
-                                <div class="col-md-6">
-                                    {{ form.chosen_private_care.label(for='form.chosen_private_care.name', name='gic', class='form-label') }}
-                                    {{ form.chosen_private_care(class='form-select', id='privateProviderList') }}
-                                    <div id="notUK" class="invalid-feedback"></div>
-                                    <div id="preferred" class="valid-feedback"></div>
-                                </div>
-                                
-                            </div>
-                            
-                            <div class="form-check">
-                                {{form.bridging_desired(class='form-check-input', type='checkbox', role='checkbox', id="bridgingDesired", disabled="")}}
-                                {{form.bridging_desired.label(class='form-check-label', for="bridgingDesired", id="bridgingDesiredLabel")}}
-                            </div>
+    <span class="mobile-link"><a class="nav-link" href="/blogs">Blogs</a></span>
 
-                            <div class="form-check">
-                                {{form.blood_testing(class='form-check-input', type='checkbox', role='checkbox', id="bloodTests")}}
-                                {{form.blood_testing.label(class='form-check-label', for="bloodTests")}}
-                            </div>
+    <span class="mobile-link"><a class="nav-link" target="_blank" rel="noopener" href="https://ko-fi.com/beawitching_cic/shop">Shop</a></span>
 
-                            <div class="form-check">
-                                {{form.nhs_record_gender(class='form-check-input', type='checkbox', role='checkbox', id="nhsRecordGenderCheck")}}
-                                {{form.nhs_record_gender.label(class='form-check-label', for="nhsRecordGenderCheck")}}
-                            </div>
+</nav>
 
-                            <div class="form-check">
-                                {{form.nhs_record_name(class='form-check-input', type='checkbox', role='checkbox', id="nhsRecordNameCheck")}}
-                                {{form.nhs_record_name.label(class='form-check-label', for="nhsRecordNameCheck")}}
-                            </div>
-                        
-                            <div class="form-check">
-                                {{form.immigration_care(class='form-check-input', type='checkbox', role='checkbox', id="immigrationCheck")}}
-                                {{form.immigration_care.label(class='form-check-label', for="immigrationCheck")}}
-                            </div>
-                            
-                            <div hidden id="immigrationOption">
-                                <div class="form-check">
-                                    {{ form.immigration_letter(class='form-check-input', type='checkbox', role='checkbox', id="immigrationLetterCheck") }}
-                                    {{ form.immigration_letter.label(class='form-check-label', for="immigrationLetterCheck") }}
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col-md-6 border-start border-4 rounded">
-                            <details class="mb-3">
-                                <summary>
-                                    <h3>Service referrals and letters</h3>
-                                </summary>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4>Which Gender Identity Clinic is right for me?</h4>
-                                        All GICs have requirements on who can be referred to them (based on age and location, and if they're accepting referrals). Check out <a target="_blank" rel="noopener" href="https://genderkit.org.uk/resources/wait-times/"> this resource from Gender Construction Kit </a> to make sure the GIC in question is the right choice for you.
-                                    </div>
-                                </div>
-                            </details>
-                            
-                            <div class="form-check">
-                                {{ form.gic_referral(class='form-check-input', type='checkbox', role='checkbox', id="referralCheck") }}
-                                {{ form.gic_referral.label(class='form-check-label', for="referralCheck") }}
-                            </div>
-                            
-                            <div hidden id="gicSelector">
-                                <div class="col-md-6">
-                                    {{ form.chosen_gic.label(for='form.chosen_gic.name', name='gic', class='form-label') }}
-                                    {{ form.chosen_gic(class='form-select', id='gics', option_attr={"chosen_gic-0" : {"id" : "countryNeeded"}, "chosen_gic-1" : {"id" : "default"} }) }}
-                                </div>
-                            </div>
-                            
-                            <div class="form-check">
-                                {{ form.slt_referral(class='form-check-input', type='checkbox', role='checkbox', id="sltCheck") }}
-                                {{ form.slt_referral.label(class='form-check-label', for="sltCheck") }}
-                            </div>
 
-                            <div class="form-check">
-                                {{ form.passport_letter(class='form-check-input', type='checkbox', role='checkbox', id="passportCheck") }}
-                                {{ form.passport_letter.label(class='form-check-label', for="passportCheck") }}
-                            </div>
 
-                            <div class="form-check">
-                                {{ form.grc_letter(class='form-check-input', type='checkbox', role='checkbox', id="grcCheck") }}
-                                {{ form.grc_letter.label(class='form-check-label', for="grcCheck") }}
-                            </div>
-                            
-                        </div>
-                        
-                        <hr class="my-4">
-                        <h2>About you</h2>
-                        <details>
-                            <summary>
-                                <p class="mb-3 text-muted">All details are optional</p>
-                            </summary>
-                            <div class="card">
-                                <div class="card-body">
-                                    Your details are not stored by us or used by us for any other purpose than populating the template and returning your personalised document. PDF generation makes use of a 3rd party API to generate the document.
-                                </div>
-                            </div>
-                        </details>
-                        <div class="row gy-3">
-                            <div class="col-sm-6">
-                                {{ form.name.label(class='form-label', for="firstName") }}
-                                {{form.name(class='form-control', type='text', id="firstName", placeholder="Name")}}
-                            </div>
+<form class="main-content needs-validation" id="generationForm" action="/" method="post">
 
-                            <div class="col-sm-6">
-                                {{form.email.label(class='form-label', for="email")}}
-                                {% if form.email.errors|length > 0 %}
-                                    {{form.email(class='form-control is-invalid', type='email', id="email", placeholder="you@example.com")}}<span class="text-muted"></span>
-                                {% else %}
-                                    {{form.email(class='form-control', type='email', id="email", placeholder="you@example.com")}}<span class="text-muted"></span>
-                                {% endif %}
-                                <div class="invalid-feedback">
-                                    {% for error in form.email.errors %}
-                                        {{error}}
-                                    {% endfor %}
-                                </div>
-                            </div>
+    <h1>Create your trans healthcare guide</h1>
+    <p class="title-desc">A personalised supporting document to accessing HRT and other transition related services
+        through your GP.</p>
 
-                            <div class="col-md-2">
-                                {{form.phone.label(class='form-label', for="phoneNumber")}}
-                                {{form.phone(class='form-control', type='text', id="phoneNumber", placeholder="+4412345678910")}}<span class="text-muted"></span>
-                            </div>
-
-                            <div class="col-md-2">
-                                {{form.pronouns.label(class='form-label', for="pronouns")}}
-                                {{form.pronouns(class='form-control', type='text', id="pronouns", placeholder="any/any") }} <span class="text-muted"></span>
-                            </div>
-
-                            <hr class="my-4">
-
-                            <div class="d-flex justify-content-center">
-                                {{ form.captcha }}
-                            </div>
-
-                            {% if form.captcha.errors|length > 0 %}
-                            <span class="error text-danger text-center">Captcha incorrect!</span>
-                            {% endif %}
-
-                        </div>
-
-                        <div id="alertPlaceholder"></div>
-                        <div class="btn-group">
-                            <button class="btn btn-outline-primary btn-lg mr-3" id="docx" name="docx" type="submit"
-                                value="docx" disabled>Generate Docx</button>
-                            {% if not pdf_available %}
-                            <button class="btn btn-outline-primary btn-lg" id="pdf" name="pdf" type="submit"
-                                value="pdf" disabled>PDF Unavailable</button>
-                            {% else %}
-                            <button class="btn btn-outline-primary btn-lg" id="pdf" name="pdf" type="submit" value="pdf"
-                                disabled>Generate PDF</button>
-                            {% endif %}
-                        </div>
-                </form>
+    <h2>Template info</h2>
+    <p class="descriptive">Data to be generated</p>
+    <div class="dropdowns">
+        <div class="dropdown-container">
+            {{ form.countries.label(for='countries', name='country', class='dropdown-label') }}
+            <span class="badge-container badge-text">Required</span>
+            {% if form.countries.errors|length > 0 %} {{ form.countries(class='dropdown-text
+            is-invalid',
+            id='countries')}}
+            {% else %} {{ form.countries(class='dropdown-text', id='countries')}}
+            {% endif %}
+            <div class="invalid-feedback ">
+                {% for error in form.countries.errors %}
+                {{error}}
+                {% endfor %}
             </div>
         </div>
 
-    </main>
+        <div class="dropdown-container">
+            {{ form.services.label(for='services', name='service', class='dropdown-label') }}
+            <span class="badge-container badge-text">Required</span>
+            {% if form.services.errors|length > 0 %} {{ form.services(class='dropdown-text
+            is-invalid',
+            id='services')}}
+            {% else %} {{ form.services(class='dropdown-text', id='services')}}
+            {% endif %}
+            <div class="invalid-feedback ">
+                {% for error in form.services.errors %}
+                {{error}}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div id="docStatusSection" class="section-container">
+        <h3>Documents held</h3>
+        <div class="check-container">
+            {{form.formal_diagnosis(class='check-box', type='checkbox', role='checkbox',
+            id='diagnosisCheck')}}
+            {{form.formal_diagnosis.label(class='check-label', for='diagnosisCheck')}}
+
+        </div>
+        <div class="check-container">
+            {{form.hrt_recommendation(class='check-box', type='checkbox', role='checkbox',
+            id='hrtCheck')}}
+            {{form.hrt_recommendation.label(class='check-label', for='hrtCheck')}}
+        </div>
+        <div class="check-container">
+            {{form.no_doc(class='check-box', type='checkbox', role='checkbox', id='noDocCheck')}}
+            {{form.no_doc.label(class='check-label', for='noDocCheck')}}
+        </div>
+    </div>
+    <div class="section-container">
+        <h3>My current status</h3>
+
+        <div class="check-container">
+            {{form.under_16(class='check-box', type='checkbox', role='checkbox',
+            id='under16Check')}}
+            {{form.under_16.label(class='check-label', for='under16Check')}}
+            <div class="more-info"><button id="under16LabelBtn" class="info-btn" type="button"
+                    aria-controls="under16InfoLabel" aria-expanded="false" aria-label="More info button" for=""><svg width="44" height="44"
+                        viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
+                            fill="#EB3B5B" />
+                    </svg></button>
+                </div>
+        </div>
+        <div class="info-label" id="under16InfoLabel" aria-expanded="false">
+            <h4 class="info-heading">Why are you asking my age?</h4>
+            Healthcare for trans youth is currently heavily restricted in the UK, selecting this option will adapt
+            the options and document content to what is currently available to those under 16.
+        </div>
+        <div class="check-container">
+            {{form.no_fixed_address(class='check-box', type='checkbox', role='checkbox',
+            id='fixedAddressCheck')}}
+            {{form.no_fixed_address.label(class='check-label', for='fixedAddressCheck')}}
+            <div class="more-info"><button id="fixedAddressLabelBtn" class="info-btn" type="button"
+                    aria-controls="fixedAddressInfoLabel" aria-expanded="false" aria-label="More info button"><svg width="44" height="44"
+                        viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
+                            fill="#EB3B5B" />
+                    </svg></button>
+                </div>
+        </div>
+        <div class="info-label" id="fixedAddressInfoLabel" aria-expanded="false">
+            <h4 class="info-heading">Why are you asking about my address?</h4>
+            We ask you if you have a fixed address to add a section to the document clarifying
+            that you are entitled to access healthcare from a GP without any proof of address.
+        </div>
+        <div class="check-container">
+            {{form.no_id_proof(class='check-box', type='checkbox', role='checkbox',
+            id='noIdProofCheck')}}
+            {{form.no_id_proof.label(class='check-label', for='noIdProofCheck')}}
+            <div class="more-info"><button id="noIdProofLabelBtn" class="info-btn" type="button"
+                    aria-controls="noIdProofInfoLabel" aria-expanded="false" aria-label="More info button"><svg width="44" height="44"
+                        viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
+                            fill="#EB3B5B" />
+                    </svg></button>
+                </div>
+        </div>
+        <div class="info-label" id="noIdProofInfoLabel" aria-expanded="false">
+            <h4 class="info-heading">Why are you asking about my ID?</h4>
+            We ask you if you have proof of identification to add a section to the document clarifying
+            that you are entitled to access healthcare from a GP without any proof of identification.
+        </div>
+    </div>
+
+    <div id="medStatusSection" class="section-container">
+
+        <h3>Medication Status</h3>
+
+        <div class="check-container">
+            {{form.self_med(class='check-box med-status-check', type='checkbox', role='checkbox',
+            id="selfMedCheck")}}
+            {{form.self_med.label(class='check-label', for="selfMedCheck")}}
+        </div>
+
+        <div class="check-container">
+            {{form.self_med_likely(class='check-box med-status-check', type='checkbox',
+            role='checkbox', id="likelyMedCheck")}}
+            {{form.self_med_likely.label(class='check-label', for="likelyMedCheck")}}
+        </div>
+
+        <div class="check-container">
+            {{form.no_self_med(class='check-box med-status-check', type='checkbox',
+            role='checkbox', id="noMedCheck")}}
+            {{form.no_self_med.label(class='check-label', for="noMedCheck")}}
+        </div>
+        <div class="check-container">
+            {{form.private_prescription(class='check-box med-status-check', type='checkbox',
+            role='checkbox', id="privateMedCheck")}}
+            {{form.private_prescription.label(class='check-label', for="privateMedCheck")}}
+        </div>
+        <div class="check-container">
+            {{form.foreign_prescription(class='check-box med-status-check', type='checkbox',
+            role='checkbox', id="foreignMedCheck")}}
+            {{form.foreign_prescription.label(class='check-label', for="foreignMedCheck")}}
+        </div>
+    </div>
+
+    <div id="needsGPStatusSection" class="section-container">
+
+        <h3>What I need from my GP</h3>
+
+
+        <div class="check-container" id="sharedCareCheckContainer">
+            {{ form.shared_care(class='check-box', type='checkbox', role='checkbox',
+            id="sharedCareCheck") }}
+            {{ form.shared_care.label(class='check-label', for="sharedCareCheck") }}
+            <div class="more-info"><button id="sharedCareLabelBtn" class="info-btn" type="button"
+                    aria-controls="sharedCareInfoLabel" aria-expanded="false" aria-label="More info button"><svg width="44" height="44"
+                        viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
+                            fill="#EB3B5B" />
+                    </svg></button>
+                </div>
+        </div>
+        <div class="info-label" id="sharedCareInfoLabel" aria-expanded="false">
+            <h4 class="info-heading">What is a shared care agreement?</h4>
+            Check out <a target="_blank" rel="noopener" href="/static/files/shared-care-faq-for-patients.pdf">our
+                faq sheet</a> for info on shared care.
+        </div>
+
+        <div class="dropdown-container inline-container" hidden id="privateSelector">
+
+            {{ form.chosen_private_care.label(for='privateProviderList', name='gic',
+            class='dropdown-label') }}
+            {{ form.chosen_private_care(class='inline-dropdown dropdown-text', id='privateProviderList') }}
+            <div id="notUK" class="invalid-feedback"></div>
+            <div id="preferred" class="valid-feedback"></div>
+
+
+        </div>
+
+        <div class="check-container" id="bridgingDesiredContainer">
+            {{form.bridging_desired(class='check-box', type='checkbox', role='checkbox',
+            id="bridgingDesired", disabled="")}}
+            {{form.bridging_desired.label(class='check-label', for="bridgingDesired",
+            id="bridgingDesiredLabel")}}
+            <div class="more-info"><button id="bridgingDesiredLabelBtn" class="info-btn" type="button"
+                    aria-controls="bridgingDesiredInfoLabel" aria-expanded="false" aria-label="More info button"><svg width="44" height="44"
+                        viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
+                            fill="#EB3B5B" />
+                    </svg></button>
+                </div>
+        </div>
+        <div class="info-label" id="bridgingDesiredInfoLabel" aria-expanded="false">
+            <h4 class="info-heading">Why is the bridging prescription option greyed out?</h4>
+            If you need a bridging prescription, the GMC and NHS require that transgender people are
+            self-prescribing, or likely to self prescribe hormones.
+        </div>
+        <div class="check-container" id="bloodTestsContainer">
+            {{form.blood_testing(class='check-box', type='checkbox', role='checkbox',
+            id="bloodTests")}}
+            {{form.blood_testing.label(class='check-label', for="bloodTests")}}
+        </div>
+
+        <div class="check-container">
+            {{form.nhs_record_gender(class='check-box', type='checkbox', role='checkbox',
+            id="nhsRecordGenderCheck")}}
+            {{form.nhs_record_gender.label(class='check-label', for="nhsRecordGenderCheck")}}
+        </div>
+
+        <div class="check-container">
+            {{form.nhs_record_name(class='check-box', type='checkbox', role='checkbox',
+            id="nhsRecordNameCheck")}}
+            {{form.nhs_record_name.label(class='check-label', for="nhsRecordNameCheck")}}
+        </div>
+
+        <div class="check-container">
+            {{form.immigration_care(class='check-box', type='checkbox', role='checkbox',
+            id="immigrationCheck")}}
+            {{form.immigration_care.label(class='check-label', for="immigrationCheck")}}
+        </div>
+
+        <div hidden class="check-container" id="immigrationOption">
+
+            {{ form.immigration_letter(class='check-box', type='checkbox', role='checkbox',
+            id="immigrationLetterCheck") }}
+            {{ form.immigration_letter.label(class='check-label', for="immigrationLetterCheck")
+            }}
+            <div class="more-info"><button id="immLetterLabelBtn" class="info-btn" type="button"
+                    aria-controls="immLetterInfoLabel" aria-expanded="false" aria-label="More info button"><svg width="44" height="44"
+                        viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
+                            fill="#EB3B5B" />
+                    </svg></button>
+                </div>
+        </div>
+        <div class="info-label" id="immLetterInfoLabel" aria-expanded="false">
+            <h4 class="info-heading">How can I continue with HRT when migrating to the UK?</h4>
+            If possible you should obtain a letter from your previous HRT provider, if you need help deciding the
+            contents of this letter, check out <a target="_blank" rel="noopener"
+                href="https://medium.com/@zoyander/continuing-hrt-after-arriving-in-the-uk-2655abd87fa7#a7f3">this
+                letter template.</a>
+        </div>
+    </div>
+
+    <div class="section-container">
+
+        <h3>Service referrals and letters</h3>
+
+
+        <div class="check-container">
+            {{ form.gic_referral(class='check-box', type='checkbox', role='checkbox',
+            id="referralCheck") }}
+            {{ form.gic_referral.label(class='check-label', for="referralCheck") }}
+            <div class="more-info"><button id="gicLabelBtn" class="info-btn" type="button"
+                    aria-controls="gicInfoLabel" aria-expanded="false" aria-label="More info button"><svg width="44" height="44" viewBox="0 0 44 44"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M0 22.0004C0 9.85657 9.8557 0 22.0004 0C34.1443 0 44 9.8557 44 22.0004C44 34.1443 34.1443 44 22.0004 44C9.85657 44 0 34.1443 0 22.0004ZM25.7104 33.0701C25.7104 31.0204 24.0493 29.3594 21.9997 29.3594C19.9502 29.3594 18.2891 31.0205 18.2891 33.0701C18.2891 35.1197 19.9502 36.7808 21.9997 36.7808C24.0493 36.7808 25.7104 35.1197 25.7104 33.0701ZM24.4929 26.0155C24.6324 25.7146 24.8999 25.3738 25.4464 24.9115C26.0475 24.4021 26.7076 23.9658 27.5766 23.2981C29.2778 21.9892 31.4084 20.0091 31.7491 16.4451C32.0279 13.545 30.9058 11.1542 29.0725 9.51151C27.3238 7.94595 25.0247 7.132 22.8394 6.91192C20.654 6.68812 18.2779 7.02552 16.3054 8.11451C14.2482 9.25501 12.6056 11.2606 12.3859 14.0656C12.2648 15.5762 13.3977 16.9036 14.9121 17.021C16.4227 17.1421 17.7501 16.0088 17.8675 14.4947C17.9224 13.809 18.2561 13.3211 18.9674 12.9288C19.7667 12.4853 20.9693 12.2469 22.282 12.3826C23.591 12.5147 24.7093 12.9875 25.406 13.6107C26.0183 14.1573 26.3741 14.8648 26.2752 15.921C26.1541 17.1969 25.5271 17.9376 24.2218 18.9385C23.5177 19.4813 22.6743 20.0531 21.8935 20.7169C21.0539 21.4244 20.126 22.3705 19.5102 23.687C18.8685 25.0618 19.4624 26.7007 20.8376 27.3423C22.2124 27.9841 23.8513 27.3901 24.493 26.0153L24.4929 26.0155Z"
+                            fill="#EB3B5B" />
+                    </svg></button>
+                </div>
+        </div>
+        <div class="info-label" id="gicInfoLabel" aria-expanded="false">
+            <h4 class="info-heading">Which Gender Identity Clinic is right for me?</h4>
+            All GICs have requirements on who can be referred to them (based on age and location, and if they're
+            accepting referrals). Check out <a target="_blank" rel="noopener"
+                href="https://genderkit.org.uk/resources/wait-times/"> this resource from Gender Construction Kit
+            </a> to make sure the GIC in question is the right choice for you.
+        </div>
+
+        <div hidden class="dropdown-container inline-container" id="gicSelector">
+
+            {{ form.chosen_gic.label(for='gics', name='gic', class='dropdown-label') }}
+            {{ form.chosen_gic(class='inline-dropdown dropdown-text', id='gics', option_attr={"chosen_gic-0"
+            : {"id" :
+            "countryNeeded"}, "chosen_gic-1" : {"id" : "default"} }) }}
+
+        </div>
+
+        <div class="check-container">
+            {{ form.slt_referral(class='check-box', type='checkbox', role='checkbox',
+            id="sltCheck") }}
+            {{ form.slt_referral.label(class='check-label', for="sltCheck") }}
+        </div>
+
+        <div class="check-container">
+            {{ form.passport_letter(class='check-box', type='checkbox', role='checkbox',
+            id="passportCheck") }}
+            {{ form.passport_letter.label(class='check-label', for="passportCheck") }}
+        </div>
+
+        <div class="check-container" id="grcCheckContainer">
+            {{ form.grc_letter(class='check-box', type='checkbox', role='checkbox',
+            id="grcCheck") }}
+            {{ form.grc_letter.label(class='check-label', for="grcCheck") }}
+        </div>
+    </div>
+    <div class="section-container">
+        <h2>About you</h2>
+
+        <p>All details are optional</p>
+
+        {{ form.name.label(class='text-input-label', for="firstName") }}
+        {{form.name(class='text-input', type='text', id="firstName", placeholder="Name")}}
+
+        {{form.email.label(class='text-input-label', for="email")}}
+        {% if form.email.errors|length > 0 %}
+        {{form.email(class='text-input is-invalid', type='email', id="email",
+        placeholder="you@example.com")}}<span class="text-muted"></span>
+        {% else %}
+        {{form.email(class='text-input', type='email', id="email",
+        placeholder="you@example.com")}}<span class="text-muted"></span>
+        {% endif %}
+        <div class="invalid-feedback">
+            {% for error in form.email.errors %}
+            {{error}}
+            {% endfor %}
+        </div>
+
+        {{form.phone.label(class='text-input-label', for="phoneNumber")}}
+        {{form.phone(class='text-input', type='text', id="phoneNumber",
+        placeholder="+4412345678910")}}<span class="text-muted"></span>
+
+        {{form.pronouns.label(class='text-input-label', for="pronouns")}}
+        {{form.pronouns(class='text-input', type='text', id="pronouns", placeholder="any/any") }}
+        <span class="text-muted"></span>
+
+    </div>
+    <div class="captcha">
+        {{ form.captcha }}
+
+        {% if form.captcha.errors|length > 0 %}
+        <span class="captcha-error">Captcha incorrect!</span>
+        {% endif %}
+    </div>
+    </div>
+
+    <div id="alertPlaceholder"></div>
+    <div class="btn-group">
+        <button class="btn-docx" id="docx" name="docx" type="submit" value="docx" disabled>Generate Docx</button>
+        {% if not pdf_available %}
+        <button class="btn-pdf" id="pdf" name="pdf" type="submit" value="pdf" disabled>PDF
+            Unavailable</button>
+        {% else %}
+        <button class="btn-pdf" id="pdf" name="pdf" type="submit" value="pdf" disabled>Generate PDF</button>
+        {% endif %}
+
+</form>
+
 </div>
+
+{% block footer %}
+{{ super() }}
+{% endblock %}
 {% endblock %}

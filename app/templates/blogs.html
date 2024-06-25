@@ -10,35 +10,71 @@
 <meta name="og:title" content="Trans Informed - Sources">
 <meta name="og:description" content="Blogs around trans healthcare in the uk" >
 <meta name="keywords" content="trans,transgender,HRT,hormones,blogs,health,healthcare,blogging,legislation,guidance">
+<link rel="stylesheet" href="/static/css/blogs.css">
 {% endblock %}
 
 {% block body %}
-<a href="/"><img class="mx-auto d-block pt-3" src="/static/images/combinedlogo.png" alt="Beawitching Communities logo and link to home" width="330" height="130" ></a>
-<header class="d-flex justify-content-center py-3">
-    <ul class="d-flex justify-content-center nav nav-pills">
-        <li class="nav-item"><a href="/about" class="nav-link" >About</a></li>
-        <li class="nav-item"><a href="/resources" class="nav-link">Resources</a></li>
-        <li class="nav-item"><a href="/sources" class="nav-link">Sources</a></li>
-        <li class="nav-item"><a href="/blogs" class="nav-link active" aria-current="page">Blogs</a></li>
-    </ul>
-</header>
+<a href="#main" class="skip-to-main">Skip to main content</a>
+<div class="header">
+    {% block header %}
+    {{ super() }}
+    {% endblock %}
 
-
-<div class="container">
-    <main>
-        <div class="py-5">
-            <h1 class="text-center">Blog Posts</h1>
-            <hr>
-            <ul class="list-group">
-                {% for blog in medium_feed %}
-                    <a class="list-group-item list-group-item" href="/blogs/{{blog.url_title}}"><h4>{{blog.title}}</h4>
-                    <small>{{blog.summary}}</small>
-                    </a>
-                {% endfor %}
-            </ul>
+    <nav class="nav-bar">
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/about">About</a></div>
         </div>
-    </main>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/resources">Resources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/sources">Sources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link-active" href="/blogs">Blogs</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" target="_blank" rel="noopener" href="https://ko-fi.com/beawitching_cic/shop">Shop</a></div>
+        </div>
+    </nav>
 </div>
-                       
 
+<nav class="nav-bar-mobile" id="mobile">
+
+    <span class="mobile-link"><a class="nav-link" href="/about">About</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/resources">Resources</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/sources">Sources</a></span>
+
+    <span class="mobile-link"><a class="nav-link-active" href="/blogs">Blogs</a></span>
+
+    <span class="mobile-link"><a class="nav-link" target="_blank" rel="noopener" href="https://ko-fi.com/beawitching_cic/shop">Shop</a></span>
+
+</nav>
+
+<div class="main-content" id="main">
+    <div class="layout-card-container">
+        {% for blog in medium_feed %}
+        <a href="/blogs/{{ blog.url_title }}">
+            <div class="card-container">
+                <div class="card-image-container">
+                    {{blog.card_img | safe}}
+                </div>
+                <div class="card-text-container">
+                    <div class="card-heading-container">
+                        <div class="card-heading">{{blog.title}}</div>
+                    </div>
+                    <div class="card-description-container">
+                        <div class="card-description">{{blog.summary}}</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% block footer %}
+{{ super() }}
+{% endblock %}
 {% endblock %}
