@@ -1,4 +1,11 @@
 window.addEventListener('load', function () {
+    infoButtons(document.getElementById("gicLabelBtn"), document.getElementById("gicInfoLabel"));
+    infoButtons(document.getElementById("sharedCareLabelBtn"), document.getElementById("sharedCareInfoLabel"));
+    infoButtons(document.getElementById("bridgingDesiredLabelBtn"), document.getElementById("bridgingDesiredInfoLabel"));
+    infoButtons(document.getElementById("under16LabelBtn"), document.getElementById("under16InfoLabel"));
+    infoButtons(document.getElementById("fixedAddressLabelBtn"), document.getElementById("fixedAddressInfoLabel"));
+    infoButtons(document.getElementById("noIdProofLabelBtn"), document.getElementById("noIdProofInfoLabel"));
+    infoButtons(document.getElementById("immLetterLabelBtn"), document.getElementById("immLetterInfoLabel"));
     revealContentReferral();
     revealContentSharedCare();
     revealContentImmigration();
@@ -318,14 +325,7 @@ function submitActions() {
     });
 }
 
-// info button logic
-infoButtons(document.getElementById("gicLabelBtn"), document.getElementById("gicInfoLabel"));
-infoButtons(document.getElementById("sharedCareLabelBtn"), document.getElementById("sharedCareInfoLabel"));
-infoButtons(document.getElementById("bridgingDesiredLabelBtn"), document.getElementById("bridgingDesiredInfoLabel"));
-infoButtons(document.getElementById("under16LabelBtn"), document.getElementById("under16InfoLabel"));
-infoButtons(document.getElementById("fixedAddressLabelBtn"), document.getElementById("fixedAddressInfoLabel"));
-infoButtons(document.getElementById("noIdProofLabelBtn"), document.getElementById("noIdProofInfoLabel"));
-infoButtons(document.getElementById("immLetterLabelBtn"), document.getElementById("immLetterInfoLabel"));
+
 
 // expand additional info on clicking ?
 function infoButtons(btn, btnLabel){
