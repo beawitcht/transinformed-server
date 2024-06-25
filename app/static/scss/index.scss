@@ -65,6 +65,11 @@
     margin-top: 10px;
 }
 
+.more-info{
+    display: inline-flex;
+    
+}
+
 .check-box:checked {
     animation: shrink-bounce 200ms cubic-bezier(.4, .0, .23, 1);
 }
