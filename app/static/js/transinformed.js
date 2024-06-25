@@ -6,6 +6,7 @@ window.addEventListener('load', function () {
     infoButtons(document.getElementById("fixedAddressLabelBtn"), document.getElementById("fixedAddressInfoLabel"));
     infoButtons(document.getElementById("noIdProofLabelBtn"), document.getElementById("noIdProofInfoLabel"));
     infoButtons(document.getElementById("immLetterLabelBtn"), document.getElementById("immLetterInfoLabel"));
+    infoButtons(document.getElementById("aboutLabelBtn"), document.getElementById("aboutInfoLabel"));
     revealContentReferral();
     revealContentSharedCare();
     revealContentImmigration();
