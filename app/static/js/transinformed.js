@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
     revealContentReferral();
     revealContentSharedCare();
-    revealContentImmigration()
+    revealContentImmigration();
     privateProviderConditions();
     countryServiceFilters();
     serviceFilters();
@@ -55,7 +55,7 @@ function checkAgeStatus() {
         privateProviderList.value = "I haven't chosen a provider yet";
         $('#bridgingDesiredContainer').hide();
         bridgingDesired.checked = false;
-        $('#bloodTestsContainer').hide()
+        $('#bloodTestsContainer').hide();
         bloodTests.checked = false;
         $('#grcCheckContainer').hide();
         grcCheck.checked = false;
@@ -140,7 +140,7 @@ function serviceFilters() {
         $('#bridgingDesiredContainer').hide();
         bridgingDesired.checked = false;
         grcCheck.checked = false;
-        $('#bloodTestsContainer').hide()
+        $('#bloodTestsContainer').hide();
         bloodTests.checked = false;
         $('#medStatusSection').hide();
         // unchecks all medStatusSection checkboxes
