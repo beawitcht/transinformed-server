@@ -1,0 +1,137 @@
+// large screen blog contents
+@use '../../variables/global-vars';
+@use '../../base/mixins';
+
+
+@media (min-width: 778px) {
+    .blog-main-content {
+        display: flex;
+        padding: 10px 12.15%;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        flex: 1 0 0;
+        align-self: stretch;
+    }
+
+    .blog-title {
+        @include mixins.left-aligned-body;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        @include mixins.text-properties($font-size: 42px, $font-weight: 700);
+    }
+
+    .description-text {
+        @include mixins.text-properties($font-size: 22px, $font-weight: 500, $color: #4D4D4D);
+    }
+
+    .blog-description {
+        @include mixins.left-aligned-body;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .blog-image-container {
+        display: flex;
+        width: 472px;
+        height: 335px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .blog-image {
+        width: 472px;
+        height: 335px;
+        flex-shrink: 0;
+    }
+
+    .blog-header {
+        display: flex;
+        padding: 24px 0px 8px 0px;
+        justify-content: flex-start;
+        gap: 8px;
+        align-self: stretch;
+    }
+
+    h3 {
+        @include mixins.text-properties($font-size: 24px, $font-weight: 700);
+    }
+
+    .blog-image-caption {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        margin: 10px;
+    }
+
+    figcaption {
+        @include mixins.text-properties($font-size: 14px);
+    }
+
+    figure {
+        margin: 0;
+    }
+
+    .blog-paragraph {
+        margin: 0;
+        margin-bottom: 10px;
+        display: inline-flexbox;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        align-self: stretch;
+
+    }
+
+    p {
+        @include mixins.text-properties;
+
+    }
+
+    em {
+        @include mixins.text-properties( $font-weight: 300, $font-style: italic);
+    }
+
+    .blog-disclaimer {
+        margin: 0;
+        display: inline-flexbox;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        align-self: stretch;
+    }
+
+    li {
+        margin-bottom: 10px;
+        /* 24.367px */
+        @include mixins.text-properties;
+    }
+
+    .blog-quote {
+        display: inline-flexbox;
+        padding-left: 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        align-self: stretch;
+
+
+    }
+
+    blockquote {
+        border-left: 3px solid #000;
+        @include mixins.text-properties($font-style: italic, $font-weight: 300);
+    }
+
+    .blog-subheading {
+        @include mixins.text-properties($font-size: 22px, $font-weight: 600);
+
+    }
+
+    .blog-subheading-layout {
+        @include mixins.left-aligned-body;
+    }
+}

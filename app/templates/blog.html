@@ -4,30 +4,75 @@
 {{ super() }}
 <title>{{blog.title}} - Trans Informed</title>
 <link rel="canonical" href="https://www.transinformed.co.uk/blogs/{{blog.url_title}}" />
+<link rel="stylesheet" href="/static/css/blog.css">
 <meta name="description" content="{{blog.summary}}">
 <meta name="twitter:title" content="{{blog.title}} - Trans Informed">
 <meta name="twitter:description" content="{{blog.summary}}" >
 <meta name="og:title" content="{{blog.title}} - Trans Informed">
 <meta name="og:description" content="{{blog.summary}}" >
 <meta name="keywords" content="{{blog.tags}}">
+<link rel="stylesheet" href="/static/css/blog.css">
 {% endblock %}
 
 {% block body %}
-<a href="/"><img class="mx-auto d-block pt-3" src="/static/images/combinedlogo.png" alt="Beawitching Communities logo and link to home" width="330" height="130" ></a>
-<header class="d-flex justify-content-center py-3">
-    <ul class="d-flex justify-content-center nav nav-pills">
-        <li class="nav-item"><a href="/about" class="nav-link" >About</a></li>
-        <li class="nav-item"><a href="/resources" class="nav-link" >Resources</a></li>
-        <li class="nav-item"><a href="/sources" class="nav-link" >Sources</a></li>
-        <li class="nav-item"><a href="/blogs" class="nav-link active" aria-current="page">Blogs</a></li>
-    </ul>
-</header>
-<div class="container">
-    <div class="blog-content">
-        <h1 class="text-center">{{blog.title}}</h1>
-        {{blog.content[0].value| stylish| safe}}
-        <hr>
-        <a href="https://ko-fi.com/beawitching_cic/shop" target="_blank"><img class="img-fluid rounded mx-auto d-block" src="/static/images/product.png" alt="Support us, Ethically sourced snake shed jewellery and more! All handmade by trans people. Click Here."> </a>
-    </div>
+<a href="#main" class="skip-to-main">Skip to main content</a>
+<div class="header">
+    {% block header %}
+    {{ super() }}
+    {% endblock %}
+    <nav class="nav-bar">
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/about">About</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/resources">Resources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" href="/sources">Sources</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link-active" href="/blogs">Blogs</a></div>
+        </div>
+        <div class="header-link-container">
+            <div class="header-link"><a class="nav-link" target="_blank" rel="noopener" href="https://ko-fi.com/beawitching_cic/shop">Shop</a></div>
+        </div>
+    </nav>
 </div>
+
+<nav class="nav-bar-mobile" id="mobile">
+
+    <span class="mobile-link"><a class="nav-link" href="/about">About</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/resources">Resources</a></span>
+
+    <span class="mobile-link"><a class="nav-link" href="/sources">Sources</a></span>
+
+    <span class="mobile-link"><a class="nav-link-active" href="/blogs">Blogs</a></span>
+
+    <span class="mobile-link"><a class="nav-link" target="_blank" rel="noopener" href="https://ko-fi.com/beawitching_cic/shop">Shop</a></span>
+
+</nav>
+
+<div class="blog-main-content" id="main">
+    <h1 class="blog-title">{{ blog.title }}</h1>
+    {% block blog_body %}
+    {% endblock %}
+    {% block blog_ad %}
+    {% set imageUse = range(1, 3) | random %}
+    {% if imageUse == 1 %}
+        <span class="blog-section-break"></span>
+        <a href="https://ko-fi.com/beawitching_cic/shop" target="_blank">
+        <img class="blog-image-container blog-image" alt="Support us, Ethically sourced, handmade snake shed jewellery and more! Click Here to go to the store." src="/static/images/product1.png">
+        </a>
+    {% else %}
+        <span class="blog-section-break"></span>
+        <a href="https://ko-fi.com/beawitching_cic/shop" target="_blank">
+        <img class="blog-image-container blog-image" alt="A picture of a mug with that reads 'I wanted healthcare but all I got is this lousy mug' the text 'Merch and more!' is displayed below. Click Here to go to the store." src="/static/images/product2.png">
+        </a>
+    {% endif %}
+    {% endblock %}
+</div>
+{% block footer %}
+{{ super() }}
+{% endblock %}
 {% endblock %}

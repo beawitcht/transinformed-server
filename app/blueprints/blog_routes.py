@@ -1,7 +1,10 @@
 from flask import Blueprint, render_template, abort
-from main import cache, entries
+from main import cache
+from utilities import prepare_blogs
 import urllib.parse
 
+# get blogs
+entries = prepare_blogs("https://medium.com/feed/@transinformed")
 
 blog_bp = Blueprint('blog', __name__)
 
@@ -17,11 +20,11 @@ def blog(title):
     for rss_blog in entries:
         if rss_blog.url_title == urllib.parse.quote_plus(title):
             blog_number = entries.index(rss_blog)
-   # return 404 if failed to match blog                 
+   # return 404 if failed to match blog
     try:
         blog = entries[blog_number]
     except NameError:
         abort(404)
     
-    return render_template("blog.html", blog=blog)
+    return render_template(f"blogs/{blog.title}.html", blog=blog)
 

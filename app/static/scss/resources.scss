@@ -1,0 +1,12 @@
+// resources page
+
+@use 'components/resources/resources-large';
+@use 'components/resources/resources-small';
+
+.section-break {
+    background: url('/static/images/linebreak.svg');
+    width: 95px;
+    height: 32px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

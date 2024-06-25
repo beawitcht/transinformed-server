@@ -1,0 +1,86 @@
+// index content page
+@use 'variables/global-vars';
+@use 'base/mixins';
+@use 'components/index/index-large';
+@use 'components/index/index-small';
+
+.index-section-break {
+    background: url('/static/images/linebreak.svg');
+    width: 95px;
+    height: 32px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.section-container{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 50%;
+}
+
+.dropdowns{
+    display: inline-flex;
+    gap: 10px;
+}
+
+
+.dropdown-arrow {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.dropdown-label {
+    @include mixins.text-properties($font-size: 18px);
+}
+
+.badge-container {
+    display: inline-flex;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 32px;
+    background: #A7112C;
+}
+
+.badge-text {
+    @include mixins.text-properties($font-size: 14px, $color: #FFF);
+}
+
+.captcha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.check-box:checked {
+    animation: shrink-bounce 200ms cubic-bezier(.4, .0, .23, 1);
+}
+
+@keyframes shrink-bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(.95);
+        
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
