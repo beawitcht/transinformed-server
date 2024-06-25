@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
     revealContentReferral();
     revealContentSharedCare();
-    revealContentImmigration();
+    revealContentImmigration()
     privateProviderConditions();
     countryServiceFilters();
     serviceFilters();
@@ -65,6 +65,9 @@ function checkAgeStatus() {
         // check conditions again
         checkMedStatus();
         $("#services option[value='Adult (17+)']").hide();
+        if (services.value === "Adult (17+)") {
+            services.value = "Choose...";
+        }
         serviceFilters();
     }
     else {
@@ -146,7 +149,7 @@ function serviceFilters() {
         $("#privateProviderList option[value='Other (Non-UK Based)']").hide();
 
     }
-    else {
+    else if (!under16Check.checked) {
         $('#grcCheckContainer').show();
         $('#bridgingDesiredContainer').show();
         $('#medStatusSection').show();
@@ -232,6 +235,10 @@ function revealContentSharedCare() {
 
 function revealContentImmigration() {
     immigrationCheck.checked ? $('#immigrationOption').show() : ($('#immigrationOption').hide(), immigrationLetterCheck.checked = false);
+    if (document.getElementById("immLetterLabelBtn").getAttribute("data-state") === "opened" && !immigrationCheck.checked) {
+        $('#immLetterLabelBtn').trigger("click");
+    }
+
 }
 
 function privateProviderConditions() {
@@ -242,7 +249,7 @@ function privateProviderConditions() {
         privateProviderList.classList.add("is-invalid");
         privateProviderWarningMessage.innerText = "This provider is not based in the UK, which deters some GPs from agreeing to shared care.";
         privateProviderPreferredMessage.innerText = "";
-        
+
     }
     else if (privateProviderList.value.includes("Other") || privateProviderList.value.includes("haven't chosen")) {
         privateProviderList.classList.remove("is-invalid");
@@ -299,10 +306,46 @@ function submitActions() {
     const alertPlaceholder = document.getElementById('alertPlaceholder')
     const wrapper = document.createElement('div')
     wrapper.innerHTML = [
-        `<div class="alert alert-success alert-dismissible" role="alert">`,
+        `<div class="alert-success" role="alert">`,
         `   <div>Thank you for using our document generator, if you found this service useful please <a href="https://opencollective.com/beawitching/donate/" class="alert-link" target="_blank" >consider donating</a> so that we can maintain this service.</div>`,
-        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '   <button type="button" id="close-alert-thanks" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
         '</div>'
     ].join('')
     alertPlaceholder.append(wrapper)
+
+    document.getElementById("close-alert-thanks").addEventListener("click", () => {
+        alertPlaceholder.innerHTML = "";
+    });
 }
+
+// info button logic
+infoButtons(document.getElementById("gicLabelBtn"), document.getElementById("gicInfoLabel"));
+infoButtons(document.getElementById("sharedCareLabelBtn"), document.getElementById("sharedCareInfoLabel"));
+infoButtons(document.getElementById("bridgingDesiredLabelBtn"), document.getElementById("bridgingDesiredInfoLabel"));
+infoButtons(document.getElementById("under16LabelBtn"), document.getElementById("under16InfoLabel"));
+infoButtons(document.getElementById("fixedAddressLabelBtn"), document.getElementById("fixedAddressInfoLabel"));
+infoButtons(document.getElementById("noIdProofLabelBtn"), document.getElementById("noIdProofInfoLabel"));
+infoButtons(document.getElementById("immLetterLabelBtn"), document.getElementById("immLetterInfoLabel"));
+
+// expand additional info on clicking ?
+function infoButtons(btn, btnLabel){
+    btn.addEventListener("click", () => {
+        const currentState = btn.getAttribute("data-state");
+        if (!currentState || currentState === "closed") {
+            btn.setAttribute("data-state", "opened");
+            btn.setAttribute("aria-expanded", "true");
+    
+            btnLabel.setAttribute("aria-expanded", "true");
+        } else {
+            btn.setAttribute("data-state", "closed");
+            btn.setAttribute("aria-expanded", "false");
+    
+            btnLabel.setAttribute("aria-expanded", "false");
+        }
+    });
+};
+
+
+
+
+
