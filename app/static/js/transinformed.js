@@ -2,7 +2,7 @@ window.addEventListener('load', function () {
     infoButtons(document.getElementById("gicLabelBtn"), document.getElementById("gicInfoLabel"));
     infoButtons(document.getElementById("sharedCareLabelBtn"), document.getElementById("sharedCareInfoLabel"));
     infoButtons(document.getElementById("bridgingDesiredLabelBtn"), document.getElementById("bridgingDesiredInfoLabel"));
-    infoButtons(document.getElementById("under16LabelBtn"), document.getElementById("under16InfoLabel"));
+    // infoButtons(document.getElementById("under16LabelBtn"), document.getElementById("under16InfoLabel"));
     infoButtons(document.getElementById("fixedAddressLabelBtn"), document.getElementById("fixedAddressInfoLabel"));
     infoButtons(document.getElementById("noIdProofLabelBtn"), document.getElementById("noIdProofInfoLabel"));
     infoButtons(document.getElementById("immLetterLabelBtn"), document.getElementById("immLetterInfoLabel"));
@@ -37,7 +37,7 @@ window.addEventListener('load', function () {
     document.getElementById('immigrationCheck').addEventListener('click', revealContentImmigration);
 
     //Age checkbox
-    document.getElementById('under16Check').addEventListener('click', checkAgeStatus);
+   // document.getElementById('under16Check').addEventListener('click', checkAgeStatus);
 
     document.getElementById("docx").addEventListener('click', submitActionsDocx);
     document.getElementById("pdf").addEventListener('click', submitActionsPdf);
@@ -157,14 +157,14 @@ function serviceFilters() {
         $("#privateProviderList option[value='Other (Non-UK Based)']").hide();
 
     }
-    else if (!under16Check.checked) {
-        $('#grcCheckContainer').show();
-        $('#bridgingDesiredContainer').show();
-        $('#medStatusSection').show();
-        $('#bloodTestsContainer').show();
-        $("#privateProviderList option[value='GenderGP']").show();
-        $("#privateProviderList option[value='Other (Non-UK Based)']").show();
-    }
+    // else if (!under16Check.checked) {
+    //     $('#grcCheckContainer').show();
+    //     $('#bridgingDesiredContainer').show();
+    //     $('#medStatusSection').show();
+    //     $('#bloodTestsContainer').show();
+    //     $("#privateProviderList option[value='GenderGP']").show();
+    //     $("#privateProviderList option[value='Other (Non-UK Based)']").show();
+    // }
 
 
 }
