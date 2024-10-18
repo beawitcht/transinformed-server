@@ -42,7 +42,7 @@ else:
 @app.after_request
 def add_headers(response):
     response.headers['Strict-Transport-Security'] = 'max-age=63072000; includeSubDomains; preload'
-    response.headers['Content-Security-Policy'] = f'default-src \'none\'; script-src \'self\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://js.stripe.com/v3/; img-src \'self\' data: https://http.cat/ https://*.medium.com/;  style-src \'self\'; font-src \'self\'; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/ https://js.stripe.com/v3/;'
+    response.headers['Content-Security-Policy'] = f'default-src \'none\'; script-src \'self\' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://js.stripe.com/v3/; img-src \'self\' data: https://http.cat/ https://*.medium.com/;  style-src \'self\' https://fonts.gstatic.com/ https://fonts.googleapis.com/; font-src \'self\' https://fonts.gstatic.com/ https://fonts.googleapis.com/; connect-src \'self\'; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/ https://js.stripe.com/v3/;'
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['X-XSS-Protection'] = '1; mode=block'
