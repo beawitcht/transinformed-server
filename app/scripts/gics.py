@@ -42,6 +42,11 @@ df = df[1:]
 # format service names
 df["Service"] = df["Service"].map(lambda x: x.split("–", 1)[1])
 df["Service"] = df["Service"].map(lambda x: x.strip())
+# rename
+name_mappings = {
+    "Gender Identity Wales":"Welsh Gender Service"
+}
+df['Service'] = df['Service'].map(lambda x: name_mappings.get(x, x))
 
 
 youth_times = df["To be seen (in months)"]
@@ -75,7 +80,6 @@ for _, row in df.iterrows():
 # Filter services not taking new referrals from GP/self
 invalid_services = ["London TransPlus", "The Northern Hub", "The Southern Hub", "for under 18s, coming soon", "Indigo Gender Service (New style clinic)"]
 options = [gic for gic in options if all(service not in gic[1] for service in invalid_services)]
-
 # filter out < > from options
 options = [(country, re.sub(r'<|>', '', option)) for country, option in options]
 
