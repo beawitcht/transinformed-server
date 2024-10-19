@@ -243,8 +243,6 @@
             {{ form.chosen_private_care(class='inline-dropdown dropdown-text', id='privateProviderList') }}
             <div id="notUK" class="invalid-feedback"></div>
             <div id="preferred" class="valid-feedback"></div>
-
-
         </div>
 
         <div class="check-container" id="bridgingDesiredContainer">
@@ -346,6 +344,7 @@
             {{ form.chosen_gic(class='inline-dropdown dropdown-text', id='gics', option_attr={"chosen_gic-0"
             : {"id" :
             "countryNeeded"}, "chosen_gic-1" : {"id" : "default"} }) }}
+            <div id="gicWarning" class="invalid-feedback"></div>
 
         </div>
 

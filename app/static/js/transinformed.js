@@ -27,6 +27,8 @@ window.addEventListener('load', function () {
     document.getElementById('noDocCheck').addEventListener('click', checkDocStatus);
     // GIC selector
     document.getElementById('referralCheck').addEventListener('click', revealContentReferral);
+    // GIC dropdown
+    document.getElementById('gics').addEventListener('change', gicsDropdownConditions);
 
     // Private provider selector
     document.getElementById('sharedCareCheck').addEventListener('click', revealContentSharedCare);
@@ -226,7 +228,17 @@ function countryServiceFilters() {
 }
 
 function revealContentReferral() {
-    referralCheck.checked ? gicSelector.hidden = false : (gicSelector.hidden = true, countryServiceFilters());
+    referralCheck.checked ? gicSelector.hidden = false : (gicSelector.hidden = true, $("#gicWarning").text(""), countryServiceFilters());
+}
+
+function gicsDropdownConditions() {
+    // add warnings to relevant gics
+    if ($("#gics option:selected").text().includes("Chalmers")) {
+        $("#gicWarning").html("<a target='blank_' href='https://transsafety.network/posts/chalmers-gic-pauses-gender-surgery-referrals-under-25s-cass-review/'> This GIC is not taking surgery referrals for under 25s</a>");
+    }
+    else {
+        $("#gicWarning").text("");
+    }
 }
 
 function revealContentSharedCare() {
@@ -259,6 +271,7 @@ function privateProviderConditions() {
         privateProviderPreferredMessage.innerText = "";
 
     }
+    
     else if (privateProviderList.value.includes("Other") || privateProviderList.value.includes("haven't chosen")) {
         privateProviderList.classList.remove("is-invalid");
         privateProviderList.classList.remove("is-valid");
