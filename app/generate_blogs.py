@@ -1,7 +1,7 @@
 from pathlib import Path
 from utilities import prepare_blogs
 
-path = Path(__file__).parent.parent.resolve()
+path = Path(__file__).parent.resolve()
 output = path / "templates" / "blogs"
 
 # get blogs
