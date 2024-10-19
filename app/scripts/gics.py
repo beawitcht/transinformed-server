@@ -60,7 +60,7 @@ for _, row in df.iterrows():
     # Determine the country based on the service name
     if re.search(r"\b(Brackenburn|KOI)\b", service):
         country = "Northern Ireland"
-    elif "Wales" in service:
+    elif "Welsh" in service:
         country = "Wales"
     elif re.search(r"\b(Edinburgh|Glasgow|Grampian|Inverness|Sandyford|Highland)\b", service):
         country = "Scotland"
