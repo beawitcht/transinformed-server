@@ -77,11 +77,11 @@ for _, row in df.iterrows():
 
 
 
-# Filter services not taking new referrals from GP/self
-invalid_services = ["London TransPlus", "The Northern Hub", "The Southern Hub", "for under 18s, coming soon", "Indigo Gender Service (New style clinic)"]
+# Filter services not taking new referrals from GP/self or limited access
+invalid_services = ["London TransPlus", "The Northern Hub", "The Southern Hub", "for under 18s, coming soon", "Indigo Gender Service (New style clinic)", "Sussex Gender Service (Pilot clinic)"]
 options = [gic for gic in options if all(service not in gic[1] for service in invalid_services)]
 # filter out < > from options
-options = [(country, re.sub(r'<|>', '', option)) for country, option in options]
+options = [(country, re.sub(r'<|>|\*', '', option)) for country, option in options]
 
 # Add NRSS or the very concise name: NATIONAL REFERRAL SUPPORT SERVICE FOR THE NHS GENDER INCONGRUENCE SERVICE FOR CHILDREN AND YOUNG PEOPLE
 options.append(("Y-England", f"National Referral Support Service - Wait time: Unknown"))
@@ -92,9 +92,8 @@ options.sort(key=lambda x: int(re.search(r'(\d+)', x[1]).group(0)) if "Unknown" 
 new_options = {"GICs": options}
 new_options = json.dumps(new_options)
 
-with open(path / 'forms' / 'GICs.json') as f:
+with open(path / 'forms' / 'GICs.json', encoding="utf-8") as f:
     old_options = json.loads(f.read())
-
 
 # Compare items with the same name in the diff
 old_options_dict = {item[1].split(" - ")[0]: item for item in old_options["GICs"]}
