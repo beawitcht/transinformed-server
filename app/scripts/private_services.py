@@ -35,7 +35,7 @@ service_list = soup.find(string="Paid UK-based services").findNext('ul')
 for li in service_list.findAll('li'):
     options.append(li.find('a').text)
 
-exclusions = ["Dr Lenihan", "Kelly Psychology", "GenderPlus"]
+exclusions = ["Dr Lenihan", "Kelly Psychology", "GenderPlus", "Dignity Gender Services"]
 # remove services that don't include endocrinology or other criteria
 options = [service for service in options if service not in exclusions]
 

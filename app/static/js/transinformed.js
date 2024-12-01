@@ -233,12 +233,12 @@ function revealContentReferral() {
 
 function gicsDropdownConditions() {
     // add warnings to relevant gics
-    if ($("#gics option:selected").text().includes("Chalmers")) {
-        $("#gicWarning").html("<a target='blank_' href='https://transsafety.network/posts/chalmers-gic-pauses-gender-surgery-referrals-under-25s-cass-review/'> This GIC is not taking surgery referrals for under 25s</a>");
-    }
-    else {
-        $("#gicWarning").text("");
-    }
+    // if ($("#gics option:selected").text().includes("Chalmers")) {
+    //     $("#gicWarning").html("<a target='blank_' href='https://transsafety.network/posts/chalmers-gic-pauses-gender-surgery-referrals-under-25s-cass-review/'> This GIC is not taking surgery referrals for under 25s</a>");
+    // }
+    // else {
+    //     $("#gicWarning").text("");
+    // }
 }
 
 function revealContentSharedCare() {
@@ -271,7 +271,7 @@ function privateProviderConditions() {
         privateProviderPreferredMessage.innerText = "";
 
     }
-    
+
     else if (privateProviderList.value.includes("Other") || privateProviderList.value.includes("haven't chosen")) {
         privateProviderList.classList.remove("is-invalid");
         privateProviderList.classList.remove("is-valid");
@@ -348,12 +348,12 @@ function infoButtons(btn, btnLabel){
         if (!currentState || currentState === "closed") {
             btn.setAttribute("data-state", "opened");
             btn.setAttribute("aria-expanded", "true");
-    
+
             btnLabel.setAttribute("aria-expanded", "true");
         } else {
             btn.setAttribute("data-state", "closed");
             btn.setAttribute("aria-expanded", "false");
-    
+
             btnLabel.setAttribute("aria-expanded", "false");
         }
     });
