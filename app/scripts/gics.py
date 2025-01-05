@@ -71,17 +71,23 @@ for _, row in df.iterrows():
     for identifier in youth_services:
         if identifier in service:
             country = "Y-" + country
-    
+
+    # replace not known with unknown
+    if "Not known" in to_be_seen:
+        to_be_seen = "Unknown"
+
     if "?" not in str(to_be_seen):
         options.append((country, f"{service} - Wait time (months): {to_be_seen}" if pd.notna(to_be_seen) else f"{service} - Wait time (months): Unknown"))
 
 
-
 # Filter services not taking new referrals from GP/self or limited access
-invalid_services = ["London TransPlus", "The Northern Hub", "The Southern Hub", "for under 18s, coming soon", "Indigo Gender Service (New style clinic)", "Sussex Gender Service (Pilot clinic)"]
+invalid_services = ["London TransPlus", "The Northern Hub", "The Southern Hub", "for under 18s, coming soon", "Indigo Gender Service (New style clinic)", "Sussex Gender Service (Pilot clinic)", "TransPlus (New style clinic)"]
 options = [gic for gic in options if all(service not in gic[1] for service in invalid_services)]
 # filter out < > from options
 options = [(country, re.sub(r'<|>|\*', '', option)) for country, option in options]
+# replace nonstandard spaces
+options = [(country, option.replace(u'\xa0', u' ')) for country, option in options]
+
 
 # Add NRSS or the very concise name: NATIONAL REFERRAL SUPPORT SERVICE FOR THE NHS GENDER INCONGRUENCE SERVICE FOR CHILDREN AND YOUNG PEOPLE
 options.append(("Y-England", f"National Referral Support Service - Wait time: Unknown"))

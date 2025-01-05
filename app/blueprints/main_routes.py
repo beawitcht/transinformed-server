@@ -8,7 +8,7 @@ api_key = os.getenv('PDF_API_KEY')
 pdf_limit = os.getenv('PDF_LIMIT')
 core_bp = Blueprint('core', __name__)
 
-@core_bp.route("/", methods=['GET', 'POST'])
+@core_bp.route("/generator", methods=['GET', 'POST'])
 # Don't limit GET requests or docx generation
 @limiter.limit(pdf_limit, exempt_when=lambda: request.method != 'POST' or request.form.get('docx'))
 @cache.cached(timeout=60 * 60 * 24 * 7, unless=lambda: request.method == 'POST')
@@ -41,7 +41,7 @@ def home():
             else:
                 return ("An error occured, please try again later")
 
-    return render_template("index.html", form=form, pdf_available=pdf_available)
+    return render_template("generator.html", form=form, pdf_available=pdf_available)
 
 
 @core_bp.route("/about", methods=['GET'])
