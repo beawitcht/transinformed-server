@@ -2,6 +2,12 @@
 @use '../../variables/global-vars';
 @use '../../base/mixins';
 
+@media screen and (min-device-width: 1000px) {
+    .blog-main-content {
+        max-width: 1000px;
+        margin: auto;
+    }
+}
 
 @media (min-width: 778px) {
     .blog-main-content {
