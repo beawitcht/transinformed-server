@@ -40,4 +40,8 @@ def prepare_blogs(url):
             card_img = img_match.group()
             #append class
             item.card_img = card_img.replace('<img', '<img class="card-image"', 1)
+            #use local img
+            item.card_img = item.card_img.replace('https://cdn-images-1.medium.com/max/1024/', '/static/images/thumbs/', 1)
+            item.card_img = item.card_img.replace('" />', '.jpg" />', 1)
+
     return entries

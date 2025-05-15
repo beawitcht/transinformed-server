@@ -1,6 +1,6 @@
 gunicorn==23.0.0
-flask==3.1.0
-docxtpl==0.19.1
+flask==3.1.1
+docxtpl==0.20.0
 jinja2==3.1.6
 convertapi==2.0.0
 python-dotenv==1.1.0
@@ -8,7 +8,7 @@ Flask-WTF==1.2.2
 email_validator==2.2.0
 Flask-Limiter==3.12
 Flask-Caching==2.3.1
-deepdiff==8.4.2
+deepdiff==8.5.0
 discord.py==2.5.2
 pandas==2.2.3
 bs4==0.0.2
