@@ -43,5 +43,6 @@ def prepare_blogs(url):
             #use local img
             item.card_img = item.card_img.replace('https://cdn-images-1.medium.com/max/1024/', '/static/images/thumbs/', 1)
             item.card_img = item.card_img.replace('" />', '.jpg" />', 1)
+            item.card_img = item.card_img.replace('*', '', 1)
 
     return entries
