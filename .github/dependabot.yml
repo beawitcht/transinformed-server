@@ -9,3 +9,8 @@ updates:
       - "beawitcht"
     labels:
       - "dependencies"
+    allow:
+      - dependency-type: "direct"
+    insecure-external-code-execution: "deny"
+    ignore:
+      - dependency-name: "numpy"
