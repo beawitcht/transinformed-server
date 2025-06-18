@@ -1,11 +1,13 @@
-from dotenv import load_dotenv
-from pathlib import Path
-from deepdiff import DeepDiff
-import discord
+"""Get private services maintained by TransActual for use in doc generator"""
 import os
-import urllib
-import bs4
 import json
+from pathlib import Path
+from dotenv import load_dotenv
+
+from deepdiff import DeepDiff
+import pandas as pd
+import discord
+
 
 path = Path(__file__).parent.parent.resolve()
 load_dotenv(path / '.env')
@@ -19,24 +21,24 @@ intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 is_dev = os.getenv("IS_DEV")
 
+
 @client.event
 async def on_ready():
+    """Discord alerts for changes to private services"""
     channel = client.get_channel(int(discord_channel))
     await channel.send(discord_msg)
     await client.close()
 
+URL = "https://transactual.org.uk/medical-transition/private-care/"
+pd.options.mode.chained_assignment = None
+# get table of services
+df = pd.read_html(URL, match="Service")
 
-options = []
-url = "https://genderkit.org.uk/resources/gender-services/"
-soup = bs4.BeautifulSoup(urllib.request.urlopen(url).read(), "lxml")
-# find the list of paid services
-service_list = soup.find(string="Paid UK-based services").findNext('ul')
-# extract name of each service
-for li in service_list.findAll('li'):
-    options.append(li.find('a').text)
+# Extract services to options list
+options = df[0]['Service'].tolist()
 
-exclusions = ["Dr Lenihan", "Kelly Psychology", "GenderPlus", "Dignity Gender Services"]
 # remove services that don't include endocrinology or other criteria
+exclusions = ["Dr Lenihan", "Dignity Gender Assessment Services"]
 options = [service for service in options if service not in exclusions]
 
 # modify names where needed
@@ -44,6 +46,9 @@ if "Gender Identity SW" in options:
     options.remove("Gender Identity SW")
     options.append("Gender Identity South West")
 
+if "GenderPlus with Kelly Psychology" in options:
+    options.remove("GenderPlus with Kelly Psychology")
+    options.append("GenderPlus")
 
 # add other services not included in the list
 options.append("GenderGP")
@@ -55,23 +60,26 @@ options.sort()
 options.append("Other (UK Based, GMC Registered)")
 options.append("Other (Non-UK Based)")
 
+
 # output as json
 options = {"Private Services": options}
 
-with open(path / 'forms' / 'private_services.json') as f:
-        old_options = json.loads(f.read())
-        
-# on any change, write changes to file and send message of difference to discord
+with open(path / 'forms' / 'private_services.json', encoding="utf-8") as f:
+    old_options = json.loads(f.read())
+
+# on change, write changes to file and send message of difference to discord
 if old_options != options:
-    
-    diff = json.dumps(DeepDiff(old_options["Private Services"], options["Private Services"], ignore_order=True), indent=4)
+
+    diff = json.dumps(DeepDiff(
+        old_options["Private Services"], options["Private Services"], ignore_order=True), indent=4)
     if len(str(diff)) > 1900:
         discord_msg = "Private Services Changes too long check file"
     elif is_dev == "1":
-        discord_msg = f"DEVLEOPMENT TEST: Private Services have changed!\n\nDifferences: \n\n{diff}"
+        discord_msg = f"DEVELOPMENT TEST: Private Services have changed!\n\nDifferences: \n\n{diff}"
     else:
         discord_msg = f"Private Services have changed!\n\nDifferences: \n\n{diff}"
-    with open(path / 'forms' / 'private_services.json', 'w') as f:
+    with open(path / 'forms' / 'private_services.json', 'w', encoding="utf-8") as f:
         f.write(json.dumps(options))
     client.run(discord_token)
+    print("Private Services have changed")
     Path(touch_path).touch()

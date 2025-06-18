@@ -1,10 +1,13 @@
-import pandas as pd
-from dotenv import load_dotenv
-from pathlib import Path
-import discord
+"""Get GICs maintained by TransActual for use in doc generator"""
 import os
 import re
 import json
+from pathlib import Path
+
+from dotenv import load_dotenv
+import pandas as pd
+import discord
+
 
 path = Path(__file__).parent.parent.resolve()
 load_dotenv(path / '.env')
@@ -21,22 +24,23 @@ touch_path = os.getenv("TOUCH_PATH")
 
 @client.event
 async def on_ready():
+    """Discord alerts for changes to GICs"""
     channel = client.get_channel(int(discord_channel))
     await channel.send(discord_msg)
     await client.close()
 
 
 options = []
-url = "https://transactual.org.uk/medical-transition/gender-dysphoria-clinics/"
+URL = "https://transactual.org.uk/medical-transition/gender-dysphoria-clinics/"
 pd.options.mode.chained_assignment = None
 # get table of wait times from Gender Kit
-table = pd.read_html(url, match="hormones")
+table = pd.read_html(URL, match="hormones")
 
 df = table[0]
-#set column names equal to values in row index position 0
+# set column names equal to values in row index position 0
 df.columns = df.iloc[0]
 
-#remove first row from DataFrame
+# remove first row from DataFrame
 df = df[1:]
 
 # format service names
@@ -44,7 +48,7 @@ df["Service"] = df["Service"].map(lambda x: x.split("–", 1)[1])
 df["Service"] = df["Service"].map(lambda x: x.strip())
 # rename
 name_mappings = {
-    "Gender Identity Wales":"Welsh Gender Service"
+    "Gender Identity Wales": "Welsh Gender Service"
 }
 df['Service'] = df['Service'].map(lambda x: name_mappings.get(x, x))
 
@@ -53,8 +57,8 @@ youth_times = df["To be seen (in months)"]
 
 for _, row in df.iterrows():
     country = ""
-    service = row[0]
-    to_be_seen = row[1]
+    service = row.iloc[0]
+    to_be_seen = row.iloc[1]
     youth_services = ["Young People", "young people"]
 
     # Determine the country based on the service name
@@ -77,24 +81,33 @@ for _, row in df.iterrows():
         to_be_seen = "Unknown"
 
     if "?" not in str(to_be_seen):
-        options.append((country, f"{service} - Wait time (months): {to_be_seen}" if pd.notna(to_be_seen) else f"{service} - Wait time (months): Unknown"))
+        options.append((country, f"{service} - Wait time (months): {to_be_seen}" if
+                        pd.notna(to_be_seen) else f"{service} - Wait time (months): Unknown"))
 
 
 # Filter services not taking new referrals from GP/self or limited access
-invalid_services = ["London TransPlus", "The Northern Hub", "The Southern Hub", "for under 18s, coming soon", "Indigo Gender Service (New style clinic)", "Sussex Gender Service (Pilot clinic)", "TransPlus (New style clinic)"]
-options = [gic for gic in options if all(service not in gic[1] for service in invalid_services)]
+invalid_services = ["London TransPlus", "The Northern Hub", "The Southern Hub",
+                    "for under 18s, coming soon", "Indigo Gender Service (New style clinic)",
+                    "Sussex Gender Service (Pilot clinic)", "TransPlus (New style clinic)"]
+options = [gic for gic in options if all(
+    service not in gic[1] for service in invalid_services)]
 # filter out < > from options
-options = [(country, re.sub(r'<|>|\*', '', option)) for country, option in options]
+options = [(country, re.sub(r'<|>|\*', '', option))
+           for country, option in options]
 # replace nonstandard spaces
-options = [(country, option.replace(u'\xa0', u' ')) for country, option in options]
+options = [(country, option.replace(u'\xa0', u' '))
+           for country, option in options]
 
 
 # Add NRSS or the very concise name: NATIONAL REFERRAL SUPPORT SERVICE FOR THE NHS GENDER INCONGRUENCE SERVICE FOR CHILDREN AND YOUNG PEOPLE
-options.append(("Y-England", f"National Referral Support Service - Wait time: Unknown"))
-options.append(("Y-Wales", f"National Referral Support Service - Wait time: Unknown"))
+options.append(
+    ("Y-England", "National Referral Support Service - Wait time: Unknown"))
+options.append(
+    ("Y-Wales", "National Referral Support Service - Wait time: Unknown"))
 
 # Sort options by months remaining
-options.sort(key=lambda x: int(re.search(r'(\d+)', x[1]).group(0)) if "Unknown" not in x[1] else 9999)
+options.sort(key=lambda x: int(
+    re.search(r'(\d+)', x[1]).group(0)) if "Unknown" not in x[1] else 9999)
 new_options = {"GICs": options}
 new_options = json.dumps(new_options)
 
@@ -102,12 +115,16 @@ with open(path / 'forms' / 'GICs.json', encoding="utf-8") as f:
     old_options = json.loads(f.read())
 
 # Compare items with the same name in the diff
-old_options_dict = {item[1].split(" - ")[0]: item for item in old_options["GICs"]}
-new_options_dict = {item[1].split(" - ")[0]: item for item in json.loads(new_options)["GICs"]}
+old_options_dict = {item[1].split(
+    " - ")[0]: item for item in old_options["GICs"]}
+new_options_dict = {item[1].split(
+    " - ")[0]: item for item in json.loads(new_options)["GICs"]}
 
 # Find added and removed items
-added = [item for item in new_options_dict.items() if item[0] not in old_options_dict]
-removed = [item for item in old_options_dict.items() if item[0] not in new_options_dict]
+added = [item for item in new_options_dict.items() if item[0]
+         not in old_options_dict]
+removed = [item for item in old_options_dict.items() if item[0]
+           not in new_options_dict]
 
 diff = []
 for name, new_item in new_options_dict.items():
@@ -144,9 +161,9 @@ if diff:
         discord_msg = f"DEVELOPMENT TEST: {diff_message}"
     else:
         discord_msg = diff_message
-    with open(path / 'forms' / 'GICs.json', 'w') as f:
+    with open(path / 'forms' / 'GICs.json', 'w', encoding="utf-8") as f:
         f.write(new_options)
     client.run(discord_token)
-    
+
     print("GICs have changed")
     Path(touch_path).touch()
