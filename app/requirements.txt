@@ -249,9 +249,9 @@ dnspython==2.7.0 \
 docxcompose==1.4.0 \
     --hash=sha256:bcf2799a0b63c29eb77a3d799a2f28443ae0f69f8691ff3d753f706be515c3e9
     # via docxtpl
-docxtpl==0.20.0 \
-    --hash=sha256:7e2a0e01a87952c161b8e24b84941f515051e36814eb357c98c218c8ea6b2c40 \
-    --hash=sha256:87d5d9c7f73a6c74c182b4b78a82886047e33db64973f7adaac3e0a824ffef63
+docxtpl==0.20.1 \
+    --hash=sha256:5bab05a2c60b225c730ce18e9e2d40d748b4a12f599e150badbcb659088a51d4 \
+    --hash=sha256:8c4c63c5505373cb1624e969ea85a47d7cb61be18008a03f5271c1be4bbe501c
     # via -r requirements.in
 email-validator==2.2.0 \
     --hash=sha256:561977c2d73ce3611850a06fa56b414621e0c8faa9d66f2611407d87465da631 \
