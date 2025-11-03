@@ -238,9 +238,9 @@ deprecated==1.2.18 \
     --hash=sha256:422b6f6d859da6f2ef57857761bfb392480502a64c3028ca9bbe86085d72115d \
     --hash=sha256:bd5011788200372a32418f888e326a09ff80d0214bd961147cfed01b5c018eec
     # via limits
-discord-py==2.5.2 \
-    --hash=sha256:01cd362023bfea1a4a1d43f5280b5ef00cad2c7eba80098909f98bf28e578524 \
-    --hash=sha256:81f23a17c50509ffebe0668441cb80c139e74da5115305f70e27ce821361295a
+discord-py==2.6.4 \
+    --hash=sha256:2783b7fb7f8affa26847bfc025144652c294e8fe6e0f8877c67ed895749eb227 \
+    --hash=sha256:44384920bae9b7a073df64ae9b14c8cf85f9274b5ad5d1d07bd5a67539de2da9
     # via -r requirements.in
 dnspython==2.7.0 \
     --hash=sha256:b4c34b7d10b51bcc3a5071e7b8dee77939f1e878477eeecc965e9835f63c6c86 \
