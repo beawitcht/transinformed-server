@@ -8,6 +8,7 @@ entries = prepare_blogs("https://medium.com/feed/@transinformed")
 
 blog_bp = Blueprint('blog', __name__)
 
+
 @blog_bp.route("/", methods=['GET'])
 @cache.cached(timeout=60 * 60 * 24 * 7)
 def blogs():
@@ -25,6 +26,5 @@ def blog(title):
         blog = entries[blog_number]
     except NameError:
         abort(404)
-    
-    return render_template(f"blogs/{blog.title}.html", blog=blog)
 
+    return render_template(f"blogs/{blog.title}.html", blog=blog)

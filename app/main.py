@@ -7,6 +7,7 @@ from utilities import prepare_blogs
 from pathlib import Path
 import os
 
+
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parent / '.env')
 
@@ -17,14 +18,15 @@ is_dev = os.getenv('IS_DEV')
 def get_client_ip():
     if is_dev == '0':
         return request.headers['X-Real-IP']
-    else: 
+    else:
         return get_remote_address
+
 
 # configure app
 app = Flask(__name__)
 
 limiter = Limiter(
-    app=app, 
+    app=app,
     key_func=get_client_ip,
     storage_uri="memory://",
 )
@@ -34,11 +36,14 @@ app.config['RECAPTCHA_PRIVATE_KEY'] = os.getenv('RECAPTCHA_PRIVATE_KEY')
 
 # disable caching if in development mode
 if is_dev == '0':
-    cache = Cache(app, config={'CACHE_TYPE': 'FileSystemCache', 'CACHE_DIR': Path(__file__).resolve().parent / 'tmp' / 'cache', 'CACHE_SOURCE_CHECK': True })
+    cache = Cache(app, config={'CACHE_TYPE': 'FileSystemCache', 'CACHE_DIR': Path(
+        __file__).resolve().parent / 'tmp' / 'cache', 'CACHE_SOURCE_CHECK': True})
 else:
     cache = Cache(app, config={'CACHE_TYPE': 'NullCache'})
 
-# Set headers 
+# Set headers
+
+
 @app.after_request
 def add_headers(response):
     response.headers['Strict-Transport-Security'] = 'max-age=63072000; includeSubDomains; preload'
@@ -49,22 +54,24 @@ def add_headers(response):
     response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
     return response
 
+from blueprints import core_bp, blog_bp, api_bp
 # get blogs
 entries = prepare_blogs("https://medium.com/feed/@transinformed")
 
-from blueprints import core_bp, blog_bp
-
 app.register_blueprint(core_bp)
 app.register_blueprint(blog_bp)
+app.register_blueprint(api_bp)
+
 
 @app.errorhandler(HTTPException)
 def handle_error(error):
     # make description generic for rate limit
     if error.code == 429:
         error.description = 'Try again later.'
-    return make_response(render_template("error.html", name=error.name ,code=error.code, description=error.description), error.code)
+    return make_response(render_template("error.html", name=error.name, code=error.code, description=error.description), error.code)
 
 # add header rows on blog posts before each heading and style images
+
 
 if __name__ == '__main__':
     app.run()
