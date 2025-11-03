@@ -2,7 +2,7 @@ import requests
 import os
 import ast
 
-from flask import Blueprint, request, abort
+from flask import Blueprint, request, abort, jsonify
 
 api_bp = Blueprint('api', __name__)
 
@@ -28,4 +28,4 @@ def the_routler():
     elif response.status_code != 200:
         abort(response.status_code)
 
-    return response.json()
+    return jsonify(response.json())

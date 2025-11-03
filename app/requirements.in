@@ -13,5 +13,4 @@ discord.py==2.6.4
 pandas==2.3.3
 bs4==0.0.2
 feedparser==6.0.12
-numpy==1.26.4   # pinned for compatibility with deepdiff
-setuptools>78.1.1,<81
+numpy==1.26.4   # pinned for compatibility with python 3.10/deepdiff
