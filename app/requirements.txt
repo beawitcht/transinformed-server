@@ -273,9 +273,9 @@ flask-caching==2.3.1 \
     --hash=sha256:65d7fd1b4eebf810f844de7de6258254b3248296ee429bdcb3f741bcbf7b98c9 \
     --hash=sha256:d3efcf600e5925ea5a2fcb810f13b341ae984f5b52c00e9d9070392f3ca10761
     # via -r requirements.in
-flask-limiter==3.12 \
-    --hash=sha256:b94c9e9584df98209542686947cf647f1ede35ed7e4ab564934a2bb9ed46b143 \
-    --hash=sha256:f9e3e3d0c4acd0d1ffbfa729e17198dd1042f4d23c130ae160044fc930e21300
+flask-limiter==4.0.0 \
+    --hash=sha256:536a8df0bb2033f415a2212e19a3b7ddfea38585ac5a2444e1cfa986a697847c \
+    --hash=sha256:be62b462d5a052d21572d4c932e18a8da58cf9ddc18a34b6f1c21fa2ec35a395
     # via -r requirements.in
 flask-wtf==1.2.2 \
     --hash=sha256:79d2ee1e436cf570bccb7d916533fa18757a2f18c290accffab1b9a0b684666b \
@@ -1004,6 +1004,7 @@ typing-extensions==4.14.0 \
     --hash=sha256:a1514509136dd0b477638fc68d6a91497af5076466ad0fa6c338e44e359944af
     # via
     #   beautifulsoup4
+    #   flask-limiter
     #   limits
     #   python-docx
 tzdata==2025.2 \
