@@ -52,7 +52,7 @@ def add_headers(response):
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['X-XSS-Protection'] = '1; mode=block'
     response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
-    response.headers['Access-Control-Allow-Origin'] = 'https://beawitcht.github.io'
+    response.headers['Access-Control-Allow-Origin'] = 'https://advocacy.beawitcht.com'
     return response
 
 from blueprints import core_bp, blog_bp, api_bp
