@@ -1,6 +1,6 @@
 # Trans Informed server
 
-![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793393353-5ef24de0db746db2e74fdfba) ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m793393353-5ef24de0db746db2e74fdfba) [![CodeQL](https://github.com/beawitcht/transinformed-server/actions/workflows/codeql.yml/badge.svg)](https://github.com/beawitcht/transinformed-server/actions/workflows/codeql.yml) ![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade/www.transinformed.co.uk?publish) ![GitHub](https://img.shields.io/github/license/beawitcht/transinformed-server) [![Twitter Follow](https://img.shields.io/twitter/follow/beawitching_cic?style=social)](https://www.twitter.com/beawitching_cic)
+![Uptime Robot status](https://img.shields.io/uptimerobot/status/m793393353-5ef24de0db746db2e74fdfba) ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m793393353-5ef24de0db746db2e74fdfba) [![CodeQL](https://github.com/beawitcht/transinformed-server/actions/workflows/codeql.yml/badge.svg)](https://github.com/beawitcht/transinformed-server/actions/workflows/codeql.yml) ![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade/www.transinformed.co.uk?publish) ![GitHub](https://img.shields.io/github/license/beawitcht/transinformed-server)
 ***
 
 <p align="center">
@@ -37,5 +37,3 @@ PDF_LIMIT = 100/minute # set rate limit for pdf downloads (see flask-limiter doc
 ```bash
 gunicorn -w 4 -b 127.0.0.1:8000 main:app
 ```
-***
-[![open collective](https://opencollective.com/beawitching/donate/button.png?color=blue)](https://opencollective.com/beawitching)
