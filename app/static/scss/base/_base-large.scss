@@ -2,6 +2,12 @@
 @use '../variables/global-vars';
 
 @media (min-width: 778px) {
+    #main {
+        max-width: 1000px;
+        margin: auto;
+        h2{text-align: center;}
+        
+    }
     .nav-bar-mobile {
         display: none;
     }
