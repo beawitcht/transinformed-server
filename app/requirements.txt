@@ -277,9 +277,9 @@ flask-caching==2.3.1 \
     --hash=sha256:65d7fd1b4eebf810f844de7de6258254b3248296ee429bdcb3f741bcbf7b98c9 \
     --hash=sha256:d3efcf600e5925ea5a2fcb810f13b341ae984f5b52c00e9d9070392f3ca10761
     # via -r requirements.in
-flask-limiter==4.0.0 \
-    --hash=sha256:536a8df0bb2033f415a2212e19a3b7ddfea38585ac5a2444e1cfa986a697847c \
-    --hash=sha256:be62b462d5a052d21572d4c932e18a8da58cf9ddc18a34b6f1c21fa2ec35a395
+flask-limiter==4.1.0 \
+    --hash=sha256:3c67c0d334f50ae9f1288b0c2f622cc9ed42018a145f66e59918b9aecb5efcdc \
+    --hash=sha256:7be4a8a3fd226f6bce1e633bdac4af16b0d231b6e186f1a6783aa319eb8730ae
     # via -r requirements.in
 flask-wtf==1.2.2 \
     --hash=sha256:79d2ee1e436cf570bccb7d916533fa18757a2f18c290accffab1b9a0b684666b \
@@ -558,10 +558,6 @@ lxml==5.4.0 \
     #   docxcompose
     #   docxtpl
     #   python-docx
-markdown-it-py==3.0.0 \
-    --hash=sha256:355216845c60bd96232cd8d8c40e8f9765cc86f46880e43a8fd22dc1a1a8cab1 \
-    --hash=sha256:e3f60a94fa066dc52ec76661e37c851cb232d92f9886b15cb560aaada2df8feb
-    # via rich
 markupsafe==3.0.2 \
     --hash=sha256:0bff5e0ae4ef2e1ae4fdf2dfd5b76c75e5c2fa4132d05fc1b0dabcd20c7e28c4 \
     --hash=sha256:0f4ca02bea9a23221c0182836703cbf8930c5e9454bacce27e767509fa286a30 \
@@ -629,10 +625,6 @@ markupsafe==3.0.2 \
     #   jinja2
     #   werkzeug
     #   wtforms
-mdurl==0.1.2 \
-    --hash=sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8 \
-    --hash=sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba
-    # via markdown-it-py
 multidict==6.5.0 \
     --hash=sha256:03c0923da300120830fc467e23805d63bbb4e98b94032bd863bc7797ea5fa653 \
     --hash=sha256:046a7540cfbb4d5dc846a1fd9843f3ba980c6523f2e0c5b8622b4a5c94138ae6 \
@@ -960,10 +952,6 @@ propcache==0.3.2 \
     # via
     #   aiohttp
     #   yarl
-pygments==2.19.1 \
-    --hash=sha256:61c16d2a8576dc0649d9f39e089b5f02bcd27fba10d8fb4dcc28173f7a45151f \
-    --hash=sha256:9ea1544ad55cecf4b8242fab6dd35a93bbce657034b0611ee383099054ab6d8c
-    # via rich
 python-dateutil==2.9.0.post0 \
     --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
     --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
@@ -986,10 +974,6 @@ requests==2.32.4 \
     --hash=sha256:27babd3cda2a6d50b30443204ee89830707d396671944c998b5975b031ac2b2c \
     --hash=sha256:27d0316682c8a29834d3264820024b62a36942083d52caf2f14c0591336d3422
     # via convertapi
-rich==13.9.4 \
-    --hash=sha256:439594978a49a09530cff7ebc4b5c7103ef57baf48d5ea3184f21d9a2befa098 \
-    --hash=sha256:6049d5e6ec054bf2779ab3358186963bac2ea89175919d699e378b99738c2a90
-    # via flask-limiter
 sgmllib3k==1.0.0 \
     --hash=sha256:7868fb1c8bfa764c1ac563d3cf369c381d1325d36124933a726f29fcdaa812e9
     # via feedparser
